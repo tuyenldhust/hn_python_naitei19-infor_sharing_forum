@@ -1,0 +1,50 @@
+{% extends 'admin/base.html' %}
+{% load i18n static %}
+{% block body %}
+<body class="loading"
+    data-layout='{"mode": "light", "width": "fluid", "menuPosition": "fixed", "sidebar": { "color": "light", "size": "default", "showuser": true}, "topbar": {"color": "light"}, "showRightSidebarOnPageLoad": true}'>
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        {% include 'admin/topbar.html' %}
+
+        {% include 'admin/leftsidebar.html' %}
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page">
+            <div class="content">
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+
+                    {% block content %}{% endblock %}
+
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+
+            {% include 'admin/footer.html' %}
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+
+    </div>
+    <!-- END wrapper -->
+
+    {% include 'admin/rightsidebar.html' %}
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    {% include 'admin/js.html' %}
+
+</body>
+{% endblock %}
