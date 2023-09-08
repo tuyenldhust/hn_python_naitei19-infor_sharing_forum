@@ -1,0 +1,41 @@
+{% extends 'admin/base_site_single.html' %}
+{% load i18n static %}
+
+{% block title %}Log in{% endblock %}
+
+{% block card %}
+<div class="card">
+
+    <div class="card-body p-4">
+
+        <div class="text-center mb-4">
+            <h4 class="text-uppercase mt-0">Đăng nhập</h4>
+        </div>
+
+        <form method="post" id="login-form">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.username.errors }}
+                <label for="username" class="form-label">Tài khoản</label>
+                <input class="form-control" type="username" id="username" required="" placeholder="Enter your username"
+                    name="username">
+            </div>
+
+            <div class="mb-3">
+                {{ form.password.errors }}
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input class="form-control" type="password" required="" id="password" placeholder="Enter your password"
+                    name="password">
+            </div>
+
+            <input type="hidden" name="next" value="{{ next }}">
+
+            <div class="mb-3 d-grid text-center">
+                <button class="btn btn-primary" type="submit"> Đăng nhập </button>
+            </div>
+        </form>
+        
+    </div>
+
+</div>
+{% endblock %}

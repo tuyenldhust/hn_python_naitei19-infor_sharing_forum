@@ -1,0 +1,30 @@
+{% extends 'admin/base.html' %}
+{% load i18n static %}
+
+{% block title %}Log in{% endblock %}
+
+{% block body %}
+
+<body class="loading authentication-bg authentication-bg-pattern">
+
+  <div class="account-pages mt-5 mb-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-4">
+          <div class="text-center">
+            <a href="{% url 'admin:index' %}">
+              <img src="{% static 'admin/assets/images/logo-dark.png' %}" alt="" height="22" class="mx-auto">
+            </a>
+            <div class="mt-2 mb-4"></div>
+          </div>
+          {% block card %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include 'admin/js.html' %}
+
+</body>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% load i18n static %}
+<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Admin Page" name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'admin/assets/images/favicon.ico' %}">
+
+    <!-- App css -->
+    <link href="{% static 'admin/assets/css/bootstrap.css' %}" rel="stylesheet" type="text/css"
+        id="bs-default-stylesheet" />
+    <link href="{% static 'admin/assets/css/app.css' %}" rel="stylesheet" type="text/css"
+        id="app-default-stylesheet" />
+
+    <link href="{% static 'admin/assets/css/bootstrap-dark.css' %}" rel="stylesheet" type="text/css"
+        id="bs-dark-stylesheet" disabled="disabled" />
+    <link href="{% static 'admin/assets/css/app-dark.css' %}" rel="stylesheet" type="text/css"
+        id="app-dark-stylesheet" disabled="disabled" />
+
+    <!-- icons -->
+    <link rel="stylesheet" href="{% static 'admin/assets/css/icons.css' %}" type="text/css" />    
+</head>
+
+<!-- body start -->
+{% block body %}
+{% endblock %}
+
+</html>
