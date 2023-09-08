@@ -1,0 +1,231 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-11 14:55+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+#: .\customadmin\templates\admin\leftsidebar.html:12
+msgid "Navigation"
+msgstr "Navigation"
+
+#: .\customadmin\templates\admin\leftsidebar.html:17
+msgid "Bảng điều khiển"
+msgstr "Bảng điều khiển"
+
+#: .\customadmin\templates\admin\leftsidebar.html:21
+msgid "Công cụ"
+msgstr "Công cụ"
+
+#: .\customadmin\templates\admin\leftsidebar.html:26
+msgid "Công cụ 1"
+msgstr "Công cụ 1"
+
+#: .\customadmin\templates\admin\leftsidebar.html:33
+msgid "Công cụ 2"
+msgstr "Công cụ 2"
+
+#: .\customadmin\templates\admin\leftsidebar.html:40
+msgid "Công cụ 3"
+msgstr "Công cụ 3"
+
+#: .\customadmin\templates\admin\leftsidebar.html:46
+msgid "Công cụ 3.1"
+msgstr "Công cụ 3.1"
+
+#: .\customadmin\templates\admin\leftsidebar.html:49
+msgid "Công cụ 3.2"
+msgstr "Công cụ 3.2"
+
+#: .\customadmin\templates\admin\login.html:4
+#: .\customadmin\templates\admin\login.html:12
+#: .\customadmin\templates\admin\login.html:32
+#: .\customadmin\templates\registration\logged_out.html:38
+msgid "Đăng nhập"
+msgstr "Đăng nhập"
+
+#: .\customadmin\templates\admin\login.html:18
+msgid "Tài khoản"
+msgstr "Tài khoản"
+
+#: .\customadmin\templates\admin\login.html:19
+msgid "Tên người dùng"
+msgstr "Tên người dùng"
+
+#: .\customadmin\templates\admin\login.html:24
+#: .\customadmin\templates\admin\login.html:25
+msgid "Mật khẩu"
+msgstr "Mật khẩu"
+
+#: .\customadmin\templates\admin\notify_change_password.html:8
+#: .\customadmin\templates\admin\notify_login.html:6
+#: .\customadmin\templates\admin\notify_login.html:17
+msgid "Lỗi"
+msgstr "Lỗi"
+
+#: .\customadmin\templates\admin\rightsidebar.html:11
+msgid "Tùy chỉnh phông nền"
+msgstr "Tùy chỉnh phông nền"
+
+#: .\customadmin\templates\admin\rightsidebar.html:21
+msgid "Chế độ"
+msgstr "Chế độ"
+
+#: .\customadmin\templates\admin\rightsidebar.html:25
+#: .\customadmin\templates\admin\rightsidebar.html:65
+#: .\customadmin\templates\admin\rightsidebar.html:117
+msgid "Sáng"
+msgstr "Sáng"
+
+#: .\customadmin\templates\admin\rightsidebar.html:31
+#: .\customadmin\templates\admin\rightsidebar.html:71
+#: .\customadmin\templates\admin\rightsidebar.html:112
+msgid "Tối"
+msgstr "Tối"
+
+#: .\customadmin\templates\admin\rightsidebar.html:35
+msgid "Chiều rộng"
+msgstr "Chiều rộng"
+
+#: .\customadmin\templates\admin\rightsidebar.html:38
+msgid "Tự căn chỉnh"
+msgstr "Tự căn chỉnh"
+
+#: .\customadmin\templates\admin\rightsidebar.html:42
+#: .\customadmin\templates\admin\rightsidebar.html:51
+msgid "Cố định"
+msgstr "Cố định"
+
+#: .\customadmin\templates\admin\rightsidebar.html:46
+msgid "Menus (Leftsidebar và Topbar)"
+msgstr "Menus (Leftsidebar và Topbar)"
+
+#: .\customadmin\templates\admin\rightsidebar.html:57
+msgid "Thanh cuộn"
+msgstr "Thanh cuộn"
+
+#: .\customadmin\templates\admin\rightsidebar.html:61
+msgid "Màu Sidebar bên trái"
+msgstr "Màu Sidebar bên trái"
+
+#: .\customadmin\templates\admin\rightsidebar.html:76
+msgid "Brand"
+msgstr "Brand"
+
+#: .\customadmin\templates\admin\rightsidebar.html:82
+msgid "Gradient"
+msgstr "Gradient"
+
+#: .\customadmin\templates\admin\rightsidebar.html:86
+msgid "Kích cỡ Left Sidebar"
+msgstr "Kích cỡ Left Sidebar"
+
+#: .\customadmin\templates\admin\rightsidebar.html:91
+msgid "Mặc định"
+msgstr "Mặc định"
+
+#: .\customadmin\templates\admin\rightsidebar.html:97
+msgid "Condensed"
+msgstr "Condensed"
+
+#: .\customadmin\templates\admin\rightsidebar.html:97
+msgid "Extra Small size"
+msgstr "Extra Small size"
+
+#: .\customadmin\templates\admin\rightsidebar.html:103
+msgid "Compact"
+msgstr "Compact"
+
+#: .\customadmin\templates\admin\rightsidebar.html:103
+msgid "Small size"
+msgstr "Small size"
+
+#: .\customadmin\templates\admin\rightsidebar.html:107
+msgid "Topbar"
+msgstr "Topbar"
+
+#: .\customadmin\templates\admin\rightsidebar.html:121
+msgid "Đặt lại về mặc định"
+msgstr "Đặt lại về mặc định"
+
+#: .\customadmin\templates\admin\topbar.html:9
+msgid "Admin"
+msgstr "Admin"
+
+#: .\customadmin\templates\admin\topbar.html:15
+msgid "Welcome !"
+msgstr "Welcome !"
+
+#: .\customadmin\templates\admin\topbar.html:20
+#: .\customadmin\templates\registration\password_change_form.html:5
+#: .\customadmin\templates\registration\password_change_form.html:34
+msgid "Đổi mật khẩu"
+msgstr "Đổi mật khẩu"
+
+#: .\customadmin\templates\admin\topbar.html:28
+#: .\customadmin\templates\registration\logged_out.html:4
+#: .\customadmin\templates\registration\logged_out.html:12
+msgid "Đăng xuất"
+msgstr "Đăng xuất"
+
+#: .\customadmin\templates\registration\logged_out.html:27
+msgid "Good Bye !"
+msgstr "Good Bye !"
+
+#: .\customadmin\templates\registration\logged_out.html:29
+msgid "Bạn đã đăng xuất"
+msgstr "Bạn đã đăng xuất"
+
+#: .\customadmin\templates\registration\logged_out.html:38
+msgid "Quay lại"
+msgstr "Quay lại"
+
+#: .\customadmin\templates\registration\password_change_done.html:5
+msgid "Đổi mật khẩu thành công!"
+msgstr "Đổi mật khẩu thành công!"
+
+#: .\customadmin\templates\registration\password_change_done.html:13
+msgid "Thay đổi mật khẩu thành công"
+msgstr "Thay đổi mật khẩu thành công"
+
+#: .\customadmin\templates\registration\password_change_done.html:19
+msgid "Bạn đã thay đổi thành công mật khẩu cho admin!!!"
+msgstr "Bạn đã thay đổi thành công mật khẩu cho admin!!!"
+
+#: .\customadmin\templates\registration\password_change_form.html:13
+msgid "Thay đổi mật khẩu"
+msgstr "Thay đổi mật khẩu"
+
+#: .\customadmin\templates\registration\password_change_form.html:19
+#: .\customadmin\templates\registration\password_change_form.html:20
+msgid "Mật khẩu cũ"
+msgstr "Mật khẩu cũ"
+
+#: .\customadmin\templates\registration\password_change_form.html:24
+#: .\customadmin\templates\registration\password_change_form.html:25
+msgid "Mật khẩu mới"
+msgstr "Mật khẩu mới"
+
+#: .\customadmin\templates\registration\password_change_form.html:29
+msgid "Nhập lại mật khẩu mới"
+msgstr "Nhập lại mật khẩu mới"
+
+#: .\customadmin\templates\registration\password_change_form.html:30
+msgid "Xác nhận mật khẩu mới"
+msgstr "Xác nhận mật khẩu mới"
+
+#: .\customadmin\templates\registration\password_change_form.html:39
+msgid "Quay lại bảng điều khiển"
+msgstr "Quay lại bảng điều khiển"
