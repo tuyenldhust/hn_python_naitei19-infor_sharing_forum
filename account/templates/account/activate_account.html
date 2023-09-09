@@ -1,0 +1,7 @@
+{% autoescape off %}
+Chào {{ user }},
+
+Bạn đã đăng ký tài khoản trên {{ domain }}. Để kích hoạt tài khoản, vui lòng truy cập đường dẫn sau:
+
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+{% endautoescape %}

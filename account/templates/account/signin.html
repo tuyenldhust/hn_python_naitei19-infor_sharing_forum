@@ -13,18 +13,35 @@
     </div>
     <div class="signin-form">
       <h2 class="form-title">Sign in</h2>
+
+      {% if messages %}
+        {% for message in messages %}
+          {% if message.tags == 'success' %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ message|safe|escape }}
+            </div>
+          {% elif message.tags == 'error' %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ message|safe|escape }}
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      
       <form method="POST" class="login-form" id="login-form">
         {% csrf_token %}
         <div class="form-group">
           <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
           <input type="text" name="username" id="username" placeholder="UserName">
         </div>
-        {{ form.username.errors }}
+
         <div class="form-group">
           <label for="password"><i class="zmdi zmdi-lock"></i></label>
           <input type="password" name="password" id="password" placeholder="Password">
         </div>
-        {{ form.password.errors }}
+
         <div class="form-group">
           <input type="checkbox" name="remember-me" id="remember-me" class="agree-term">
           <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
