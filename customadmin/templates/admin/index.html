@@ -1,0 +1,76 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n static %}
+
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+<canvas id="myChart"></canvas>
+
+<script>
+    const ctx = document.getElementById("myChart").getContext("2d");
+
+    const data = {
+        labels: [
+                    {% for data in register_data %}
+                        "{{ data.date_joined__day }}",
+                    {% endfor %}
+            ],
+        datasets: [
+            {
+                label: "Số lượng đăng ký trong tháng {{ current_month }}",
+                data: [
+                    {% for data in register_data %}
+                        "{{ data.count }}",
+                    {% endfor %}
+                ],
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgba(255, 99, 132, 1)",
+                borderWidth: 2,
+            }
+        ],
+    };
+
+    const myChart = new Chart(ctx, {
+        type: "line",
+        data: data,
+        options: {
+            scales: {
+                xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Ngày'
+                            },
+                }],
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: true,
+                        steps: 2,
+                        stepValue: 5,
+                        max: 10
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Số lượng'
+                    },
+                }]
+            },
+            title: {
+                text: "Registrations per day",
+            },
+            tooltips: {
+                enabled: true,
+                callbacks: {
+                    title: function (tooltipItem) {
+                        return tooltipItem.xLabel;
+                    },
+                    yLabel: function (tooltipItem) {
+                        return tooltipItem.yLabel + " registrations";
+                    },
+                },
+            },
+        },
+    });
+</script>
+{% endblock %}
