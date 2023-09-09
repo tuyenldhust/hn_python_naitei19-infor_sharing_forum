@@ -1,70 +1,61 @@
 {% extends 'account/base.html' %}
-{% load i18n static %}
+
 {% block title %}Sign Up{% endblock %}
+
 {% block content %}
-<div class="signup-content">
-    <div class="signup-form">
-        <h2 class="form-title">Sign up</h2>
+<div class="row">
+  <div class="col-md-4 offset-md-4 form">
+      <form method="POST" autocomplete="">
+          {% csrf_token %}
+          <h2 class="text-center">Đăng ký</h2>
 
-        {% if messages %}
-            {% for message in messages %}
-                {% if message.tags == 'success' %}
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        {{ message|safe|escape }}
-                    </div>
-                {% elif message.tags == 'error' %}
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        {{ message|safe|escape }}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
+          <div class="form-group">
+              <input class="form-control" type="text" name="first_name" placeholder="Họ" required value="">
+          </div>
 
-        <form class="register-form" id="register-form" method="post">
-            {% csrf_token %}
+          <div class="form-group">
+              <input class="form-control" type="text" name="last_name" placeholder="Tên" required value="">
+          </div>
 
-            <div class="form-group">
-                <label for="firstname"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                <input type="firstname" name="first_name" id="firstname" placeholder="First Name" />
-            </div>
+          <div class="form-group">
+              <input class="form-control" type="email" name="email" placeholder="Địa chỉ Email" required value="">
+          </div>
 
-            <div class="form-group">
-                <label for="lastname"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                <input type="lastname" name="last_name" id="lastname" placeholder="Last Name" />
-            </div>
+          <div class="form-group">
+              <input class="form-control" type="username" name="username" placeholder="Tên người dùng" required value="">
+          </div>
 
-            <div class="form-group">
-                <label for="email"><i class="zmdi zmdi-email material-icons-name"></i></label>
-                <input type="email" name="email" id="email" placeholder="Email" />
-            </div>
-
-            <div class="form-group">
-                <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                <input type="username" name="username" id="username" placeholder="User Name" />
-            </div>
-
-            <div class="form-group">
-                <label for="password"><i class="zmdi zmdi-lock material-icons-name"></i></label>
-                <input type="password" name="password1" id="password1" placeholder="Password" />
-            </div>
-
-            <div class="form-group">
-                <label for="password"><i class="zmdi zmdi-lock-outline material-icons-name"></i></label>
-                <input type="password" name="password2" id="password2" placeholder="Repeat Password" />
-            </div>
-
-            <div class="form-group form-button">
-                <input type="submit" name="signup" id="myButton" class="form-submit" value="Register" />
-            </div>
-
-            <a href="{% url 'signin' %}" class="signup-image-link">I am already member</a>
-
-        </form>
-    </div>
-    <div class="signup-image">
-        <figure><img src="{% static 'account/assets/images/signup-image.jpg' %}" alt="sign up image"></figure>
-    </div>
+          <div class="form-group">
+              <input class="form-control" type="password" name="password1" placeholder="Mật khẩu" required>
+          </div>
+          <div class="form-group">
+              <input class="form-control" type="password" name="password2" placeholder="Xác nhận lại mật khẩu" required>
+          </div>
+          <div class="form-group">
+              <input class="form-control button" type="submit" name="signup" value="Đăng ký">
+          </div>
+          <div class="link login-link text-center">Đã có tài khoản? <a href="{% url 'signin' %}">Đăng nhập</a></div>
+      </form>
+  </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'success' %}
+          successNotification({
+            title: 'Thành công',
+            message: '{{ message|safe|escape }}'
+          });
+        {% elif message.tags == 'error' %}
+          errorNotification({
+            title: 'Lỗi',
+            message: '{{ message|safe|escape }}'
+          });
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  });
+</script>
 {% endblock %}

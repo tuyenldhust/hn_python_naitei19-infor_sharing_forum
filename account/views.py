@@ -9,11 +9,16 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from django.contrib.auth import get_user_model
+import re
 
 from .tokens import account_activation_token
 
 def index(request):
     return render(request, 'account/index.html')
+
+# clean all html tags in message
+def clean_message(text):
+    return re.sub('<[^<]+?>', '', str(text))
 
 def activateEmail(request, user, to_email):
     mail_subject = 'Activate your user account.'
@@ -26,9 +31,9 @@ def activateEmail(request, user, to_email):
     })
     email = EmailMessage(mail_subject, message, to=[to_email])
     if email.send():
-        messages.success(request, f'Chào <b>{user.username}</b>, chúng tôi đã gửi link kích hoạt tài khoản cho bạn thông qua email: <b>{to_email}</b>. Hãy kiểm tra và click vào link để kích hoạt tài khoản của bạn. <b>Lưu ý:</b> Nếu không tìm thấy mail trong hộp thư đến, hãy kiểm tra trong mục spam.')
+        messages.success(request, f'Đăng kí thành công. Hãy kiểm tra email để kích hoạt tài khoản.')
     else:
-        messages.error(request, f'Đã có lỗi xảy ra trong quá trình gửi mail cho <b>{to_email}</b>. Vui lòng thử lại sau.')
+        messages.error(request, f'Đã có lỗi xảy ra trong quá trình gửi mail. Vui lòng thử lại sau.')
 
 def activate(request, uidb64, token):
     User = get_user_model()
@@ -50,7 +55,7 @@ def activate(request, uidb64, token):
 
 def signin(request):
     if request.user.is_authenticated:
-        messages.warning(request, 'Bạn đã đăng nhập rồi!')
+        messages.info(request, 'Bạn đã đăng nhập rồi!')
         return redirect('index')
     
     if request.method == 'POST':
@@ -59,10 +64,11 @@ def signin(request):
             user = authenticate(username = request.POST['username'], password = request.POST['password'])
             if user is not None:
                 login(request, user)
+                messages.success(request, 'Đăng nhập thành công!')
                 return redirect('index')
         else:
             for error in list(form.errors.values()):
-                messages.error(request, error)
+                messages.error(request, clean_message(error))
     else:
         form = SignInForm()
     return render(request, 'account/signin.html', {'form': form})
@@ -78,7 +84,7 @@ def signup(request):
             return redirect('index')
         else:
             for error in list(form.errors.values()):
-                messages.error(request, error)
+                messages.error(request, clean_message(error))
     else:
         form = SignUpForm()
     return render(request, 'account/signup.html', {'form': form})

@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load i18n static %}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,16 +8,58 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{% block title %}{% endblock %}</title>
 
-  <!-- Font Icon -->
-  <link rel="stylesheet" href="{% static 'account/assets/fonts/material-icon/css/material-design-iconic-font.css' %}">
-
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="{% static 'account/assets/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'account/assets/css/bootstrap.min.css' %}">
 
-  <script src="{% static 'account/assets/js/bootstrap.js' %}"></script>
+  <script src="{% static 'account/assets/js/bootstrap.min.js' %}"></script>
+
+  <!-- JQuery -->
+  <script src="{% static 'account/assets/js/jquery.min.js' %}"></script>
+
+  <!-- ToastJs -->
+  <script src="{% static 'account/assets/js/toast.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'account/assets/css/toast.css' %}">
 
   <!-- Main css -->
   <link rel="stylesheet" href="{% static 'account/assets/css/style.css' %}">
+
+  <script>
+    var errorNotification = window.createNotification({
+      closeOnClick: true,
+      displayCloseButton: true,
+      positionClass: "nfc-top-right",
+      onclick: false,
+      showDuration: 3500,
+      theme: "error",
+    });
+
+    var warningNotification = window.createNotification({
+      closeOnClick: true,
+      displayCloseButton: true,
+      positionClass: "nfc-top-right",
+      onclick: false,
+      showDuration: 3500,
+      theme: "warning",
+    });
+
+    var successNotification = window.createNotification({
+      closeOnClick: true,
+      displayCloseButton: true,
+      positionClass: "nfc-top-right",
+      onclick: false,
+      showDuration: 3500,
+      theme: "success",
+    });
+
+    var infoNotification = window.createNotification({
+      closeOnClick: true,
+      displayCloseButton: true,
+      positionClass: "nfc-top-right",
+      onclick: false,
+      showDuration: 3500,
+      theme: "info",
+    });
+  </script>
 </head>
 
 <body>

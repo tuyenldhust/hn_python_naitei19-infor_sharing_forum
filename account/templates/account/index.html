@@ -1,44 +1,41 @@
-{% load static %}
-<DOCTYPE html>
-<html>
-<head>
-    <title>My Blog</title>
+{% extends 'account/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <p style="color: white;">Welcome, {{ user.username }}. Thanks for logging in.</p>
+        <a href="{% url 'signout' %}">Logout</a>
+    {% else %}
+        <p style="color: white;">Welcome, new user. Please log in.</p>
+        <a href="{% url 'signin' %}">Login</a>
+    {% endif %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'account/assets/css/bootstrap.css' %}">
-
-    <script src="{% static 'account/assets/js/bootstrap.js' %}"></script>
-</head>
-<body>
-    <div class="container">
-        {% if messages %}
+    <script>
+        $(document).ready(function() {
+          {% if messages %}
             {% for message in messages %}
-                {% if message.tags == 'success' %}
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        {{ message|safe|escape }}
-                    </div>
-                {% elif message.tags == 'error' %}
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        {{ message|safe|escape }}
-                    </div>
-                {% elif message.tags == 'warning' %}
-                    <div class="alert alert-warning alert-dismissible" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        {{ message|safe|escape }}
-                    </div>
-                {% endif %}
+              {% if message.tags == 'success' %}
+                successNotification({
+                  title: 'Thành công',
+                  message: '{{ message|safe|escape }}'
+                });
+              {% elif message.tags == 'error' %}
+                errorNotification({
+                  title: 'Lỗi',
+                  message: '{{ message|safe|escape }}'
+                });
+              {% elif message.tags == 'warning' %}
+                warningNotification({
+                  title: 'Cảnh báo',
+                  message: '{{ message|safe|escape }}'
+                });
+              {% elif message.tags == 'info' %}
+                infoNotification({
+                  title: 'Thông tin',
+                  message: '{{ message|safe|escape }}'
+                });
+              {% endif %}
             {% endfor %}
-        {% endif %}
-        
-        {% if user.is_authenticated %}
-            <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-            <a href="{% url 'signout' %}">Logout</a>
-        {% else %}
-            <p>Welcome, new user. Please log in.</p>
-            <a href="{% url 'signin' %}">Login</a>
-        {% endif %}
-    </div>
-</body>
-</html>
+          {% endif %}
+        });
+    </script>
+{% endblock %}

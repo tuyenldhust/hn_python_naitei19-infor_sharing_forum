@@ -1,64 +1,44 @@
 {% extends 'account/base.html' %}
-
-{% load i18n static %}
-
 {% block title %}Sign In{% endblock %}
-
 {% block content %}
-<div class="container">
-  <div class="signin-content">
-    <div class="signin-image">
-      <figure><img src="{% static 'account/assets/images/signin-image.jpg' %}" alt="sign in image"></figure>
-      <a href="{% url 'signup' %}" class="signup-image-link">Create an account</a>
+<div class="row">
+    <div class="col-md-4 offset-md-4 form login-form">
+        <form method="POST" autocomplete="">
+            {% csrf_token %}
+            <h2 class="text-center">Đăng nhập</h2>
+            <p class="text-center">Đăng nhập với username và password</p>
+            <div class="form-group">
+                <input class="form-control" type="user" name="username" placeholder="Tên người dùng" required value="">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="Mật khẩu" required>
+            </div>
+            <div class="link forget-pass text-left"><a href="#">Forgot password?</a></div>
+            <div class="form-group">
+                <input class="form-control button" type="submit" name="login" value="Login">
+            </div>
+            <div class="link login-link text-center">Chưa có tài khoản? <a href="{% url 'signup' %}">Đăng ký ngay</a></div>
+        </form>
     </div>
-    <div class="signin-form">
-      <h2 class="form-title">Sign in</h2>
+</div>
 
+<script>
+    $(document).ready(function() {
       {% if messages %}
         {% for message in messages %}
           {% if message.tags == 'success' %}
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {{ message|safe|escape }}
-            </div>
+            successNotification({
+              title: 'Thành công',
+              message: '{{ message|safe|escape }}'
+            });
           {% elif message.tags == 'error' %}
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                {{ message|safe|escape }}
-            </div>
+            errorNotification({
+              title: 'Lỗi',
+              message: '{{ message|safe|escape }}'
+            });
           {% endif %}
         {% endfor %}
       {% endif %}
-      
-      <form method="POST" class="login-form" id="login-form">
-        {% csrf_token %}
-        <div class="form-group">
-          <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
-          <input type="text" name="username" id="username" placeholder="UserName">
-        </div>
-
-        <div class="form-group">
-          <label for="password"><i class="zmdi zmdi-lock"></i></label>
-          <input type="password" name="password" id="password" placeholder="Password">
-        </div>
-
-        <div class="form-group">
-          <input type="checkbox" name="remember-me" id="remember-me" class="agree-term">
-          <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-        </div>
-        <div class="form-group form-button">
-          <input type="submit" name="signin" id="signin" class="form-submit" value="Log in">
-        </div>
-      </form>
-      <div class="social-login">
-        <span class="social-label">Or login with</span>
-        <ul class="socials">
-          <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
-          <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
-          <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+    });
+</script>
 {% endblock %}
