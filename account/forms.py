@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, SetPasswordForm
 from django import forms
 from django.contrib.auth import authenticate
 from datetime import datetime
@@ -31,3 +31,12 @@ class SignInForm(forms.Form):
                 raise forms.ValidationError(_("Tài khoản của bạn đã bị khóa trong 14 ngày!"))
 
         return self.cleaned_data
+
+class PasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(PasswordResetForm, self).__init__(*args, **kwargs)
+
+class SetPasswordForm(SetPasswordForm):
+    class Meta:
+        model = CustomUser
+        fields = ['new_password1', 'new_password2']
