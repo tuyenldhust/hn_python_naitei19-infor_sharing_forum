@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-11 18:36+0700\n"
+"POT-Creation-Date: 2023-09-12 14:13+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,40 +17,89 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-#: .\account\templates\account\signup.html:3
-#: .\account\templates\account\signup.html:10
-#: .\account\templates\account\signup.html:35
-msgid "Đăng ký"
-msgstr "Đăng ký"
 
-#: .\account\templates\account\signup.html:13
-msgid "Họ"
-msgstr "Họ"
+#: .\account\forms.py:24
+msgid "Tài khoản không tồn tại hoặc sai tên đăng nhập hoặc sai mật khẩu!"
+msgstr "Tài khoản không tồn tại hoặc sai tên đăng nhập hoặc sai mật khẩu!"
 
-#: .\account\templates\account\signup.html:17
-msgid "Tên"
-msgstr "Tên"
+#: .\account\forms.py:27
+msgid "Tài khoản của bạn chưa được kích hoạt, vui lòng kiểm tra email!"
+msgstr "Tài khoản của bạn chưa được kích hoạt, vui lòng kiểm tra email!"
 
-#: .\account\templates\account\signup.html:21
-msgid "Địa chỉ Email"
-msgstr "Địa chỉ Email"
+#: .\account\forms.py:29
+msgid "Tài khoản của bạn đã bị cấm vĩnh viễn!"
+msgstr "Tài khoản của bạn đã bị cấm vĩnh viễn!"
 
-#: .\account\templates\account\signup.html:25
+#: .\account\forms.py:31
+msgid "Tài khoản của bạn đã bị khóa trong 14 ngày!"
+msgstr "Tài khoản của bạn đã bị khóa trong 14 ngày!"
+
+#: .\account\templates\account\signin.html:5
+msgid "Sign In"
+msgstr "Sign In"
+
+#: .\account\templates\account\signin.html:12
+#: .\account\templates\account\signin.html:22
+#: .\account\templates\account\signup.html:39
+msgid "Đăng nhập"
+msgstr "Đăng nhập"
+
+#: .\account\templates\account\signin.html:13
+msgid "Đăng nhập với username và password"
+msgstr "Đăng nhập với username và password"
+
+#: .\account\templates\account\signin.html:15
+#: .\account\templates\account\signup.html:27
 msgid "Tên người dùng"
 msgstr "Tên người dùng"
 
-#: .\account\templates\account\signup.html:29
+#: .\account\templates\account\signin.html:18
+#: .\account\templates\account\signup.html:31
 msgid "Mật khẩu"
 msgstr "Mật khẩu"
 
-#: .\account\templates\account\signup.html:32
+#: .\account\templates\account\signin.html:20
+msgid "Quên mật khẩu?"
+msgstr "Quên mật khẩu?"
+
+#: .\account\templates\account\signin.html:24
+msgid "Chưa có tài khoản?"
+msgstr "Chưa có tài khoản?"
+
+#: .\account\templates\account\signin.html:24
+msgid "Đăng ký ngay"
+msgstr "Đăng ký ngay"
+
+#: .\account\templates\account\signup.html:5
+#: .\account\templates\account\signup.html:12
+#: .\account\templates\account\signup.html:37
+msgid "Đăng ký"
+msgstr "Đăng ký"
+
+#: .\account\templates\account\signup.html:15
+msgid "Họ"
+msgstr "Họ"
+
+#: .\account\templates\account\signup.html:19
+msgid "Tên"
+msgstr "Tên"
+
+#: .\account\templates\account\signup.html:23
+msgid "Địa chỉ Email"
+msgstr "Địa chỉ Email"
+
+#: .\account\templates\account\signup.html:34
 msgid "Xác nhận lại mật khẩu"
 msgstr "Xác nhận lại mật khẩu"
 
-#: .\account\templates\account\signup.html:37
+#: .\account\templates\account\signup.html:39
 msgid "Đã có tài khoản?"
 msgstr "Đã có tài khoản?"
 
-#: .\account\templates\account\signup.html:37
-msgid "Đăng nhập"
-msgstr "Đăng nhập"
+#: .\account\views.py:27
+msgid "Bạn đã đăng nhập rồi!"
+msgstr "Bạn đã đăng nhập rồi!"
+
+#: .\account\views.py:36
+msgid "Đăng nhập thành công!"
+msgstr "Đăng nhập thành công!"
