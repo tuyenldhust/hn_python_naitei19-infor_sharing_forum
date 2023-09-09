@@ -1,0 +1,45 @@
+{% extends 'account/base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Đăng ký' %}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4 offset-md-4 form">
+      <form method="POST" autocomplete="">
+          {% csrf_token %}
+          <h2 class="text-center">{% trans 'Đăng ký' %}</h2>
+
+          <div class="form-group">
+              <input class="form-control" type="text" name="first_name" placeholder="{% trans 'Họ' %}" required value="">
+          </div>
+
+          <div class="form-group">
+              <input class="form-control" type="text" name="last_name" placeholder="{% trans 'Tên' %}" required value="">
+          </div>
+
+          <div class="form-group">
+              <input class="form-control" type="email" name="email" placeholder="{% trans 'Địa chỉ Email' %}" required value="">
+          </div>
+
+          <div class="form-group">
+              <input class="form-control" type="username" name="username" placeholder="{% trans 'Tên người dùng' %}" required value="">
+          </div>
+
+          <div class="form-group">
+              <input class="form-control" type="password" name="password1" placeholder="{% trans 'Mật khẩu' %}" required>
+          </div>
+          <div class="form-group">
+              <input class="form-control" type="password" name="password2" placeholder="{% trans 'Xác nhận lại mật khẩu' %}" required>
+          </div>
+          <div class="form-group">
+              <input class="form-control button" type="submit" name="signup" value="{% trans 'Đăng ký' %}">
+          </div>
+          <div class="link login-link text-center">{% trans 'Đã có tài khoản?' %} <a href="#">{% trans 'Đăng nhập' %}</a></div>
+      </form>
+  </div>
+</div>
+
+{% include 'account/notify_script.html' %}
+{% endblock %}

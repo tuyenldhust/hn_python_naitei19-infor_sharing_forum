@@ -1,0 +1,29 @@
+<script>
+  $(document).ready(function() {
+    {% if messages %}
+      {% for message in messages %}
+        {% if message.tags == 'success' %}
+          successNotification({
+            title: 'Thành công',
+            message: '{{ message|safe|escape }}'
+          });
+        {% elif message.tags == 'error' %}
+          errorNotification({
+            title: 'Lỗi',
+            message: '{{ message|safe|escape }}'
+          });
+        {% elif message.tags == 'warning' %}
+          warningNotification({
+            title: 'Cảnh báo',
+            message: '{{ message|safe|escape }}'
+          });
+        {% else %}
+          infoNotification({
+            title: 'Thông báo',
+            message: '{{ message|safe|escape }}'
+          });
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  });
+</script>

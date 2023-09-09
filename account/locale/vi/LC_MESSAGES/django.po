@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-11 18:36+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+#: .\account\templates\account\signup.html:3
+#: .\account\templates\account\signup.html:10
+#: .\account\templates\account\signup.html:35
+msgid "Đăng ký"
+msgstr "Đăng ký"
+
+#: .\account\templates\account\signup.html:13
+msgid "Họ"
+msgstr "Họ"
+
+#: .\account\templates\account\signup.html:17
+msgid "Tên"
+msgstr "Tên"
+
+#: .\account\templates\account\signup.html:21
+msgid "Địa chỉ Email"
+msgstr "Địa chỉ Email"
+
+#: .\account\templates\account\signup.html:25
+msgid "Tên người dùng"
+msgstr "Tên người dùng"
+
+#: .\account\templates\account\signup.html:29
+msgid "Mật khẩu"
+msgstr "Mật khẩu"
+
+#: .\account\templates\account\signup.html:32
+msgid "Xác nhận lại mật khẩu"
+msgstr "Xác nhận lại mật khẩu"
+
+#: .\account\templates\account\signup.html:37
+msgid "Đã có tài khoản?"
+msgstr "Đã có tài khoản?"
+
+#: .\account\templates\account\signup.html:37
+msgid "Đăng nhập"
+msgstr "Đăng nhập"
