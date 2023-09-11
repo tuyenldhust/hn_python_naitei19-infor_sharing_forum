@@ -1,0 +1,41 @@
+{% extends 'admin/base_auth.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Đăng nhập' %}{% endblock %}
+
+{% block card %}
+<div class="card">
+
+    <div class="card-body p-4">
+
+        <div class="text-center mb-4">
+            <h4 class="text-uppercase mt-0">{% trans 'Đăng nhập' %}</h4>
+        </div>
+
+        <form method="post" id="login-form">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">{% trans 'Tài khoản' %}</label>
+                <input class="form-control" type="username" id="username" required="" placeholder="{% trans 'Tên người dùng' %}"
+                    name="username">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">{% trans 'Mật khẩu' %}</label>
+                <input class="form-control" type="password" required="" id="password" placeholder="{% trans 'Mật khẩu' %}"
+                    name="password">
+            </div>
+
+            <input type="hidden" name="next" value="{{ next }}">
+
+            <div class="mb-3 d-grid text-center">
+                <button class="btn btn-primary" type="submit"> {% trans 'Đăng nhập' %} </button>
+            </div>
+        </form>
+        
+    </div>
+
+</div>
+
+{% include 'admin/notify_login.html' %}
+{% endblock %}

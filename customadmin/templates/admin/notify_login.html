@@ -1,0 +1,24 @@
+{% load i18n %}
+<script>
+  {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+      errorNotification({
+        title: '{% trans "Lỗi" %}',
+        message: '{{ error }}',
+      });
+    {% endfor %}
+  {% endif %}
+  
+  {% if form.errors %}
+    {% for field in form %}
+      {% if field.errors %}
+        {% for error in field.errors %}
+          errorNotification({
+            title: '{% trans "Lỗi" %}',
+            message: '{{ error }}',
+          });
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+</script>
