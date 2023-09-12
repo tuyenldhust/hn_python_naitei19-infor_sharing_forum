@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{% block title %}{% endblock %}</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="{% static 'account/assets/css/bootstrap.min.css' %}">
+
+  <script src="{% static 'account/assets/js/bootstrap.min.js' %}"></script>
+
+  <!-- JQuery -->
+  <script src="{% static 'account/assets/js/jquery.min.js' %}"></script>
+
+  <!-- ToastJs -->
+  <script src="{% static 'account/assets/js/toast.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'account/assets/css/toast.css' %}">
+
+  <!-- Main css -->
+  <link rel="stylesheet" href="{% static 'account/assets/css/style.css' %}">
+
+  <script src="{% static 'account/assets/js/main.js' %}"></script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+  </div>
+</body>
+</html>

@@ -14,7 +14,7 @@ class CustomUser(AbstractUser):
     avatar_link = models.CharField(max_length=1024, default="")
     phone = models.CharField(max_length=10, default="")
     count_violated = models.IntegerField(default=0)
-    time_banned = models.DateTimeField(auto_now_add=True)
+    time_banned = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         """
