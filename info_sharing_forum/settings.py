@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'app.apps.AppConfig',
     'bootstrap5',
     'account.apps.AccountConfig',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -156,3 +157,5 @@ EMAIL_PORT = os.getenv("EMAIL_PORT")
 EMAIL_USE_TLS = True
 
 PASSWORD_RESET_TIMEOUT = 14400
+
+CKEDITOR_UPLOAD_PATH = "ckeditor_media"
