@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import SignUpForm, SignInForm
 from django.shortcuts import redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 import re
@@ -17,10 +17,14 @@ def signup(request):
             user = form.save()
             user.is_active = False
             user.save()
+            messages.success(request, _('Đăng ký thành công!'))
             return redirect('home')
         else:
-            form = SignUpForm()
-        return render(request, 'account/signup.html', {'form': form})
+            for error in list(form.errors.values()):
+                messages.error(request, clean_message(error))
+    else:
+        form = SignUpForm()
+    return render(request, 'account/signup.html', {'form': form})
         
 def signin(request):
     if request.user.is_authenticated:
@@ -41,3 +45,11 @@ def signin(request):
     else:
         form = SignInForm()
     return render(request, 'account/signin.html', {'form': form})
+
+def signout(request):
+    if request.user.is_authenticated:
+        logout(request)
+        messages.success(request, _('Đăng xuất thành công!'))
+    else:
+        messages.info(request, _('Bạn chưa đăng nhập!'))
+    return redirect('home')

@@ -36,7 +36,7 @@
           <div class="form-group">
               <input class="form-control button" type="submit" name="signup" value="{% trans 'Đăng ký' %}">
           </div>
-          <div class="link login-link text-center">{% trans 'Đã có tài khoản?' %} <a href="#">{% trans 'Đăng nhập' %}</a></div>
+          <div class="link login-link text-center">{% trans 'Đã có tài khoản?' %} <a href="{% url 'signin' %}">{% trans 'Đăng nhập' %}</a></div>
       </form>
   </div>
 </div>

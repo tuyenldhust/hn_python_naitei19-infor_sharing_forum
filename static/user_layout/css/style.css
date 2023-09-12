@@ -1295,3 +1295,8 @@ h1, h2, h3, h4, h5,
 
 .single-content {
   font-size: .9rem; }
+
+.auth-button {
+  padding: 13px;
+  margin-left: 5px;
+}
