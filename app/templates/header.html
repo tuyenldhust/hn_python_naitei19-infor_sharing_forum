@@ -1,0 +1,77 @@
+{% load static i18n %}
+
+<div class="header-top">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6 d-flex">
+                <a href="index.html" class="site-logo">
+                    {% trans "website-title" %}
+                </a>
+
+                <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
+                        class="icon-menu h3"></span></a>
+
+            </div>
+            <div class="col-12 col-lg-6 ml-auto d-flex">
+                <div class="ml-md-auto top-social d-none d-lg-inline-block">
+                    <a href="#" class="d-inline-block p-3"><span class="icon-pencil"></span></a>
+                    <a href="#" class="d-inline-block p-3"><span class="icon-bell"></span></a>
+                </div>
+                <form action="#" class="search-form d-inline-block">
+
+                    <div class="d-flex">
+                        <input type="email" class="form-control" placeholder="Search...">
+                        <button type="submit" class="btn btn-secondary"><span class="icon-search"></span></button>
+                    </div>
+                </form>
+
+                <div class="avatar-dropdown-user-menu-wrap">
+
+                    <a class="avatar-dropdown-mini-photo-wrapper" href="#"><span class="icon-user-circle"
+                            style="font-size: 35px"></span></a>
+
+
+                    <div class="avatar-dropdown-menu-container">
+                        <ul class="avatar-dropdown-user-menu">
+                            <div class="avatar-dropdown-profile-highlight">
+                                <img src="{% static 'user_layout/images/avatar-logo.jpg' %}" alt="profile-img" width=36
+                                    height=36>
+                                <div class="avatar-dropdown-details">
+                                    <div id="avatar-dropdown-profile-name">{% trans "User's name" %}</div>
+                                    <div id="avatar-dropdown-profile-footer">{% trans "User's email" %}</div>
+                                </div>
+                            </div>
+                            <li class="avatar-dropdown-user-menu__item">
+                                <a class="avatar-dropdown-user-menu-link" href="#">
+                                    <span class="icon-bookmark" style="font-size: 25px"></span>
+                                    <div>{% trans "Bookmark" %}</div>
+                                </a>
+                            </li>
+                            <li class="avatar-dropdown-user-menu__item">
+                                <a class="avatar-dropdown-user-menu-link" href="#">
+                                    <span class="icon-users" style="font-size: 25px"></span>
+                                    <div>{% trans "Follow" %}</div>
+                                </a>
+                            </li>
+                            <li class="avatar-dropdown-user-menu__item">
+                                <a class="avatar-dropdown-user-menu-link" href="#">
+                                    <span class="icon-file-text-o" style="font-size: 25px"></span>
+                                    <div>{% trans "Draft" %}</div>
+                                </a>
+                            </li>
+                            <div class="avatar-dropdown-footer">
+                                <li class="avatar-dropdown-user-menu__item"><a class="avatar-dropdown-user-menu-link"
+                                        href="#" style="color: #F44336;">{% trans "Logout" %}</a></li>
+                                <li class="avatar-dropdown-user-menu__item"><a class="avatar-dropdown-user-menu-link"
+                                        href="#">{%
+                                        trans "Settings" %}</a></li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
