@@ -8,30 +8,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href="{% static 'user_layout/css/b612_mono_cabin.css' %}" rel="stylesheet">
-
   <link rel="stylesheet" href="{% static 'user_layout/fonts/icomoon/style.css' %}">
-
   <link rel="stylesheet" href="{% static 'user_layout/css/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'user_layout/css/jquery-ui.css' %}">
   <link rel="stylesheet" href="{% static 'user_layout/css/owl.carousel.min.css' %}">
   <link rel="stylesheet" href="{% static 'user_layout/css/owl.theme.default.min.css' %}">
-  <link rel="stylesheet" href="{% static 'user_layout/css/owl.theme.default.min.css' %}">
-
   <link rel="stylesheet" href="{% static 'user_layout/css/jquery.fancybox.min.css' %}">
-
   <link rel="stylesheet" href="{% static 'user_layout/css/bootstrap-datepicker.css' %}">
-
   <link rel="stylesheet" href="{% static 'user_layout/css/avatar-dropdown.css' %}">
-
   <link rel="stylesheet" href="{% static 'user_layout/fonts/flaticon/font/flaticon.css' %}">
-
   <link rel="stylesheet" href="{% static 'user_layout/css/aos.css' %}">
   <link href="{% static 'user_layout/css/jquery.mb.YTPlayer.min.css' %}" media="all" rel="stylesheet" type="text/css">
-
   <link rel="stylesheet" href="{% static 'user_layout/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'user_layout/css/toast.css' %}">
 
-
-
+  <script src="{% static 'user_layout/js/toast.js' %}"></script>
+  <script src="{% static 'user_layout/js/notify_init.js' %}"></script>
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -77,12 +69,9 @@
   <script src="{% static 'user_layout/js/jquery.sticky.js' %}"></script>
   <script src="{% static 'user_layout/js/jquery.mb.YTPlayer.min.js' %}"></script>
   <script src="{% static 'user_layout/js/avatar-dropdown.js' %}"></script>
-
-
-
-
   <script src="{% static 'user_layout/js/main.js' %}"></script>
-
+  
+  {% include 'notify_script.html' %}
 </body>
 
 </html>
