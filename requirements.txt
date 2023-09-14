@@ -5,3 +5,4 @@ django-bootstrap-v5
 django-tinymce
 django-crispy-forms
 six
+django-ckeditor

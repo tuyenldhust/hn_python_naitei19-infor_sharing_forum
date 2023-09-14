@@ -12,7 +12,7 @@
                         class="icon-menu h3"></span></a>
 
             </div>
-            <div class="ml-auto d-flex">
+            <div class="col-6 d-flex justify-content-end">
                 <form action="#" class="search-form">
                     <div class="d-flex">
                         <input type="email" class="form-control" placeholder="Search...">
@@ -22,13 +22,13 @@
 
                 {% if user.is_authenticated %}
                     <div>
+                        <a href="{% url 'create_post' %}" class="d-inline-block p-3"><span class="icon-pencil"></span></a>
                         <a href="#" class="d-inline-block p-3"><span class="icon-bell"></span></a>
                     </div>
                     <div class="avatar-dropdown-user-menu-wrap">
 
                         <a class="avatar-dropdown-mini-photo-wrapper" href="#"><span class="icon-user-circle"
                                 style="font-size: 35px"></span></a>
-
 
                         <div class="avatar-dropdown-menu-container">
                             <ul class="avatar-dropdown-user-menu">

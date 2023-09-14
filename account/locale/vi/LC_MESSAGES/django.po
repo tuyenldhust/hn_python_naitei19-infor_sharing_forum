@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-12 14:13+0700\n"
+"POT-Creation-Date: 2023-09-13 11:08+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,10 +96,28 @@ msgstr "Xác nhận lại mật khẩu"
 msgid "Đã có tài khoản?"
 msgstr "Đã có tài khoản?"
 
-#: .\account\views.py:27
+#: .\account\views.py:20
+#, fuzzy
+#| msgid "Đăng nhập thành công!"
+msgid "Đăng ký thành công!"
+msgstr "Đăng nhập thành công!"
+
+#: .\account\views.py:31
 msgid "Bạn đã đăng nhập rồi!"
 msgstr "Bạn đã đăng nhập rồi!"
 
-#: .\account\views.py:36
+#: .\account\views.py:40
 msgid "Đăng nhập thành công!"
 msgstr "Đăng nhập thành công!"
+
+#: .\account\views.py:52
+#, fuzzy
+#| msgid "Đăng nhập thành công!"
+msgid "Đăng xuất thành công!"
+msgstr "Đăng nhập thành công!"
+
+#: .\account\views.py:54
+#, fuzzy
+#| msgid "Bạn đã đăng nhập rồi!"
+msgid "Bạn chưa đăng nhập!"
+msgstr "Bạn đã đăng nhập rồi!"
