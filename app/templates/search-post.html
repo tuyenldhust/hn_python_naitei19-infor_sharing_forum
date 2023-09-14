@@ -1,0 +1,99 @@
+{% extends "base_generic.html" %}
+{% load static i18n %}
+
+{% block content %}
+
+{% block header %}
+{% include "header.html" %}
+{% endblock %}
+
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock %}
+
+<div class="site-section">
+  <div class="container">
+    <div class="row col-12">
+      {% if object_list %}
+      {% if choices_single_defaul == "Post" %}
+      {% for post in object_list %}
+      <div class="box-post">
+        <div class="post-item">
+          <div class="overlap-group">
+            <div class="overlap">
+              <div class="div">
+                <div class="ellipse"></div>
+                <div class="overlap-2">
+                  <div class="text-wrapper">{{ post.user.first_name }} {{ post.user.last_name }}</div>
+                  <div class="text-wrapper-2">{{ post.content }}</div>
+                </div>
+              </div>
+              <div class="text-wrapper-3">{{ post.title }}</div>
+            </div>
+            <div class="text-wrapper-4">{{ post.created_at }}</div>
+            <img class="polygon" src="{% static 'search_layout/images/polygon-1.svg' %}" />
+            <img class="img" src="{% static 'search_layout/images/polygon-2.svg' %}" />
+            <div class="text-wrapper-5">{{post.feedback_value}}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      {% for user in object_list %}
+      <!-- Show user -->
+      <div class="box-user">
+        <div class="user-item">
+          <div class="overlap-group">
+            <div class="ellipse"></div>
+            <div class="div"></div>
+            <div class="ellipse-2"></div>
+            <div class="text-wrapper">{{ user.first_name }} {{ user.last_name }}</div>
+            <div class="text-wrapper-2">{% trans "Achievement" %}: {{ user.achievement }}</div>
+            <div class="follow">{{ user.follower_count }}</div>
+            <div class="num-post">{{ user.post_count }}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+  <!-- Pagination -->
+
+  <div class="container">
+    <div class="row col-12">
+      <div class="pagination">
+        <span class="page-links">
+          {% if object_list.has_previous %}
+          <a
+            href="?page={{ object_list.previous_page_number }}&search_keyword={{search_keyword}}&choices_single_defaul={{choices_single_defaul}}">{% trans "Previous" %}</a>
+          {% endif %}
+
+          <span class="page-current">
+            {% trans "Page" %} {{ object_list.number }} {% trans "of" %} {{ object_list.paginator.num_pages }}
+          </span>
+
+          {% if object_list.has_next %}
+          <a
+            href="?page={{ object_list.next_page_number }}&search_keyword={{search_keyword}}&choices_single_defaul={{choices_single_defaul}}">{% trans "Next" %}</a>
+          {% endif %}
+        </span>
+      </div>
+      {% else %}
+
+      <p>{% trans "No results are available." %}</p>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock %}
+
+{% endblock %}
