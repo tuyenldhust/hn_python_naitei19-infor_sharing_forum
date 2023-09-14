@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+<!-- Code here -->
+<div class="container">
+  <div class="row mt-5">
+    {% include "account/profile_card.html" %}
+  </div>
+
+  <div class="border-top mt-4"></div>
+
+  <div class="row mb-4 ml-1">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#post">{% trans "Bài đăng" %}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#following">{% trans "Đang theo dõi" %}</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#followed">{% trans "Người theo dõi" %}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="tab-content" style="min-height: 50vh;">
+    {% include "account/profile_post.html" %}
+
+    {% include "account/profile_following.html" %}
+
+    {% include 'account/profile_followed.html' %}
+  </div>
+</div>
+
+{% endblock %}

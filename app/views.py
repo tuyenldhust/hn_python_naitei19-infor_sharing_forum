@@ -21,7 +21,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def home(request):
     return render(request, 'home.html', {})
 
-
 class PostCreate(CreateView):
     model = Post
     form_class = PostForm
@@ -61,24 +60,28 @@ def get_paginated_object_list(paginator, page):
 
     return object_list_paginated
 
-
 def homepageSearch(request):
     # object_list = Post.objects.all()
     search_keyword = request.GET.get('search_keyword', False)
-    search_type = request.GET.get('choices_single_defaul', False)
+    search_type = request.GET.get('choices_single_default', False)
 
     if not search_keyword or not search_type:
-        return render(request, 'search-post.html', {})
+        return render(request, 'search.html', {})
 
     if search_type == "Post":
         object_list = Post.objects.filter(
             Q(title__icontains=search_keyword) |
-            Q(content__icontains=search_keyword)
+            Q(content__icontains=search_keyword),
+            status=1
         )
 
         for post in object_list:
             reactions = PostReaction.objects.filter(post=post)
             post.feedback_value = sum([reaction.feedback_value for reaction in reactions])
+            # count bookmark
+            post.bookmark_count = Bookmark.objects.filter(post=post).count()
+            # count comment
+            post.comment_count = Comment.objects.filter(post=post).count()
 
         object_list = sorted(object_list, key=lambda x: x.feedback_value, reverse=True)
 
@@ -92,18 +95,18 @@ def homepageSearch(request):
             user.post_count = Post.objects.filter(user=user).count()
             user.follower_count = Follow.objects.filter(followed=user).count()
 
-    paginator = Paginator(object_list, 5)
+    paginator = Paginator(object_list, 9)
     page = request.GET.get('page')
 
     object_list_paginated = get_paginated_object_list(paginator, page)
 
     context = {
         'object_list': object_list_paginated,
-        'choices_single_defaul': search_type,
+        'choices_single_default': search_type,
         'search_keyword': search_keyword,
     }
 
-    return render(request, 'search-post.html', context)
+    return render(request, 'search.html', context)
 
 
 def post_detail_view(request, primary_key):

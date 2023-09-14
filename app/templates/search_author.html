@@ -1,0 +1,43 @@
+{% load i18n %}
+<div class="row mt-5">
+  {% for author in object_list %}
+    <div class="media col-4 mb-4">
+      <img class="d-flex align-self-center mr-3 rounded-circle mb-3" src="{{ author.avatar_link }}" width="50" height="50" alt="{% trans "Avatar" %}">
+      <div class="media-body">
+        <p class="my-0"><a href="{% url 'profile' author.username %}">
+          {{author.first_name}} {{author.last_name}}
+          {% if author.is_superuser %}
+            <span class="badge badge-danger"{% trans ">Admin" %}</span>
+          {% elif author.count_violated == 3 %}
+            <span class="badge badge-danger">{% trans "Banned" %}</span>
+          {% elif author.is_staff %}
+            <span class="badge badge-warning text-white">{% trans "Moderator" %}</span>
+          {% elif not author.is_active %}
+            <span class="badge badge-secondary">{% trans "Not Activate" %}</span>
+          {% endif %}
+        </a></p>
+        <div class="d-flex">
+          <div data-toggle="tooltip" data-placement="bottom" title="{% trans "Thành tích" %}">
+            <i class="fa-regular fa-star"></i>
+            <span class="text-muted"> {{ author.achievement }} </span>
+          </div>
+          <div class="ml-2" data-toggle="tooltip" data-placement="bottom" title="{% trans "Người theo dõi" %}">
+            <i class="fa-solid fa-user-plus text-muted"></i>
+            <span class="text-muted">{{ author.follower_count }}</span>
+          </div>
+          <div class="ml-2" data-toggle="tooltip" data-placement="bottom" title="{% trans "Bài viết" %}">
+            <i class="fa-solid fa-pencil text-muted"></i>
+            <span class="text-muted">{{ author.post_count }}</span>
+          </div>
+        </div>
+        {% if author == user %}
+          <div class="bg-primary text-white p-1 mt-1 d-inline-flex">{% trans "It's me" %}</div>
+        {% elif author.is_following %}
+          <div class="bg-primary text-white p-1 mt-1 d-inline-flex">{% trans "Đang theo dõi" %}</div>
+        {% else %}
+          <div class="bg-primary text-white p-1 mt-1 d-inline-flex">{% trans "Theo dõi" %}</div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

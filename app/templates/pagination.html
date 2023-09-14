@@ -1,0 +1,43 @@
+{% load i18n %}
+<!-- Pagination -->
+<div class="container">
+  {% if object_list.has_other_pages %}
+    <div class="row justify-content-center mt-4">
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          {% if object_list.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page=1&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}">{% trans "Trang đầu" %}</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{object_list.previous_page_number}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}" aria-label="{% trans "Previous" %}">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          {% endif %}
+          {% for num in object_list.paginator.page_range %}
+            {% if object_list.number == num %}
+              <li class="page-item active" aria-current="page">
+                <span class="page-link">{{ num }}</span>
+              </li>
+            {% elif num > object_list.number|add:'-3' and num < object_list.number|add:'3' %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{num}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}">{{ num }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          {% if object_list.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{object_list.next_page_number}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page={{object_list.paginator.num_pages}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}">{% trans "Trang cuối" %}</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  {% endif %}
+</div>

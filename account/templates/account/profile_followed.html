@@ -1,0 +1,91 @@
+{% load i18n %}
+<div id="followed" class="tab-pane fade">
+  <div class="row ml-2">
+    {% if not follow.followed %}
+      <div class="col-12 text-center text-muted">
+        <p class="h5">{% trans "Chưa có ai theo dõi" %}</p>
+      </div>
+    {% else %}
+      {% for follow in follow.followed %}
+        <div class="media col-4 mb-4">
+          <img class="d-flex align-self-center mr-3 rounded-circle mb-3" src="{{ follow.follower.avatar_link }}" width="50" height="50" alt="{% trans "Avatar" %}">
+          <div class="media-body">
+            <p class="my-0"><a href="{% url 'profile' follow.follower.username %}">
+              {{ follow.follower.first_name }} {{ follow.follower.last_name }}
+              {% if follow.follower.is_superuser %}
+                <span class="badge badge-danger">{% trans "Admin" %}</span>
+              {% elif follow.follower.count_violated == 3 %}
+                <span class="badge badge-danger">{% trans "Banned" %}</span>
+              {% elif follow.follower.is_staff %}
+                <span class="badge badge-warning text-white">{% trans "Moderator" %}</span>
+              {% elif not follow.follower.is_active %}
+                <span class="badge badge-secondary">{% trans "Not Activate" %}</span>
+              {% endif %}
+            </a></p>
+            <div class="d-flex">
+              <div data-toggle="tooltip" data-placement="bottom" title="{% trans "Thành tích" %}">
+                <i class="fa-regular fa-star text-muted"></i>
+                <span class="text-muted"> {{ follow.follower.achievement }} </span>
+              </div>
+              <div class="ml-2" data-toggle="tooltip" data-placement="bottom" title="{% trans "Người theo dõi" %}">
+                <i class="fa-solid fa-user-plus text-muted"></i>
+                <span class="text-muted">{{ follow.num_follower }}</span>
+              </div>
+              <div class="ml-2" data-toggle="tooltip" data-placement="bottom" title="{% trans "Bài viết" %}">
+                <i class="fa-solid fa-pencil text-muted"></i>
+                <span class="text-muted">{{ follow.num_post }}</span>
+              </div>
+            </div>
+            {% if follow.follower == user %}
+              <div class="bg-primary text-white p-1 mt-1 d-inline-flex">{% trans "It's me" %}</div>
+            {% elif follow.is_following %}
+              <div class="bg-primary text-white p-1 mt-1 d-inline-flex">{% trans "Đang theo dõi" %}</div>
+            {% else %}
+              <div class="bg-primary text-white p-1 mt-1 d-inline-flex">{% trans "Theo dõi" %}</div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  {% if follow.followed.has_other_pages %}
+    <div class="row mt-5 justify-content-center">
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          {% if follow.followed.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page_followed=1">{% trans "Trang đầu" %}</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page_followed={{ follow.followed.previous_page_number }}" aria-label="{% trans "Previous" %}">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          {% endif %}
+          {% for num in follow.followed.paginator.page_range %}
+            {% if follow.followed.number == num %}
+              <li class="page-item active" aria-current="page">
+                <span class="page-link">{{ num }}</span>
+              </li>
+            {% elif num > follow.followed.number|add:'-3' and num < follow.followed.number|add:'3' %}
+              <li class="page-item">
+                <a class="page-link" href="?page_followed={{ num }}">{{ num }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          {% if follow.followed.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page_followed={{ follow.followed.next_page_number }}">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="?page_followed={{ follow.followed.paginator.num_pages }}">{% trans "Trang cuối" %}</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  {% endif %}
+</div>
