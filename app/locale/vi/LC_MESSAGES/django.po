@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-13 11:08+0700\n"
+"POT-Creation-Date: 2023-09-15 11:24+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgstr "Công khai"
 msgid "Private"
 msgstr "Trả phí"
 
-#: .\app\models.py:66 .\app\templates\header.html:60
+#: .\app\models.py:66 .\app\templates\header.html:88
 msgid "Draft"
 msgstr "Bản nháp"
 
@@ -53,27 +53,27 @@ msgstr "Chưa giải quyết"
 msgid "Web title"
 msgstr "BIẾT TUỐT"
 
+#: .\app\templates\comment.html:7
+msgid "What are you thinking?"
+msgstr "Bạn có cảm nhận gì về bài viết?"
+
+#: .\app\templates\comment.html:26
+msgid "Reply"
+msgstr "Trả lời"
+
 #: .\app\templates\create_post.html:21
 msgid "Create Post"
 msgstr "Tạo bài viết mới"
 
-#: .\app\templates\create_post.html:50
-msgid "Nội dung bài viết"
-msgstr "Nội dung bài viết"
-
-#: .\app\templates\create_post.html:53
-msgid "Nội dung bài viết không được để trống"
-msgstr "Nội dung bài viết không được để trống"
-
-#: .\app\templates\create_post.html:60
+#: .\app\templates\create_post.html:35
 msgid "Thêm hashtag"
 msgstr "Thêm hashtag (Nhấn Enter để thêm hashtag mới)"
 
-#: .\app\templates\create_post.html:62
+#: .\app\templates\create_post.html:37
 msgid "Create"
 msgstr "Tạo"
 
-#: .\app\templates\create_post.html:63
+#: .\app\templates\create_post.html:38
 msgid "Cancel"
 msgstr "Hủy"
 
@@ -81,19 +81,31 @@ msgstr "Hủy"
 msgid "website-title"
 msgstr "BIẾT TUỐT"
 
-#: .\app\templates\header.html:45
+#: .\app\templates\header.html:28
+msgid "Post"
+msgstr "Bài viết"
+
+#: .\app\templates\header.html:29
+msgid "Author"
+msgstr "Tác giả"
+
+#: .\app\templates\header.html:34
+msgid "Enter Keywords?"
+msgstr "Nhập từ khóa"
+
+#: .\app\templates\header.html:73
 msgid "Profile"
 msgstr "Trang cá nhân"
 
-#: .\app\templates\header.html:50
+#: .\app\templates\header.html:78 .\app\templates\post_detail.html:59
 msgid "Bookmark"
-msgstr "Đánh dấu"
+msgstr "Lưu"
 
-#: .\app\templates\header.html:55
+#: .\app\templates\header.html:83 .\app\templates\post_detail.html:39
 msgid "Follow"
 msgstr "Theo dõi"
 
-#: .\app\templates\header.html:65
+#: .\app\templates\header.html:93
 msgid "Logout"
 msgstr "Đăng xuất"
 
@@ -212,3 +224,87 @@ msgstr "Category 5"
 #: .\app\templates\navbar.html:30
 msgid "Contact"
 msgstr "Liên hệ"
+
+#: .\app\templates\post_detail.html:39
+msgid "Unfollow"
+msgstr "Bỏ theo dõi"
+
+#: .\app\templates\post_detail.html:47
+msgid "Edit Post"
+msgstr "Chỉnh sửa bài viết"
+
+#: .\app\templates\post_detail.html:50
+msgid "Delete Post"
+msgstr "Xóa bài viết"
+
+#: .\app\templates\post_detail.html:57
+msgid "Bookmarked"
+msgstr "Đã lưu"
+
+#: .\app\templates\post_detail.html:77
+msgid "Lượt xem"
+msgstr "Lượt xem"
+
+#: .\app\templates\post_detail.html:79
+msgid "React Value"
+msgstr "Số điểm"
+
+#: .\app\templates\post_detail.html:82
+msgid "Đã đăng vào"
+msgstr "Đã đăng vào"
+
+#: .\app\templates\post_detail.html:83
+msgid "Chỉnh sửa lần cuối lúc"
+msgstr "Chỉnh sửa lần cuối lúc"
+
+#: .\app\templates\post_detail.html:86
+msgid "Chủ đề"
+msgstr "Chủ đề"
+
+#: .\app\templates\search-post.html:51
+msgid "Achievement"
+msgstr "Thành tích"
+
+#: .\app\templates\search-post.html:69
+msgid "Previous"
+msgstr "Trước"
+
+#: .\app\templates\search-post.html:73
+msgid "Page"
+msgstr "Trang"
+
+#: .\app\templates\search-post.html:73
+msgid "of"
+msgstr "của"
+
+#: .\app\templates\search-post.html:78
+msgid "Next"
+msgstr "Sau"
+
+#: .\app\templates\search-post.html:84
+msgid "No results are available."
+msgstr "Không có kết quả nào."
+
+#: .\app\views.py:102
+msgid "Unranked"
+msgstr "Chưa có xếp hạng"
+
+#: .\app\views.py:102
+msgid "Bronze"
+msgstr "Đồng"
+
+#: .\app\views.py:102
+msgid "Silver"
+msgstr "Bạc"
+
+#: .\app\views.py:102
+msgid "Gold"
+msgstr "Vàng"
+
+#: .\app\views.py:102
+msgid "Platinum"
+msgstr "Bạch kim"
+
+#: .\app\views.py:102
+msgid "Diamond"
+msgstr "Kim cương"

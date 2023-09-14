@@ -15,9 +15,9 @@ CKEDITOR.config.toolbar = [
     ['Maximize', 'ShowBlocks', '-', 'Source']
 ];
 // placeholder
-CKEDITOR.config.editorplaceholder = '{% trans "Nội dung bài viết" %} (*)';
+CKEDITOR.config.editorplaceholder = 'Nội dung bài viết (*)';
 // required
 editor.on('required', function (evt) {
-    editor.showNotification('{% trans "Nội dung bài viết không được để trống" %}', 'warning');
+    editor.showNotification('Nội dung bài viết không được để trống', 'warning');
     evt.cancel();
 });

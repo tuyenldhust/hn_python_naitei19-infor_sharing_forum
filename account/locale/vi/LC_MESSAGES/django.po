@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-13 11:08+0700\n"
+"POT-Creation-Date: 2023-09-14 16:04+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,15 +34,66 @@ msgstr "Tài khoản của bạn đã bị cấm vĩnh viễn!"
 msgid "Tài khoản của bạn đã bị khóa trong 14 ngày!"
 msgstr "Tài khoản của bạn đã bị khóa trong 14 ngày!"
 
-#: .\account\templates\account\signin.html:5
-msgid "Sign In"
-msgstr "Sign In"
+#: .\account\templates\account\password_reset.html:5
+msgid "Reset Password"
+msgstr ""
 
+#: .\account\templates\account\password_reset.html:12
+#, fuzzy
+#| msgid "Quên mật khẩu?"
+msgid "Quên mật khẩu"
+msgstr "Quên mật khẩu?"
+
+#: .\account\templates\account\password_reset.html:13
+#, fuzzy
+#| msgid "Xác nhận lại mật khẩu"
+msgid "Nhập email để lấy lại mật khẩu"
+msgstr "Xác nhận lại mật khẩu"
+
+#: .\account\templates\account\password_reset.html:16
+msgid "Nhập email"
+msgstr ""
+
+#: .\account\templates\account\password_reset.html:19
+#: .\account\templates\account\password_reset_confirm.html:23
+#, fuzzy
+#| msgid "Xác nhận lại mật khẩu"
+msgid "Lấy lại mật khẩu"
+msgstr "Xác nhận lại mật khẩu"
+
+#: .\account\templates\account\password_reset.html:22
+#: .\account\templates\account\password_reset_confirm.html:26
 #: .\account\templates\account\signin.html:12
 #: .\account\templates\account\signin.html:22
 #: .\account\templates\account\signup.html:39
 msgid "Đăng nhập"
 msgstr "Đăng nhập"
+
+#: .\account\templates\account\password_reset_confirm.html:5
+msgid "Reset Password Confirm"
+msgstr ""
+
+#: .\account\templates\account\password_reset_confirm.html:12
+#, fuzzy
+#| msgid "Mật khẩu"
+msgid "Nhập mât khẩu mới"
+msgstr "Mật khẩu"
+
+#: .\account\templates\account\password_reset_confirm.html:15
+#, fuzzy
+#| msgid "Xác nhận lại mật khẩu"
+msgid "Nhập mật khẩu mới"
+msgstr "Xác nhận lại mật khẩu"
+
+#: .\account\templates\account\password_reset_confirm.html:19
+#, fuzzy
+#| msgid "Xác nhận lại mật khẩu"
+msgid "Xác nhận lại mật khẩu mới"
+msgstr "Xác nhận lại mật khẩu"
+
+#: .\account\templates\account\signin.html:5
+msgid "Sign In"
+msgstr "Sign In"
 
 #: .\account\templates\account\signin.html:13
 msgid "Đăng nhập với username và password"
@@ -96,27 +147,27 @@ msgstr "Xác nhận lại mật khẩu"
 msgid "Đã có tài khoản?"
 msgstr "Đã có tài khoản?"
 
-#: .\account\views.py:20
+#: .\account\views.py:61
 #, fuzzy
 #| msgid "Đăng nhập thành công!"
 msgid "Đăng ký thành công!"
 msgstr "Đăng nhập thành công!"
 
-#: .\account\views.py:31
+#: .\account\views.py:73
 msgid "Bạn đã đăng nhập rồi!"
 msgstr "Bạn đã đăng nhập rồi!"
 
-#: .\account\views.py:40
+#: .\account\views.py:82
 msgid "Đăng nhập thành công!"
 msgstr "Đăng nhập thành công!"
 
-#: .\account\views.py:52
+#: .\account\views.py:94
 #, fuzzy
 #| msgid "Đăng nhập thành công!"
 msgid "Đăng xuất thành công!"
 msgstr "Đăng nhập thành công!"
 
-#: .\account\views.py:54
+#: .\account\views.py:96
 #, fuzzy
 #| msgid "Bạn đã đăng nhập rồi!"
 msgid "Bạn chưa đăng nhập!"
