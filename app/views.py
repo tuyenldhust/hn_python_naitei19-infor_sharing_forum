@@ -105,6 +105,8 @@ def homepageSearch(request):
 
 def post_detail_view(request, primary_key):
     post = get_object_or_404(Post, pk=primary_key)
+    if post.status == 2:
+        return render(request, '404.html', {'message': _('Post not found or deleted. Contact admin for more info.')})
     feedback_value = PostReaction.objects.filter(post=post).aggregate(Sum('feedback_value'))['feedback_value__sum']
     if feedback_value is None:
         feedback_value = 0
@@ -177,3 +179,10 @@ def edit_post_view(request, primary_key):
             })
     except IntegrityError:
         return HttpResponseBadRequest()
+
+
+def delete_post_view(request, primary_key):
+    post = get_object_or_404(Post, pk=primary_key, user=request.user)
+    post.status = 2
+    post.save()
+    return redirect('home')

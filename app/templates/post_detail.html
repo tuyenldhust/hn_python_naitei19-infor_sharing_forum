@@ -36,7 +36,8 @@
                 <i class="fa fa-user-plus" aria-hidden="true"> {{followers_count}}</i>
                 {% if not is_owner %}
                 <button class="btn btn-primary btn-sm ml-2 follow-btn" type="button" id="follow-btn"
-                        data-user-id="{{author.id}}">{% if is_following %}{% trans "Unfollow" %}{% else %}{% trans "Follow" %}{% endif %}
+                        data-user-id="{{author.id}}">{% if is_following %}{% trans "Unfollow" %}
+                    {% else %}{% trans "Follow" %}{% endif %}
                 </button>
                 {% endif %}
             </div>
@@ -46,9 +47,31 @@
             <a class="btn btn-primary btn-sm mr-1" href="{% url 'edit_post' post.id %}">
                 {% trans "Edit Post" %}
             </a>
-            <button class="btn btn-danger btn-sm" type="button" id="delete-btn"
-                    data-post-id="{{post.id}}">{% trans "Delete Post" %}
+            <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#del-button">
+                {% trans "Delete Post" %}
             </button>
+            <div class="modal fade" id="del-button" tabindex="-1" aria-labelledby="del-button"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{% trans "Delete Post" %}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {% trans "Are you sure to delete this post?" %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            >{% trans "Cancel" %}
+                            </button>
+                            <a href="{% url 'delete_post' post.id %}" class="btn btn-primary"
+                            >{% trans "Delete" %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {% endif %}
         </div>
         <div class="col-1 align-self-center">
@@ -101,6 +124,7 @@
     </div>
 </div>
 {% include "comment.html" %}
+<script src="{% static 'user_layout/js/bootstrap.bundle.js' %}"></script>
 {% block footer %}
 {% include "footer.html" %}
 {% endblock %}
