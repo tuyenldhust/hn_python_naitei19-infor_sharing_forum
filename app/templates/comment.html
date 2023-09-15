@@ -1,0 +1,55 @@
+{% load static i18n %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="panel">
+                <div class="panel-body">
+                    <textarea class="form-control border" rows="2" placeholder="{% trans 'What are you thinking?' %}"></textarea>
+                </div>
+            </div>
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="media-block">
+                        <a class="media-left" href="#">
+                            <img src="{{author.avatar_link}}" class="rounded-circle object-fit-cover border"
+                                 alt="avatar"
+                                 width="40px" height="40px">
+                        </a>
+                        <div class="media-body">
+                            <div class="mar-btm ml-2">
+                                <a href="#" class="btn-link text-semibold media-heading box-inline">name</a>
+                                <p class="text-muted text-sm"><i>time</i>
+                                </p>
+                            </div>
+                            <p>ghe</p>
+                            <div class="pad-ver">
+                                <a class="btn btn-sm btn-default btn-hover-primary" href="#">{% trans "Reply" %}</a>
+                            </div>
+                            <hr>
+
+                            <!-- Comments: Raw FE preview-->
+                            <div>
+
+                                <div class="media-block">
+                                    <a class="media-left" href="#">
+                                        <img src="{{author.avatar_link}}" class="rounded-circle object-fit-cover border"
+                                             alt="avatar" width="40px" height="40px">
+                                    </a>
+                                    <div class="media-body">
+                                        <div class="mar-btm ml-2">
+                                            <a href="#" class="btn-link text-semibold media-heading box-inline">name 2
+                                                Marz</a>
+                                            <p class="text-muted text-sm"><i>time2</i></p>
+                                        </div>
+                                        <p>noi dung 2</p>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,7 +18,7 @@ class CustomUser(AbstractUser):
         """
         String for representing the Model object.
         """
-        return self.user.username
+        return self.username
 
 
 class ReportUser(models.Model):
