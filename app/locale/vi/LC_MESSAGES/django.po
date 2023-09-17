@@ -57,13 +57,25 @@ msgstr "Trở về Trang Chủ"
 msgid "Web title"
 msgstr "BIẾT TUỐT"
 
-#: .\app\templates\comment.html:7
+#: .\app\templates\comment.html:13
 msgid "What are you thinking?"
 msgstr "Bạn có cảm nhận gì về bài viết?"
 
-#: .\app\templates\comment.html:26
+#: .\app\templates\comment.html:15 .\app\templates\comment.html:94
+msgid "Send"
+msgstr "Gửi"
+
+#: .\app\templates\comment.html:38 .\app\templates\comment.html:68
+msgid "Edited"
+msgstr "Đã chỉnh sửa"
+
+#: .\app\templates\comment.html:48
 msgid "Reply"
 msgstr "Trả lời"
+
+#: .\app\templates\comment.html:90
+msgid "Reply comment"
+msgstr "Trả lời bình luận"
 
 #: .\app\templates\create_post.html:21
 msgid "Create Post"
@@ -278,27 +290,19 @@ msgstr "Chỉnh sửa lần cuối lúc"
 msgid "Chủ đề"
 msgstr "Chủ đề"
 
-#: .\app\templates\search-post.html:51
+#: .\app\templates\search-post.html:53
 msgid "Achievement"
 msgstr "Thành tích"
 
-#: .\app\templates\search-post.html:69
-msgid "Previous"
-msgstr "Trước"
-
-#: .\app\templates\search-post.html:73
+#: .\app\templates\search-post.html:76
 msgid "Page"
 msgstr "Trang"
 
-#: .\app\templates\search-post.html:73
+#: .\app\templates\search-post.html:76
 msgid "of"
 msgstr "của"
 
-#: .\app\templates\search-post.html:78
-msgid "Next"
-msgstr "Sau"
-
-#: .\app\templates\search-post.html:84
+#: .\app\templates\search-post.html:88
 msgid "No results are available."
 msgstr "Không có kết quả nào."
 
@@ -331,3 +335,9 @@ msgstr "Bạch kim"
 #: .\app\views.py:114
 msgid "Diamond"
 msgstr "Kim cương"
+
+#~ msgid "Previous"
+#~ msgstr "Trước"
+
+#~ msgid "Next"
+#~ msgstr "Sau"

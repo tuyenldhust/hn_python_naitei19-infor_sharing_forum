@@ -5,9 +5,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.utils.translation import gettext_lazy as _
+from django.contrib import messages
 
 from .forms import PostForm
-from .models import Post, HashTag, CustomUser, Follow, PostReaction, Bookmark
+from .models import Post, HashTag, CustomUser, Follow, PostReaction, Bookmark, Comment
 
 from django.views import generic
 from django.db.models import Q
@@ -46,7 +47,6 @@ class PostCreate(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('post_detail', kwargs={'primary_key': self.object.pk})
-
 
 def get_paginated_object_list(paginator, page):
     try:
@@ -127,6 +127,14 @@ def post_detail_view(request, primary_key):
         is_following = Follow.objects.filter(follower=request.user, followed=post.user).exists()
         is_owner = request.user == post.user
 
+    # Load comments
+    comments = Comment.objects.filter(post=post).order_by('-updated_at')
+    comments_tree = {comment for comment in comments if comment.parent.pk == -1}
+
+    for comment in comments_tree:
+        comment.child = {child for child in comments if child.parent.pk == comment.pk}
+
+
     return render(request, 'post_detail.html', context={
         'post': post,
         'author': post.user,
@@ -140,6 +148,7 @@ def post_detail_view(request, primary_key):
         'is_bookmarked': is_bookmarked,
         'is_following': is_following,
         'is_owner': is_owner,
+        'comments_tree': comments_tree,
     })
 
 
@@ -186,3 +195,22 @@ def delete_post_view(request, primary_key):
     post.status = 2
     post.save()
     return redirect('home')
+    
+def comment(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        content = request.POST.get('comment_content')
+
+        if content is None or content == '':
+            messages.error(request, _('Nội dung bình luận không được để trống!'))
+            return redirect('post_detail', primary_key=post_id)
+            
+        parent_id = request.POST.get('parent_id')
+
+        post = get_object_or_404(Post, pk=post_id)
+
+        parent = get_object_or_404(Comment, pk=parent_id)
+
+        comment = Comment.objects.create(user=request.user, post=post, parent=parent, content=content, is_edited=False)
+
+    return redirect('post_detail', primary_key=post_id)

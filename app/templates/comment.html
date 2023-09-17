@@ -2,54 +2,105 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
+            <!-- Comment form -->
+            {% if user.is_authenticated %}
             <div class="panel">
-                <div class="panel-body">
-                    <textarea class="form-control border" rows="2" placeholder="{% trans 'What are you thinking?' %}"></textarea>
-                </div>
+                <form method="POST" action="{% url 'comment' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{post.id}}">
+                    <input type="hidden" name="parent_id" value="-1">
+                    <div class="panel-body"> <textarea class="form-control border" rows="2"
+                            placeholder="{% trans 'What are you thinking?' %}" name="comment_content"></textarea> </div>
+                    <div class="panel-footer">
+                        <button type="submit" class="btn" id="submitBtn">{% trans 'Send' %}</button>
+                    </div>
+                </form>
             </div>
+
+            {% endif %}
+
+            <!-- Father comment -->
+            {% if comments_tree %}
+            {% for comment_father in comments_tree %}
             <div class="panel">
                 <div class="panel-body">
                     <div class="media-block">
                         <a class="media-left" href="#">
                             <img src="{{author.avatar_link}}" class="rounded-circle object-fit-cover border"
-                                 alt="avatar"
-                                 width="40px" height="40px">
+                                alt="avatar" width="40px" height="40px">
                         </a>
                         <div class="media-body">
                             <div class="mar-btm ml-2">
-                                <a href="#" class="btn-link text-semibold media-heading box-inline">name</a>
-                                <p class="text-muted text-sm"><i>time</i>
+                                <a href="#"
+                                    class="btn-link text-semibold media-heading box-inline">{{comment_father.user.username}}</a>
+                                <p class="text-muted text-sm"><i>{{comment_father.updated_at}}
+                                    {% if comment_father.is_edited == True %}
+                                    - {% trans "Edited" %}
+                                    {% endif %}
+                                </i>
                                 </p>
                             </div>
-                            <p>ghe</p>
+                            <p>{{comment_father.content}}</p>
+                            <!-- Reply father's comment button -->
+                            {% if user.is_authenticated %}
                             <div class="pad-ver">
-                                <a class="btn btn-sm btn-default btn-hover-primary" href="#">{% trans "Reply" %}</a>
+                                <a class="btn btn-sm btn-default btn-hover-primary" href="#" 
+                                onclick="handleReplyClick({{comment_father.id}})">{% trans "Reply" %}</a>
                             </div>
+                            {% endif %}
                             <hr>
 
-                            <!-- Comments: Raw FE preview-->
-                            <div>
-
+                            <!-- Child comment -->
+                            {% if comment_father.child %}
+                            {% for comment_child in comment_father.child %}
+                            <div id="comment-child-{{comment_child.id}}">
                                 <div class="media-block">
                                     <a class="media-left" href="#">
                                         <img src="{{author.avatar_link}}" class="rounded-circle object-fit-cover border"
-                                             alt="avatar" width="40px" height="40px">
+                                            alt="avatar" width="40px" height="40px">
                                     </a>
                                     <div class="media-body">
                                         <div class="mar-btm ml-2">
-                                            <a href="#" class="btn-link text-semibold media-heading box-inline">name 2
-                                                Marz</a>
-                                            <p class="text-muted text-sm"><i>time2</i></p>
+                                            <a href="#"
+                                                class="btn-link text-semibold media-heading box-inline">{{comment_child.user.username}}</a>
+                                            <p class="text-muted text-sm"><i>{{comment_child.updated_at}}
+                                                {% if comment_child.is_edited == True %}
+                                                - {% trans "Edited" %}
+                                                {% endif %}
+                                            </i>
+                                            </p>
                                         </div>
-                                        <p>noi dung 2</p>
+                                        <p>{{comment_child.content}}</p>
                                         <hr>
                                     </div>
                                 </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                            <!-- Reply father's comment form -->
+                            <div class="reply-form d-none" id="reply-form-{{comment_father.id}}">
+
+                                <!-- Form trả lời -->
+                                <form method="POST" action="{% url 'comment' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="post_id" value="{{post.id}}">
+                                    <input type="hidden" name="parent_id" value="{{comment_father.id}}">
+                                    <div class="form-group">
+                                        <textarea class="form-control border" rows="2"
+                                            placeholder="{% trans 'Reply comment' %}" name="comment_content"></textarea>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary pad-ver">
+                                        {% trans "Send" %}
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>
