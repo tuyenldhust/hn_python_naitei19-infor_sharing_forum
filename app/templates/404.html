@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+{% load static i18n %}
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block content %}
+
+{% block header %}
+{% include "header.html" %}
+{% endblock %}
+
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock %}
+<link rel="stylesheet" href="{% static 'user_layout/css/404.css' %}">
+<div class="container">
+    <div id="notfound">
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1>404</h1>
+            </div>
+            <p class="m-2">{{ message }}</p>
+            <a href="{% url 'home' %}"><span class="arrow"></span>{% trans 'Return To Homepage' %}</a>
+        </div>
+    </div>
+</div>
+{% block footer %}
+{% include "footer.html" %}
+{% endblock %}
+
+{% endblock %}
