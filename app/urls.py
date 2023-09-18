@@ -11,4 +11,5 @@ urlpatterns = [
     path('comment/', views.comment, name="comment"),
     path('post/<int:primary_key>/react/<str:react_type>', views.react_post_view, name="react_post"),
     path('search', views.homepageSearch, name="search"),
+    path('post/<int:primary_key>/bookmark', views.bookmark_post_view, name="bookmark_post"),
 ]
