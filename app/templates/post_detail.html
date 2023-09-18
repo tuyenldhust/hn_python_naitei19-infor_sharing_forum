@@ -85,8 +85,12 @@
         </div>
         <div class="col-1 align-self-center ml-2">
             <div class="row justify-content-center">
-                <i class="fa fa-thumbs-o-up text-big" aria-hidden="true"></i>
-                <i class="fa fa-thumbs-o-down ml-2 text-big" aria-hidden="true"></i>
+                <i class="fa fa-thumbs-o-up text-big cursor-pointer {% if reacted_value == 1 %}react-choice{% endif %}"
+                   aria-hidden="true" id="upvote-btn"
+                   onclick="react({{post.id}}, 'upvote', '{{csrf_token|safe}}')"></i>
+                <i class="fa fa-thumbs-o-down ml-2 text-big cursor-pointer {% if reacted_value == -1 %}react-choice{% endif %}"
+                   aria-hidden="true" id="downvote-btn"
+                   onclick="react({{post.id}}, 'downvote', '{{csrf_token|safe}}')"></i>
             </div>
         </div>
     </div>
@@ -99,7 +103,8 @@
                     <h2 class="card-title">{{ post.title }}</h2>
                     <i class="fa fa-eye" aria-hidden="true"> {% trans 'Lượt xem' %}: {{view_count}}</i>
                     <br>
-                    <i class="fa fa-chevron-down" aria-hidden="true"> {% trans "React Value" %} {{feedback_value}}</i>
+                    <i class="fa fa-chevron-down" aria-hidden="true"> {% trans "React Value" %} <span
+                            id="feedback_value">{{feedback_value}}</span></i>
                     <br>
                     <div class="text-small">
                         <i>{% trans 'Đã đăng vào' %} {{ post.created_at }}</i> <br>
@@ -125,6 +130,7 @@
 </div>
 {% include "comment.html" %}
 <script src="{% static 'user_layout/js/bootstrap.bundle.js' %}"></script>
+<script src="{% static 'user_layout/js/post-detail.js' %}"></script>
 {% block footer %}
 {% include "footer.html" %}
 {% endblock %}

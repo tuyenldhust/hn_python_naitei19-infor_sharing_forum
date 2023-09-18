@@ -10,4 +10,5 @@ urlpatterns = [
     path('post/<int:primary_key>/edit', views.edit_post_view, name="edit_post"),
     path('post/<int:primary_key>/delete', views.delete_post_view, name="delete_post"),
     path('comment/', views.comment, name="comment"),
+    path('post/<int:primary_key>/react/<str:react_type>', views.react_post_view, name="react_post"),
 ]

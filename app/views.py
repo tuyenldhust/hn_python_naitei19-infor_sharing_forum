@@ -1,8 +1,11 @@
+import json
+
 from django.db import transaction, IntegrityError
 from django.db.models import Sum
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
@@ -122,10 +125,14 @@ def post_detail_view(request, primary_key):
     is_bookmarked = False
     is_following = False
     is_owner = False
+    reacted_value = None
     if request.user.is_authenticated:
         is_bookmarked = Bookmark.objects.filter(user=request.user, post=post).exists()
         is_following = Follow.objects.filter(follower=request.user, followed=post.user).exists()
         is_owner = request.user == post.user
+        reacted = PostReaction.objects.filter(user=request.user, post=post).first()
+        if reacted is not None:
+            reacted_value = reacted.feedback_value
 
     # Load comments
     comments = Comment.objects.filter(post=post).order_by('-updated_at')
@@ -149,6 +156,7 @@ def post_detail_view(request, primary_key):
         'is_following': is_following,
         'is_owner': is_owner,
         'comments_tree': comments_tree,
+        'reacted_value': reacted_value,
     })
 
 
@@ -195,7 +203,7 @@ def delete_post_view(request, primary_key):
     post.status = 2
     post.save()
     return redirect('home')
-    
+
 def comment(request):
     if request.method == 'POST':
         post_id = request.POST.get('post_id')
@@ -204,7 +212,7 @@ def comment(request):
         if content is None or content == '':
             messages.error(request, _('Nội dung bình luận không được để trống!'))
             return redirect('post_detail', primary_key=post_id)
-            
+
         parent_id = request.POST.get('parent_id')
 
         post = get_object_or_404(Post, pk=post_id)
@@ -214,3 +222,41 @@ def comment(request):
         comment = Comment.objects.create(user=request.user, post=post, parent=parent, content=content, is_edited=False)
 
     return redirect('post_detail', primary_key=post_id)
+
+
+@csrf_exempt
+def react_post_view(request, primary_key, react_type):
+    if request.method == 'POST' and request.user.is_authenticated and react_type in ['upvote', 'downvote']:
+        value = ({
+            'upvote': 1,
+            'downvote': -1,
+        })
+        feedback_value = value.get(react_type)
+        post = get_object_or_404(Post, pk=primary_key)
+        reaction = PostReaction.objects.filter(post=post, user=request.user)
+        if reaction.exists():
+            if reaction.first().feedback_value == feedback_value:
+                reaction.delete()
+                message = 'deleted'
+            else:
+                reaction = reaction.first()
+                reaction.feedback_value = feedback_value
+                message = react_type
+                reaction.save()
+        else:
+            reaction = PostReaction.objects.create(post=post, user=request.user, feedback_value=feedback_value)
+            message = react_type
+            reaction.save()
+        total_feedback_value = PostReaction.objects.filter(post=post).aggregate(Sum('feedback_value'))[
+            'feedback_value__sum']
+        if total_feedback_value is None:
+            total_feedback_value = 0
+        return HttpResponse(json.dumps({
+            'message': message,
+            'total_feedback_value': total_feedback_value,
+        }), content_type='application/json')
+    else:
+        return HttpResponseBadRequest(
+            json.dumps({
+                'message': 'Bad Request',
+            }), content_type='application/json')

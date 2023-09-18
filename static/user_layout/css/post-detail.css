@@ -1,12 +1,15 @@
 body {
     font-size: 1.1rem;
 }
+
 .text-big {
     font-size: 1.5rem;
 }
+
 .text-small {
     font-size: 0.9rem;
 }
+
 .img-sm {
     width: 46px;
     height: 46px;
@@ -110,4 +113,12 @@ body {
 .follow-btn {
     font-size: 0.7em;
     padding: 0 2px !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.react-choice {
+    color: #337ab7;
 }
