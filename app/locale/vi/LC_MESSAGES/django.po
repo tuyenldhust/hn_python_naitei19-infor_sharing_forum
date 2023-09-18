@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-15 11:24+0700\n"
+"POT-Creation-Date: 2023-09-15 13:36+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgstr "Trả lời"
 msgid "Create Post"
 msgstr "Tạo bài viết mới"
 
-#: .\app\templates\create_post.html:35
+#: .\app\templates\create_post.html:35 .\app\templates\edit_post.html:35
 msgid "Thêm hashtag"
 msgstr "Thêm hashtag (Nhấn Enter để thêm hashtag mới)"
 
@@ -73,9 +73,17 @@ msgstr "Thêm hashtag (Nhấn Enter để thêm hashtag mới)"
 msgid "Create"
 msgstr "Tạo"
 
-#: .\app\templates\create_post.html:38
+#: .\app\templates\create_post.html:38 .\app\templates\edit_post.html:38
 msgid "Cancel"
 msgstr "Hủy"
+
+#: .\app\templates\edit_post.html:21 .\app\templates\post_detail.html:47
+msgid "Edit Post"
+msgstr "Chỉnh sửa bài viết"
+
+#: .\app\templates\edit_post.html:37
+msgid "Save"
+msgstr "Lưu"
 
 #: .\app\templates\header.html:8
 msgid "website-title"
@@ -229,10 +237,6 @@ msgstr "Liên hệ"
 msgid "Unfollow"
 msgstr "Bỏ theo dõi"
 
-#: .\app\templates\post_detail.html:47
-msgid "Edit Post"
-msgstr "Chỉnh sửa bài viết"
-
 #: .\app\templates\post_detail.html:50
 msgid "Delete Post"
 msgstr "Xóa bài viết"
@@ -285,26 +289,26 @@ msgstr "Sau"
 msgid "No results are available."
 msgstr "Không có kết quả nào."
 
-#: .\app\views.py:102
+#: .\app\views.py:104
 msgid "Unranked"
 msgstr "Chưa có xếp hạng"
 
-#: .\app\views.py:102
+#: .\app\views.py:104
 msgid "Bronze"
 msgstr "Đồng"
 
-#: .\app\views.py:102
+#: .\app\views.py:104
 msgid "Silver"
 msgstr "Bạc"
 
-#: .\app\views.py:102
+#: .\app\views.py:104
 msgid "Gold"
 msgstr "Vàng"
 
-#: .\app\views.py:102
+#: .\app\views.py:104
 msgid "Platinum"
 msgstr "Bạch kim"
 
-#: .\app\views.py:102
+#: .\app\views.py:104
 msgid "Diamond"
 msgstr "Kim cương"

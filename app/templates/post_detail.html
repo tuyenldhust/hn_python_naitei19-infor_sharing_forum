@@ -43,9 +43,9 @@
         </div>
         <div class="col-2 align-self-center justify-content-end d-flex offset-3">
             {% if is_owner %}
-            <button class="btn btn-primary btn-sm mr-1" type="button" id="edit-btn"
-                    data-post-id="{{post.id}}">{% trans "Edit Post" %}
-            </button>
+            <a class="btn btn-primary btn-sm mr-1" href="{% url 'edit_post' post.id %}">
+                {% trans "Edit Post" %}
+            </a>
             <button class="btn btn-danger btn-sm" type="button" id="delete-btn"
                     data-post-id="{{post.id}}">{% trans "Delete Post" %}
             </button>

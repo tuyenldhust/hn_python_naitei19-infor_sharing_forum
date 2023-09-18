@@ -1,5 +1,7 @@
+from django.db import transaction, IntegrityError
 from django.db.models import Sum
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseBadRequest
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.utils.translation import gettext_lazy as _
@@ -20,22 +22,30 @@ class PostCreate(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'create_post.html'
-    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+    @transaction.atomic
     def get_form_kwargs(self):
-        kwargs = super(PostCreate, self).get_form_kwargs()
-        data = self.request.POST.copy()
-        hashtags = data.getlist('hashtags')
-        hashtags = [hashtag for hashtag in hashtags if hashtag != '']
-        if len(hashtags) > 0:
-            hashtags = [str(HashTag.objects.get_or_create(name=hashtag)[0].pk) for hashtag in hashtags[0].split(',')]
-        data.setlist('hashtags', hashtags)
-        kwargs['data'] = data
-        return kwargs
+        try:
+            with transaction.atomic():
+                kwargs = super(PostCreate, self).get_form_kwargs()
+                data = self.request.POST.copy()
+                hashtags = data.getlist('hashtags')
+                hashtags = [hashtag for hashtag in hashtags if hashtag != '']
+                if len(hashtags) > 0:
+                    hashtags = [str(HashTag.objects.get_or_create(name=hashtag)[0].pk) for hashtag in
+                                hashtags[0].split(',')]
+                data.setlist('hashtags', hashtags)
+                kwargs['data'] = data
+                return kwargs
+        except IntegrityError:
+            return HttpResponseBadRequest()
+
+    def get_success_url(self):
+        return reverse_lazy('post_detail', kwargs={'primary_key': self.object.pk})
 
 
 def get_paginated_object_list(paginator, page):
@@ -129,3 +139,41 @@ def post_detail_view(request, primary_key):
         'is_following': is_following,
         'is_owner': is_owner,
     })
+
+
+@transaction.atomic
+def edit_post_view(request, primary_key):
+    try:
+        with transaction.atomic():
+            post = get_object_or_404(Post, pk=primary_key, user=request.user)
+            if request.method == 'POST':
+                data = request.POST.copy()
+                hashtags = data.getlist('hashtags')
+                hashtags = [hashtag for hashtag in hashtags if hashtag != '']
+                if len(hashtags) > 0:
+                    hashtags = [str(HashTag.objects.get_or_create(name=hashtag)[0].pk) for hashtag in
+                                hashtags[0].split(',')]
+                data.setlist('hashtags', hashtags)
+                request.POST = data
+                form = PostForm(request.POST, instance=post)
+                if form.is_valid():
+                    form.save()
+                    post.categories.clear()
+                    post.hashtags.clear()
+                    for category in form.cleaned_data['categories']:
+                        post.categories.add(category)
+                    for hashtag in form.cleaned_data['hashtags']:
+                        post.hashtags.add(hashtag)
+                    return redirect('post_detail', primary_key=post.pk)
+            else:
+                form = PostForm(instance=post)
+            hashtags = [hashtag.name for hashtag in post.hashtags.all()]
+            hashtags = ','.join(hashtags)
+            return render(request, 'edit_post.html', {
+                'form': form,
+                'id': post.pk,
+                'hashtags': hashtags,
+                'content': post.content,
+            })
+    except IntegrityError:
+        return HttpResponseBadRequest()
