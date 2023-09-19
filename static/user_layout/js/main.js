@@ -350,3 +350,22 @@ jQuery(document).ready(function($) {
     });
 
 })(jQuery);
+
+$(document).ready(function () {
+    var textarea = $('textarea');
+    var submitBtn = $('#submitBtn');
+    textarea.on('input', function () {
+        if (textarea.val()) {
+            submitBtn.attr('class', 'btn btn-success');
+            submitBtn.prop('disabled', false);
+        } else {
+            submitBtn.attr('class', 'btn');
+            submitBtn.prop('disabled', true);
+        }
+    });
+
+    window.handleReplyClick = function (comment_father_id) {
+        var replyForm = $(`#reply-form-${comment_father_id}`);
+        replyForm.removeClass('d-none');
+    }
+});
