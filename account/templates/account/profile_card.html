@@ -1,0 +1,38 @@
+{% load i18n %}
+<div class="col-8 mt-4">
+  <div class="media">
+    <img class="d-flex align-self-center mr-3 rounded-circle" src="{{ request_user.avatar_link }}" width="100" height="100" alt="{% trans "Avatar" %}">
+    <div class="media-body">
+      <p class="h4 mt-1 font-weight-bolder">
+        {{ request_user.first_name }} {{ request_user.last_name }}
+        {% if request_user.is_superuser %}
+          <span class="badge badge-danger">{% trans "Admin" %}</span>
+        {% elif request_user.count_violated == 3 %}
+          <span class="badge badge-danger">{% trans "Banned" %}</span>
+        {% elif request_user.is_staff %}
+          <span class="badge badge-warning text-white">{% trans "Moderator" %}</span>
+        {% elif not request_user.is_active %}
+          <span class="badge badge-secondary">{% trans "Not Activate" %}</span>
+        {% endif %}
+      </p>
+      <p class="h5"> @{{ request_user.username }} </p>
+      <i class="fa-regular fa-star"></i> <span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="{% trans "Thành tích" %}"> {{ request_user.achievement }} </span>
+    </div>
+  </div>
+</div>
+
+<div class="col-4 mt-4 d-flex justify-content-end align-items-center">
+  {% if request_user == user %}
+    <div class="w-50">
+      <a href="#" class="btn btn-primary btn-block">{% trans "Edit Profile" %}</a>
+    </div>
+  {% elif request_user.current_user_following %}
+    <div class="w50">
+      <a href="#" class="btn btn-primary btn-block">{% trans "Đang theo dõi" %}</a>
+    </div>
+  {% else %}
+    <div class="w50">
+      <a href="#" class="btn btn-primary btn-block">{% trans "Theo dõi" %}</a>
+    </div>
+  {% endif %}
+</div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-18 09:38+0700\n"
+"POT-Creation-Date: 2023-09-19 11:39+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
 #: .\account\forms.py:24
 msgid "Tài khoản không tồn tại hoặc sai tên đăng nhập hoặc sai mật khẩu!"
 msgstr "Tài khoản không tồn tại hoặc sai tên đăng nhập hoặc sai mật khẩu!"
@@ -36,30 +35,24 @@ msgstr "Tài khoản của bạn đã bị khóa trong 14 ngày!"
 
 #: .\account\templates\account\password_reset.html:5
 msgid "Reset Password"
-msgstr ""
+msgstr "Reset Password"
 
 #: .\account\templates\account\password_reset.html:12
-#, fuzzy
-#| msgid "Quên mật khẩu?"
 msgid "Quên mật khẩu"
-msgstr "Quên mật khẩu?"
+msgstr "Quên mật khẩu"
 
 #: .\account\templates\account\password_reset.html:13
-#, fuzzy
-#| msgid "Xác nhận lại mật khẩu"
 msgid "Nhập email để lấy lại mật khẩu"
-msgstr "Xác nhận lại mật khẩu"
+msgstr "Nhập email để lấy lại mật khẩu"
 
 #: .\account\templates\account\password_reset.html:16
 msgid "Nhập email"
-msgstr ""
+msgstr "Nhập email"
 
 #: .\account\templates\account\password_reset.html:19
 #: .\account\templates\account\password_reset_confirm.html:23
-#, fuzzy
-#| msgid "Xác nhận lại mật khẩu"
 msgid "Lấy lại mật khẩu"
-msgstr "Xác nhận lại mật khẩu"
+msgstr "Lấy lại mật khẩu"
 
 #: .\account\templates\account\password_reset.html:22
 #: .\account\templates\account\password_reset_confirm.html:26
@@ -71,25 +64,158 @@ msgstr "Đăng nhập"
 
 #: .\account\templates\account\password_reset_confirm.html:5
 msgid "Reset Password Confirm"
-msgstr ""
+msgstr "Reset Password Confirm"
 
 #: .\account\templates\account\password_reset_confirm.html:12
-#, fuzzy
-#| msgid "Mật khẩu"
 msgid "Nhập mât khẩu mới"
-msgstr "Mật khẩu"
+msgstr "Nhập mât khẩu mới"
 
 #: .\account\templates\account\password_reset_confirm.html:15
-#, fuzzy
-#| msgid "Xác nhận lại mật khẩu"
 msgid "Nhập mật khẩu mới"
-msgstr "Xác nhận lại mật khẩu"
+msgstr "Nhập mật khẩu mới"
 
 #: .\account\templates\account\password_reset_confirm.html:19
-#, fuzzy
-#| msgid "Xác nhận lại mật khẩu"
 msgid "Xác nhận lại mật khẩu mới"
-msgstr "Xác nhận lại mật khẩu"
+msgstr "Xác nhận lại mật khẩu mới"
+
+#: .\account\templates\account\profile.html:18
+msgid "Bài đăng"
+msgstr "Bài đăng"
+
+#: .\account\templates\account\profile.html:21
+#: .\account\templates\account\profile_card.html:31
+#: .\account\templates\account\profile_followed.html:42
+#: .\account\templates\account\profile_following.html:42
+msgid "Đang theo dõi"
+msgstr "Đang theo dõi"
+
+#: .\account\templates\account\profile.html:24
+#: .\account\templates\account\profile_followed.html:30
+#: .\account\templates\account\profile_following.html:30
+msgid "Người theo dõi"
+msgstr "Người theo dõi"
+
+#: .\account\templates\account\profile_card.html:4
+#: .\account\templates\account\profile_followed.html:11
+#: .\account\templates\account\profile_following.html:11
+#: .\account\templates\account\profile_post.html:11
+msgid "Avatar"
+msgstr "Avatar"
+
+#: .\account\templates\account\profile_card.html:9
+#: .\account\templates\account\profile_followed.html:16
+#: .\account\templates\account\profile_following.html:16
+msgid "Admin"
+msgstr "Admin"
+
+#: .\account\templates\account\profile_card.html:11
+#: .\account\templates\account\profile_followed.html:18
+#: .\account\templates\account\profile_following.html:18
+msgid "Banned"
+msgstr "Banned"
+
+#: .\account\templates\account\profile_card.html:13
+#: .\account\templates\account\profile_followed.html:20
+#: .\account\templates\account\profile_following.html:20
+msgid "Moderator"
+msgstr "Moderator"
+
+#: .\account\templates\account\profile_card.html:15
+#: .\account\templates\account\profile_followed.html:22
+#: .\account\templates\account\profile_following.html:22
+msgid "Not Activate"
+msgstr "Not Activate"
+
+#: .\account\templates\account\profile_card.html:19
+#: .\account\templates\account\profile_followed.html:26
+#: .\account\templates\account\profile_following.html:26
+msgid "Thành tích"
+msgstr "Thành tích"
+
+#: .\account\templates\account\profile_card.html:27
+msgid "Edit Profile"
+msgstr "Edit Profile"
+
+#: .\account\templates\account\profile_card.html:35
+#: .\account\templates\account\profile_followed.html:44
+#: .\account\templates\account\profile_following.html:44
+msgid "Theo dõi"
+msgstr "Theo dõi"
+
+#: .\account\templates\account\profile_followed.html:6
+msgid "Chưa có ai theo dõi"
+msgstr "Chưa có ai theo dõi"
+
+#: .\account\templates\account\profile_followed.html:34
+msgid "Bài viết"
+msgstr "Bài viết"
+
+#: .\account\templates\account\profile_followed.html:40
+#: .\account\templates\account\profile_following.html:40
+msgid "It's me"
+msgstr "It's me"
+
+#: .\account\templates\account\profile_followed.html:58
+#: .\account\templates\account\profile_following.html:58
+#: .\account\templates\account\profile_post.html:77
+msgid "Trang đầu"
+msgstr "Trang đầu"
+
+#: .\account\templates\account\profile_followed.html:61
+#: .\account\templates\account\profile_following.html:61
+#: .\account\templates\account\profile_post.html:79
+msgid "Previous"
+msgstr "Previous"
+
+#: .\account\templates\account\profile_followed.html:84
+#: .\account\templates\account\profile_following.html:84
+#: .\account\templates\account\profile_post.html:95
+msgid "Trang cuối"
+msgstr "Trang cuối"
+
+#: .\account\templates\account\profile_following.html:6
+msgid "Chưa theo dõi ai"
+msgstr "Chưa theo dõi ai"
+
+#: .\account\templates\account\profile_following.html:34
+msgid "Số bài viết"
+msgstr "Số bài viết"
+
+#: .\account\templates\account\profile_post.html:5
+msgid "Chưa có bài viết nào"
+msgstr "Chưa có bài viết nào"
+
+#: .\account\templates\account\profile_post.html:23
+msgid "Nháp"
+msgstr "Nháp"
+
+#: .\account\templates\account\profile_post.html:27
+msgid "Bị xóa"
+msgstr "Bị xóa"
+
+#: .\account\templates\account\profile_post.html:31
+msgid "Trả phí"
+msgstr "Trả phí"
+
+#: .\account\templates\account\profile_post.html:39
+msgid "Hashtag"
+msgstr "Hashtag"
+
+#: .\account\templates\account\profile_post.html:44
+msgid "Lượt xem"
+msgstr "Lượt xem"
+
+#: .\account\templates\account\profile_post.html:48
+msgid "Số lượng Bookmark"
+msgstr "Số lượng Bookmark"
+
+#: .\account\templates\account\profile_post.html:52
+msgid "Số lượng bình luận"
+msgstr "Số lượng bình luận"
+
+#: .\account\templates\account\profile_post.html:56
+msgid "Tổng đánh giá"
+msgstr "Tổng đánh giá"
 
 #: .\account\templates\account\signin.html:5
 msgid "Sign In"
@@ -147,28 +273,22 @@ msgstr "Xác nhận lại mật khẩu"
 msgid "Đã có tài khoản?"
 msgstr "Đã có tài khoản?"
 
-#: .\account\views.py:61
-#, fuzzy
-#| msgid "Đăng nhập thành công!"
+#: .\account\views.py:65
 msgid "Đăng ký thành công!"
-msgstr "Đăng nhập thành công!"
+msgstr "Đăng ký thành công!"
 
-#: .\account\views.py:73
+#: .\account\views.py:77
 msgid "Bạn đã đăng nhập rồi!"
 msgstr "Bạn đã đăng nhập rồi!"
 
-#: .\account\views.py:82
+#: .\account\views.py:86
 msgid "Đăng nhập thành công!"
 msgstr "Đăng nhập thành công!"
 
-#: .\account\views.py:94
-#, fuzzy
-#| msgid "Đăng nhập thành công!"
+#: .\account\views.py:98
 msgid "Đăng xuất thành công!"
-msgstr "Đăng nhập thành công!"
+msgstr "Đăng xuất thành công!"
 
-#: .\account\views.py:96
-#, fuzzy
-#| msgid "Bạn đã đăng nhập rồi!"
+#: .\account\views.py:100
 msgid "Bạn chưa đăng nhập!"
-msgstr "Bạn đã đăng nhập rồi!"
+msgstr "Bạn chưa đăng nhập!"

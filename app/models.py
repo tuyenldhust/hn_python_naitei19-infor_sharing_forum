@@ -9,7 +9,7 @@ class CustomUser(AbstractUser):
     """
     achievement = models.IntegerField(default=0)
     point = models.FloatField(default=0)
-    avatar_link = models.CharField(max_length=1024, default="")
+    avatar_link = models.CharField(max_length=1024, default="/static/user_layout/images/default-avatar.jpg")
     phone = models.CharField(max_length=10, default="")
     count_violated = models.IntegerField(default=0)
     time_banned = models.DateTimeField(null=True, blank=True)
@@ -66,7 +66,7 @@ class Post(models.Model):
     status = models.IntegerField(default=0, choices=((0, _('Draft')), (1, _('Normal')), (2, _('Deleted')), (3, _('Banned'))))
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    view_count = models.FloatField(default=0)
+    view_count = models.IntegerField(default=0)
 
     def __str__(self):
         """

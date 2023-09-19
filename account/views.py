@@ -11,8 +11,12 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from django.contrib.auth import get_user_model
 from django.db.models.query_utils import Q
+from django.core.paginator import Paginator
 import re
 from .tokens import account_activation_token
+
+from app.models import Follow, Post, Bookmark, Comment, PostReaction, HashTag
+from app.views import get_paginated_object_list
 
 # clean all html tags in message
 def clean_message(text):
@@ -157,3 +161,101 @@ def passwordResetConfirm(request, uidb64, token):
 
     messages.error(request, 'Đã có lỗi xảy ra trong quá trình đặt lại mật khẩu. Vui lòng thử lại sau.')
     return redirect("home")
+
+def show_profile(request, username):
+    request_user = get_user_model().objects.filter(username=username).first()
+    if request_user is None:
+        messages.error(request, 'Không tìm thấy tài khoản này!')
+        return redirect('home')
+    else:
+        follow = _get_follower_followed(request, request_user)
+        posts = _get_post(request, request_user)
+
+        # request_user.current_user_following = follow['current_user_following'] if request.user.is_authenticated else ''
+
+        context = {
+            'follow': follow,
+            'posts': posts,
+            'request_user': request_user
+        }
+
+        return render(request, 'account/profile.html', context)
+
+# Get following, followed of request user
+def _get_follower_followed(request, request_user, num_each_page=12):
+    # Get current user
+    current_user = request.user
+    # GET page number
+    page_following = request.GET.get('page_following')
+    page_followed = request.GET.get('page_followed')
+    
+    # Get following, followed of request user
+    following = Follow.objects.filter(follower=request_user)
+    followed = Follow.objects.filter(followed=request_user)
+
+    following_paginator = Paginator(following, num_each_page)
+    followed_paginator = Paginator(followed, num_each_page)
+
+    following = get_paginated_object_list(following_paginator, page_following)
+    followed = get_paginated_object_list(followed_paginator, page_followed)
+
+    # Check if current user is following request user
+    if current_user.is_authenticated:
+        current_user_following = Follow.objects.filter(follower=current_user, followed=request_user).first()
+    
+    # count follower, post of following, followed
+    for var in [following, followed]:
+        for index, item in enumerate(var):
+            if var == following:
+                var[index].num_follower = Follow.objects.filter(followed=item.followed).count()
+                var[index].num_post = Post.objects.filter(user=item.followed).count()
+                if current_user.is_authenticated:
+                    var[index].is_following = Follow.objects.filter(follower=current_user, followed=item.followed).first()
+            else:
+                var[index].num_follower = Follow.objects.filter(followed=item.follower).count()
+                var[index].num_post = Post.objects.filter(user=item.follower).count()
+                if current_user.is_authenticated:
+                    var[index].is_following = Follow.objects.filter(follower=current_user, followed=item.follower).first()
+
+    context = {
+        'following': following,
+        'followed': followed
+    }
+
+    request_user.current_user_following = current_user_following if current_user.is_authenticated else ''
+
+    return context
+
+def _get_post(request, request_user, num_each_page=10):
+    # Get page number
+    page_number = request.GET.get('page_post')
+
+    # Get posts of request user
+    if request_user == request.user:
+        posts = Post.objects.filter(user=request_user, status__in=[0, 1, 3])
+    else:
+        posts = Post.objects.filter(user=request_user, status=1)
+
+    posts = posts.order_by('-created_at')
+
+    posts = Paginator(posts, num_each_page)
+
+    posts = get_paginated_object_list(posts, page_number)
+
+    for index, post in enumerate(posts):
+        # View count
+        posts[index].view_count = int(post.view_count)
+
+        # Bookmark count
+        posts[index].bookmark_count = Bookmark.objects.filter(post=post).count()
+
+        # Comment count
+        posts[index].comment_count = Comment.objects.filter(post=post).count()
+
+        # Calculate reaction point with feedback_value
+        posts[index].reaction_point = 0
+        reactions = PostReaction.objects.filter(post=post)
+        for reaction in reactions:
+            posts[index].reaction_point += reaction.feedback_value
+
+    return posts

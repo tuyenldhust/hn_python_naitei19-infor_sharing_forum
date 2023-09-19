@@ -11,8 +11,6 @@
 .avatar-dropdown-user-menu-wrap {
   box-sizing: border-box;
   position: relative;
-  width: 36px;
-  margin-top: 10px;
 }
 .avatar-dropdown-menu-container {
   visibility: hidden;
