@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-18 11:42+0700\n"
+"POT-Creation-Date: 2023-09-18 14:42+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,23 +270,23 @@ msgstr "Xóa"
 msgid "Bookmarked"
 msgstr "Đã lưu"
 
-#: .\app\templates\post_detail.html:100
+#: .\app\templates\post_detail.html:104
 msgid "Lượt xem"
 msgstr "Lượt xem"
 
-#: .\app\templates\post_detail.html:102
+#: .\app\templates\post_detail.html:106
 msgid "React Value"
 msgstr "Số điểm"
 
-#: .\app\templates\post_detail.html:105
+#: .\app\templates\post_detail.html:110
 msgid "Đã đăng vào"
 msgstr "Đã đăng vào"
 
-#: .\app\templates\post_detail.html:106
+#: .\app\templates\post_detail.html:111
 msgid "Chỉnh sửa lần cuối lúc"
 msgstr "Chỉnh sửa lần cuối lúc"
 
-#: .\app\templates\post_detail.html:109
+#: .\app\templates\post_detail.html:114
 msgid "Chủ đề"
 msgstr "Chủ đề"
 
@@ -306,33 +306,33 @@ msgstr "của"
 msgid "No results are available."
 msgstr "Không có kết quả nào."
 
-#: .\app\views.py:109
+#: .\app\views.py:112
 msgid "Post not found or deleted. Contact admin for more info."
 msgstr ""
 "Không tìm thấy bài viết hoặc bài viết đã bị xóa. Liên hệ admin để biết thêm "
 "thông tin."
 
-#: .\app\views.py:114
+#: .\app\views.py:117
 msgid "Unranked"
 msgstr "Chưa có xếp hạng"
 
-#: .\app\views.py:114
+#: .\app\views.py:117
 msgid "Bronze"
 msgstr "Đồng"
 
-#: .\app\views.py:114
+#: .\app\views.py:117
 msgid "Silver"
 msgstr "Bạc"
 
-#: .\app\views.py:114
+#: .\app\views.py:117
 msgid "Gold"
 msgstr "Vàng"
 
-#: .\app\views.py:114
+#: .\app\views.py:117
 msgid "Platinum"
 msgstr "Bạch kim"
 
-#: .\app\views.py:114
+#: .\app\views.py:117
 msgid "Diamond"
 msgstr "Kim cương"
 
