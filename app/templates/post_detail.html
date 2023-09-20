@@ -91,7 +91,7 @@
         <div class="col-md-10">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h2 class="card-title">{{ post.title }}</h2>
+                    <h2 class="card-title">{{ post.title }}{% if notice%}<span class="badge text-white bg-primary text-small position-absolute top-30px">{{notice}}</span>{% endif %}</h2>
                     <i class="fa fa-eye" aria-hidden="true"><span class="fix-font"> {% trans 'Lượt xem' %}: {{view_count}}</span></i>
                     <br>
                     <i class="fa fa-chevron-down" aria-hidden="true"><span class="fix-font"> {% trans "React Value" %} <span

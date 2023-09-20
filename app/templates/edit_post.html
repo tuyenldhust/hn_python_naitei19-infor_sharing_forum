@@ -1,11 +1,10 @@
 {% extends "base_generic.html" %}
 {% load static i18n %}
 {% block content %}
-{% load static %}
-<link rel="stylesheet" href="{% static 'user_layout/css/tagsinput.css' %}">
 
 <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
 <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<script type="text/javascript" src="{% static 'user_layout/js/create-post.js' %}"></script>
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12 mt-4">
@@ -25,7 +24,7 @@
                     <input type="text" name="hashtags" id="hashtags" class="form-control" data-role="tagsinput"
                            placeholder="{% trans 'Thêm hashtag' %}" value="{{ hashtags }}">
                 </div>
-                <input type="submit" class="btn btn-primary" value="{% trans 'Save' %}">
+                <input type="submit" class="btn btn-primary" value="{% trans 'Save' %}" onclick="validation()">
                 <a href="{% url 'post_detail' id %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
             </form>
         </div>

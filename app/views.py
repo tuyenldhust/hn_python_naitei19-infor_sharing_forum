@@ -36,6 +36,10 @@ class PostCreate(CreateView):
             with transaction.atomic():
                 kwargs = super(PostCreate, self).get_form_kwargs()
                 data = self.request.POST.copy()
+                if data.get('status') is None:
+                    data['status'] = 1
+                if data.get('mode') == '1':
+                    data['status'] = 4
                 hashtags = data.getlist('hashtags')
                 hashtags = [hashtag for hashtag in hashtags if hashtag != '']
                 if len(hashtags) > 0:
@@ -109,14 +113,32 @@ def homepageSearch(request):
     return render(request, 'search.html', context)
 
 
+def get_message_404(status):
+    if status == 0:
+        return _('Post is not existed.')
+    elif status == 2:
+        return _('Post is deleted.')
+    elif status == 3:
+        return _('Post is banned.')
+    elif status == 4:
+        return _('Post is waiting for approval.')
+    elif status == 5:
+        return _('Post is rejected.')
+
+
 def post_detail_view(request, primary_key):
     post = get_object_or_404(Post, pk=primary_key)
-    if post.status == 2:
-        return render(request, '404.html', {'message': _('Post is deleted.')})
-    if post.status == 0 and post.user != request.user and not request.user.is_superuser:
-        return render(request, '404.html', {'message': _('Post is not existed.')})
-    if post.status == 3:
-        return render(request, '404.html', {'message': _('Post is banned.')})
+    notice_type = (
+        (0, _('Draft')),
+        (1, None),
+        (2, _('Deleted')),
+        (3, _('Banned')),
+        (4, _('Pending')),
+        (5, _('Rejected')),
+    )
+    if post.status != 1 and not request.user.is_superuser:
+        if post.status in [2, 3, 5] or (post.status in [0, 4] and post.user != request.user):
+            return render(request, '404.html', {'message': get_message_404(post.status)})
     feedback_value = PostReaction.objects.filter(post=post).aggregate(Sum('feedback_value'))['feedback_value__sum']
     if feedback_value is None:
         feedback_value = 0
@@ -164,6 +186,7 @@ def post_detail_view(request, primary_key):
         'is_owner': is_owner,
         'comments_tree': comments_tree,
         'reacted_value': reacted_value,
+        'notice': notice_type[post.status][1],
     })
 
 
@@ -174,6 +197,10 @@ def edit_post_view(request, primary_key):
             post = get_object_or_404(Post, pk=primary_key, user=request.user)
             if request.method == 'POST':
                 data = request.POST.copy()
+                if data.get('status') is None:
+                    data['status'] = 1
+                if data.get('mode') == '1':
+                    data['status'] = 4
                 hashtags = data.getlist('hashtags')
                 hashtags = [hashtag for hashtag in hashtags if hashtag != '']
                 if len(hashtags) > 0:

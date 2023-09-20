@@ -5,6 +5,7 @@
 
 <script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
 <script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+<script type="text/javascript" src="{% static 'user_layout/js/create-post.js' %}"></script>
 
 <div class="container mt-5">
     <div class="row">
@@ -25,7 +26,7 @@
                     <input type="text" name="hashtags" id="hashtags" class="form-control" data-role="tagsinput"
                            placeholder="{% trans 'Thêm hashtag' %}">
                 </div>
-                <input type="submit" class="btn btn-primary" value="{% trans 'Create' %}">
+                <input type="submit" class="btn btn-primary" value="{% trans 'Create' %}" onclick="validation()">
                 <a href="{% url 'home' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
             </form>
         </div>
