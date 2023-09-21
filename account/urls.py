@@ -11,4 +11,6 @@ urlpatterns = [
     path('password_reset/', views.password_reset_request, name='password_reset'),
     path('reset/<uidb64>/<token>', views.passwordResetConfirm, name='password_reset_confirm'),
     path('<str:username>', views.show_profile, name='profile'),
+    path('<str:username>/edit', views.edit_profile, name='edit_profile'),
+    path('<str:username>/change_password', views.change_password, name='change_password'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

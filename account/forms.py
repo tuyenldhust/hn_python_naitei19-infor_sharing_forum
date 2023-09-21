@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from datetime import datetime
 from django.utils.translation import gettext_lazy as _
+from django.forms import ModelForm
 
 from app.models import CustomUser
 
@@ -40,3 +41,24 @@ class SetPasswordForm(SetPasswordForm):
     class Meta:
         model = CustomUser
         fields = ['new_password1', 'new_password2']
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['first_name', 'last_name', 'email', 'avatar_link', 'phone']
+
+class ChangePasswordForm(forms.Form):
+    old_password = forms.CharField(max_length=30, widget=forms.PasswordInput)
+    new_password = forms.CharField(max_length=30, widget=forms.PasswordInput)
+    confirm_password = forms.CharField(max_length=30, widget=forms.PasswordInput)
+
+    def clean(self):
+        params = self.cleaned_data
+        old_password = params.get('old_password')
+        new_password = params.get('new_password')
+        confirm_password = params.get('confirm_password')
+
+        if new_password != confirm_password:
+            raise forms.ValidationError(_("Mật khẩu mới không khớp!"))
+
+        return self.cleaned_data
