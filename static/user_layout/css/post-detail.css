@@ -3,7 +3,7 @@ body {
 }
 
 .text-big {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
 }
 
 .text-small {
@@ -121,4 +121,21 @@ body {
 
 .react-choice {
     color: #337ab7;
+}
+
+.fa-bookmark {
+    color: #ae4fd8;
+}
+
+.fix-font {
+    margin-left: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.fa-thumbs-down {
+    padding: 4px 0 0 3px;
 }

@@ -112,7 +112,11 @@ def homepageSearch(request):
 def post_detail_view(request, primary_key):
     post = get_object_or_404(Post, pk=primary_key)
     if post.status == 2:
-        return render(request, '404.html', {'message': _('Post not found or deleted. Contact admin for more info.')})
+        return render(request, '404.html', {'message': _('Post is deleted.')})
+    if post.status == 0 and post.user != request.user and not request.user.is_superuser:
+        return render(request, '404.html', {'message': _('Post is not existed.')})
+    if post.status == 3:
+        return render(request, '404.html', {'message': _('Post is banned.')})
     feedback_value = PostReaction.objects.filter(post=post).aggregate(Sum('feedback_value'))['feedback_value__sum']
     if feedback_value is None:
         feedback_value = 0
@@ -257,6 +261,28 @@ def react_post_view(request, primary_key, react_type):
         return HttpResponse(json.dumps({
             'message': message,
             'total_feedback_value': total_feedback_value,
+        }), content_type='application/json')
+    else:
+        return HttpResponseBadRequest(
+            json.dumps({
+                'message': 'Bad Request',
+            }), content_type='application/json')
+
+
+@csrf_exempt
+def bookmark_post_view(request, primary_key):
+    if request.method == 'POST' and request.user.is_authenticated:
+        post = get_object_or_404(Post, pk=primary_key)
+        bookmark = Bookmark.objects.filter(post=post, user=request.user)
+        if bookmark.exists():
+            bookmark.delete()
+            message = 'deleted'
+        else:
+            bookmark = Bookmark.objects.create(post=post, user=request.user)
+            message = 'bookmarked'
+            bookmark.save()
+        return HttpResponse(json.dumps({
+            'message': message,
         }), content_type='application/json')
     else:
         return HttpResponseBadRequest(
