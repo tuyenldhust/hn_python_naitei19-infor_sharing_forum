@@ -11,6 +11,12 @@ class SignUpForm(UserCreationForm):
         model = CustomUser
         fields = ('first_name', 'last_name', 'email', 'username')
 
+    def clean(self):
+        email = self.cleaned_data.get('email')
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError(_("Email đã tồn tại!"))
+        return self.cleaned_data
+
 class SignInForm(forms.Form):
     username = forms.CharField(max_length=30)
     password = forms.CharField(max_length=30, widget=forms.PasswordInput)
@@ -35,6 +41,13 @@ class SignInForm(forms.Form):
 class PasswordResetForm(PasswordResetForm):
     def __init__(self, *args, **kwargs):
         super(PasswordResetForm, self).__init__(*args, **kwargs)
+
+    def clean(self):
+        email = self.cleaned_data.get('email')
+        if not CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError(_("Email không tồn tại!"))
+        return self.cleaned_data
+
 
 class SetPasswordForm(SetPasswordForm):
     class Meta:
