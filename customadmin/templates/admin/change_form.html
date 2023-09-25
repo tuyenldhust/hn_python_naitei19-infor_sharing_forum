@@ -1,0 +1,61 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify custom_tags%}
+
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    {% if change and not is_popup %}
+      <div class="row">
+        <div class="col-12 mb-2" style="text-align: right;">
+          {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
+          <a href="{% add_preserved_filters history_url %}">
+            <button class="btn btn-outline-primary mb-1">
+              {% translate "History" %}
+            </button>
+          </a>
+
+          <div class="border"></div>
+        </div>
+      </div>
+    {% endif %}
+
+    <form {% if has_file_field %}enctype="multipart/form-data" {% endif %}{% if form_url %}action="{{ form_url }}" {% endif %}method="post" id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
+      <div class="row">
+        {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1">{% endif %}
+        {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
+        {% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+        {% if errors %}
+          <p class="alert alert-dark">
+            {% trans "Vui lòng sửa các lỗi bên dưới." %}
+          </p>
+          {{ adminform.form.non_field_errors }}
+        {% endif %}
+      
+        {% block field_sets %}
+          {% for fieldset in adminform %}
+            {% include "admin/fieldset.html" %}
+          {% endfor %}
+        {% endblock %}
+      
+        {% block inline_field_sets %}
+          {% for inline_admin_formset in inline_admin_formsets %}
+              {% include inline_admin_formset.opts.template %}
+          {% endfor %}
+        {% endblock %}
+      
+          {% comment %} <script src="{% static 'admin/js/change_form.js' %}"
+            {% if adminform and add %}
+              data-model-name="{{ opts.model_name }}"
+            {% endif %}
+          async></script>
+      
+        {# JavaScript for prepopulated fields #}
+        {% prepopulated_fields_js %} {% endcomment %}
+      </div>
+      {% block submit_buttons_bottom %}{% submit_row_bs5 %}{% endblock %}
+    </form>
+  </div>
+</div>
+
+<script src="{% static 'admin/assets/js/change_form.js' %}"></script>
+{% endblock %}

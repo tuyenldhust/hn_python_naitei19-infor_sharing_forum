@@ -1,0 +1,36 @@
+{% load i18n admin_urls static %}
+<div class="actions mt-1">
+{% block actions %}
+    {% url cl.opts|admin_urlname:'add' as add_url %}
+    <button class="btn btn-primary">
+      <i class="mdi mdi-plus"></i>
+      <a class="text-white" href="{% add_preserved_filters add_url is_popup to_field %}">{% blocktranslate %}Add {{ name }}{% endblocktranslate %}</a>
+    </button>
+    <input type="hidden" name="select_across" value="0" class="select-across">
+    <button class="btn btn-danger" name="action" value="delete_selected">
+      <i class="mdi mdi-trash-can-outline"></i> 
+      {% trans "Xóa (Hard)" %}
+    </button>
+    {% if cl.formset and cl.result_count %}
+      <button type="submit" name="_save" class="btn btn-success">
+        <i class="mdi mdi-check-circle-outline"></i>
+        {% translate 'Save' %}
+      </button>
+    {% endif %}
+
+    {% block actions-counter %}
+    {% if actions_selection_counter %}
+        <span class="action-counter" data-actions-icnt="{{ cl.result_list|length }}">{{ selection_note }}</span>
+        {% if cl.result_count != cl.result_list|length %}
+        <span class="all hidden">{{ selection_note_all }}</span>
+        <span class="question hidden">
+            <a  href="#" title="{% translate "Click here to select the objects across all pages" %}">{% blocktranslate with cl.result_count as total_count %}Select all {{ total_count }} {{ module_name }}{% endblocktranslate %}</a>
+        </span>
+        <span class="clear hidden"><a href="#">{% translate "Clear selection" %}</a></span>
+        {% endif %}
+    {% endif %}
+    {% endblock %}
+  {% endblock %}
+</div>
+
+<script src="{% static 'admin/assets/js/actions.js' %}"></script>

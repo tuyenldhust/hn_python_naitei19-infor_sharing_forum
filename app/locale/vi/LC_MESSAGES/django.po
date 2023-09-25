@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-26 02:28+0700\n"
+"POT-Creation-Date: 2023-09-27 10:43+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,77 +17,315 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\app\forms.py:30
+#: .\app\forms.py:31
 msgid "You have to complete all fields!"
 msgstr "Bạn phải điền đầy đủ thông tin!"
 
-#: .\app\forms.py:32
+#: .\app\forms.py:33
 msgid "Title must be string!"
 msgstr "Tiêu đề phải là chuỗi!"
 
-#: .\app\forms.py:34
+#: .\app\forms.py:35
 msgid "Content must be string!"
 msgstr "Nội dung phải là chuỗi!"
 
-#: .\app\forms.py:36
+#: .\app\forms.py:37
 msgid "Title must be at least 1 character!"
 msgstr "Tiêu đề phải có ít nhất 1 ký tự!"
 
-#: .\app\forms.py:38
+#: .\app\forms.py:39
 msgid "Content must be at least 1 character!"
 msgstr "Nội dung phải có ít nhất 1 ký tự!"
 
-#: .\app\forms.py:40
+#: .\app\forms.py:41
 msgid "You have to choose valid mode!"
 msgstr "Bạn phải chọn chế độ hợp lệ!"
 
-#: .\app\forms.py:42
+#: .\app\forms.py:43
 msgid "You have to choose valid status!"
 msgstr "Trạng thái không hợp lệ!"
 
-#: .\app\forms.py:46
+#: .\app\forms.py:47
 msgid "You have to choose valid categories!"
 msgstr "Bạn phải chọn chủ đề hợp lệ!"
 
-#: .\app\models.py:65
+#: .\app\forms.py:60
+msgid "Tên danh mục đã tồn tại"
+msgstr "Tên danh mục đã tồn tại"
+
+#: .\app\forms.py:73
+msgid "Tên tài khoản đã tồn tại"
+msgstr "Tên tài khoản đã tồn tại"
+
+#: .\app\forms.py:81
+msgid "Email không hợp lệ"
+msgstr "Email không hợp lệ"
+
+#: .\app\forms.py:84
+msgid "Email đã tồn tại"
+msgstr "Email đã tồn tại"
+
+#: .\app\forms.py:92
+msgid "Số điện thoại không hợp lệ"
+msgstr "Số điện thoại không hợp lệ"
+
+#: .\app\forms.py:95
+msgid "Số điện thoại đã tồn tại"
+msgstr "Số điện thoại đã tồn tại"
+
+#: .\app\forms.py:101
+msgid "Điểm không hợp lệ"
+msgstr "Điểm không hợp lệ"
+
+#: .\app\forms.py:107
+msgid "Thành tích không hợp lệ"
+msgstr "Thành tích không hợp lệ"
+
+#: .\app\forms.py:115
+msgid "Số lần vi phạm không hợp lệ"
+msgstr "Số lần vi phạm không hợp lệ"
+
+#: .\app\models.py:12 .\app\templates\search_author.html:20
+msgid "Thành tích"
+msgstr "Thành tích"
+
+#: .\app\models.py:13
+msgid "Kim cương"
+msgstr "Kim cương"
+
+#: .\app\models.py:14
+msgid "Bạch kim"
+msgstr "Bạch kim"
+
+#: .\app\models.py:15
+msgid "Vàng"
+msgstr "Vàng"
+
+#: .\app\models.py:16
+msgid "Bạc"
+msgstr "Bạc"
+
+#: .\app\models.py:17
+msgid "Đồng"
+msgstr "Đồng"
+
+#: .\app\models.py:18
+msgid "Chưa có thành tích"
+msgstr "Chưa có thành tích"
+
+#: .\app\models.py:21
+msgid "Điểm"
+msgstr "Điểm"
+
+#: .\app\models.py:24
+msgid "Link ảnh đại diện"
+msgstr "Link ảnh đại diện"
+
+#: .\app\models.py:28
+msgid "Số điện thoại"
+msgstr "Số điện thoại"
+
+#: .\app\models.py:32
+msgid "Số lần vi phạm"
+msgstr "Số lần vi phạm"
+
+#: .\app\models.py:35
+msgid "Thời gian bị cấm"
+msgstr "Thời gian bị cấm"
+
+#: .\app\models.py:39 .\app\models.py:180
+msgid "Trạng thái xóa"
+msgstr "Trạng thái xóa"
+
+#: .\app\models.py:62 .\app\models.py:272
+msgid "Người báo cáo"
+msgstr "Người báo cáo"
+
+#: .\app\models.py:67
+msgid "Người bị báo cáo"
+msgstr "Người bị báo cáo"
+
+#: .\app\models.py:72 .\app\models.py:282
+msgid "Lý do"
+msgstr "Lý do"
+
+#: .\app\models.py:75 .\app\models.py:285
+msgid "Thời gian báo cáo"
+msgstr "Thời gian báo cáo"
+
+#: .\app\models.py:78 .\app\models.py:288
+msgid "Trạng thái giải quyết"
+msgstr "Trạng thái giải quyết"
+
+#: .\app\models.py:94 .\app\templates\search_author.html:24
+msgid "Người theo dõi"
+msgstr "Người theo dõi"
+
+#: .\app\models.py:99
+msgid "Người được theo dõi"
+msgstr "Người được theo dõi"
+
+#: .\app\models.py:104
+msgid "Thời gian theo dõi"
+msgstr "Thời gian theo dõi"
+
+#: .\app\models.py:119
+msgid "Người đăng"
+msgstr "Người đăng"
+
+#: .\app\models.py:123
+msgid "Tiêu đề"
+msgstr "Tiêu đề"
+
+#: .\app\models.py:126
+msgid "Chuyên mục"
+msgstr "Chuyên mục"
+
+#: .\app\models.py:129 .\app\templates\search_post.html:32
+msgid "Hashtag"
+msgstr "Hashtag"
+
+#: .\app\models.py:134 .\app\models.py:317 .\app\models.py:365
+msgid "Nội dung"
+msgstr "Nội dung"
+
+#: .\app\models.py:137
+msgid "Chế độ"
+msgstr "Chế độ"
+
+#: .\app\models.py:139
 msgid "Public"
 msgstr "Công khai"
 
-#: .\app\models.py:65
+#: .\app\models.py:139
 msgid "Private"
 msgstr "Trả phí"
 
-#: .\app\models.py:67 .\app\templates\header.html:75 .\app\views.py:164
+#: .\app\models.py:141
+msgid "Trạng thái"
+msgstr "Trạng thái"
+
+#: .\app\models.py:144 .\app\templates\header.html:85 .\app\views.py:170
 msgid "Draft"
 msgstr "Nháp"
 
-#: .\app\models.py:67
+#: .\app\models.py:144
 msgid "Normal"
 msgstr "Bình thường"
 
-#: .\app\models.py:68 .\app\views.py:166
+#: .\app\models.py:145 .\app\views.py:172
 msgid "Deleted"
 msgstr "Đã xóa"
 
-#: .\app\models.py:68 .\app\templates\search_author.html:12 .\app\views.py:167
+#: .\app\models.py:145 .\app\templates\search_author.html:12 .\app\views.py:173
 msgid "Banned"
 msgstr "Đã cấm"
 
-#: .\app\models.py:69
+#: .\app\models.py:146
 msgid "Waiting for approval"
 msgstr "Chờ phê duyệt"
 
-#: .\app\models.py:69 .\app\views.py:169
+#: .\app\models.py:146 .\app\views.py:175
 msgid "Rejected"
 msgstr "Bị từ chối"
 
-#: .\app\models.py:147
+#: .\app\models.py:148
+msgid "Ngày đăng"
+msgstr "Ngày đăng"
+
+#: .\app\models.py:152
+msgid "Ngày cập nhật"
+msgstr "Ngày cập nhật"
+
+#: .\app\models.py:156 .\app\templates\post_detail.html:95
+#: .\app\templates\search_post.html:37
+msgid "Lượt xem"
+msgstr "Lượt xem"
+
+#: .\app\models.py:160
+msgid "Đã xóa"
+msgstr "Đã xóa"
+
+#: .\app\models.py:176
+msgid "Tên chuyên mục"
+msgstr "Tên chuyên mục"
+
+#: .\app\models.py:207
+msgid "Tên hashtag"
+msgstr "Tên hashtag"
+
+#: .\app\models.py:223
+msgid "Người thanh toán"
+msgstr "Người thanh toán"
+
+#: .\app\models.py:227 .\app\models.py:250 .\app\models.py:308
+#: .\app\models.py:342 .\app\templates\search_author.html:28
+msgid "Bài viết"
+msgstr "Bài viết"
+
+#: .\app\models.py:231
+msgid "Thời gian thanh toán"
+msgstr "Thời gian thanh toán"
+
+#: .\app\models.py:246
+msgid "Người Vote"
+msgstr "Người Vote"
+
+#: .\app\models.py:254
+msgid "Vote"
+msgstr "Vote"
+
+#: .\app\models.py:257
+msgid "Thời gian vote"
+msgstr "Thời gian vote"
+
+#: .\app\models.py:277
+msgid "Bài viết bị báo cáo"
+msgstr "Bài viết bị báo cáo"
+
+#: .\app\models.py:290
 msgid "Resolved"
 msgstr "Đã giải quyết"
 
-#: .\app\models.py:147
+#: .\app\models.py:290
 msgid "Not resolved"
 msgstr "Chưa giải quyết"
+
+#: .\app\models.py:304
+msgid "Người bình luận"
+msgstr "Người bình luận"
+
+#: .\app\models.py:312
+msgid "Bình luận cha"
+msgstr "Bình luận cha"
+
+#: .\app\models.py:320
+msgid "Đã chỉnh sửa"
+msgstr "Đã chỉnh sửa"
+
+#: .\app\models.py:323
+msgid "Ngày chỉnh sửa"
+msgstr "Ngày chỉnh sửa"
+
+#: .\app\models.py:338
+msgid "Người bookmark"
+msgstr "Người bookmark"
+
+#: .\app\models.py:346
+msgid "Thời gian bookmark"
+msgstr "Thời gian bookmark"
+
+#: .\app\models.py:361
+msgid "Người nhận"
+msgstr "Người nhận"
+
+#: .\app\models.py:368
+msgid "Đã đọc"
+msgstr "Đã đọc"
+
+#: .\app\models.py:371
+msgid "Thời gian nhận"
+msgstr "Thời gian nhận"
 
 #: .\app\templates\404.html:14
 msgid "Return To Homepage"
@@ -158,19 +396,23 @@ msgstr "Tác giả"
 msgid "Enter Keywords?"
 msgstr "Nhập từ khóa"
 
-#: .\app\templates\header.html:60
+#: .\app\templates\header.html:63
+msgid "Admin Panel"
+msgstr "Trang quản trị"
+
+#: .\app\templates\header.html:70
 msgid "Profile"
 msgstr "Trang cá nhân"
 
-#: .\app\templates\header.html:65 .\app\templates\post_detail.html:73
+#: .\app\templates\header.html:75 .\app\templates\post_detail.html:73
 msgid "Bookmark"
 msgstr "Lưu"
 
-#: .\app\templates\header.html:70 .\app\templates\post_detail.html:27
+#: .\app\templates\header.html:80 .\app\templates\post_detail.html:27
 msgid "Follow"
 msgstr "Theo dõi"
 
-#: .\app\templates\header.html:80
+#: .\app\templates\header.html:91
 msgid "Logout"
 msgstr "Đăng xuất"
 
@@ -179,38 +421,37 @@ msgid "Editor's Pick"
 msgstr "Editor's Pick"
 
 #: .\app\templates\home.html:16 .\app\templates\home.html:37
-#: .\app\templates\home.html:106 .\app\templates\home.html:131
-#: .\app\templates\home.html:145 .\app\templates\home.html:159
-#: .\app\templates\home.html:178 .\app\templates\home.html:192
-#: .\app\templates\home.html:206 .\app\templates\home.html:233
-#: .\app\templates\home.html:248 .\app\templates\home.html:264
-#: .\app\templates\home.html:283 .\app\templates\home.html:296
-#: .\app\templates\home.html:309 .\app\templates\home.html:322
+#: .\app\templates\home.html:103 .\app\templates\home.html:128
+#: .\app\templates\home.html:142 .\app\templates\home.html:156
+#: .\app\templates\home.html:175 .\app\templates\home.html:189
+#: .\app\templates\home.html:203 .\app\templates\home.html:230
+#: .\app\templates\home.html:245 .\app\templates\home.html:261
+#: .\app\templates\home.html:280 .\app\templates\home.html:293
+#: .\app\templates\home.html:306 .\app\templates\home.html:319
 msgid "Blog's title"
 msgstr "Blog's title"
 
 #: .\app\templates\home.html:17 .\app\templates\home.html:38
-#: .\app\templates\home.html:107 .\app\templates\home.html:132
-#: .\app\templates\home.html:146 .\app\templates\home.html:160
-#: .\app\templates\home.html:179 .\app\templates\home.html:193
-#: .\app\templates\home.html:207 .\app\templates\home.html:234
-#: .\app\templates\home.html:249 .\app\templates\home.html:265
+#: .\app\templates\home.html:104 .\app\templates\home.html:129
+#: .\app\templates\home.html:143 .\app\templates\home.html:157
+#: .\app\templates\home.html:176 .\app\templates\home.html:190
+#: .\app\templates\home.html:204 .\app\templates\home.html:231
+#: .\app\templates\home.html:246 .\app\templates\home.html:262
 msgid "Blog's introduciton"
 msgstr "Blog's introduciton"
 
 #: .\app\templates\home.html:20 .\app\templates\home.html:41
-#: .\app\templates\home.html:110 .\app\templates\home.html:134
-#: .\app\templates\home.html:148 .\app\templates\home.html:162
-#: .\app\templates\home.html:181 .\app\templates\home.html:195
-#: .\app\templates\home.html:209 .\app\templates\home.html:236
-#: .\app\templates\home.html:251 .\app\templates\home.html:267
-#: .\app\templates\home.html:285 .\app\templates\home.html:298
-#: .\app\templates\home.html:311 .\app\templates\home.html:324
+#: .\app\templates\home.html:107 .\app\templates\home.html:131
+#: .\app\templates\home.html:145 .\app\templates\home.html:159
+#: .\app\templates\home.html:178 .\app\templates\home.html:192
+#: .\app\templates\home.html:206 .\app\templates\home.html:233
+#: .\app\templates\home.html:248 .\app\templates\home.html:264
+#: .\app\templates\home.html:282 .\app\templates\home.html:295
+#: .\app\templates\home.html:308 .\app\templates\home.html:321
 msgid "Blog's author"
 msgstr "Blog's author"
 
 #: .\app\templates\home.html:20 .\app\templates\home.html:41
-#: .\app\templates\home.html:72 .\app\templates\trending.html:24
 msgid "thuộc"
 msgstr "thuộc"
 
@@ -219,37 +460,41 @@ msgid "Blog's date"
 msgstr "Blog's date"
 
 #: .\app\templates\home.html:22 .\app\templates\home.html:43
-#: .\app\templates\home.html:111 .\app\templates\home.html:136
-#: .\app\templates\home.html:150 .\app\templates\home.html:164
-#: .\app\templates\home.html:183 .\app\templates\home.html:197
-#: .\app\templates\home.html:211 .\app\templates\home.html:238
-#: .\app\templates\home.html:253 .\app\templates\home.html:269
-#: .\app\templates\home.html:287 .\app\templates\home.html:300
-#: .\app\templates\home.html:313 .\app\templates\home.html:326
+#: .\app\templates\home.html:108 .\app\templates\home.html:133
+#: .\app\templates\home.html:147 .\app\templates\home.html:161
+#: .\app\templates\home.html:180 .\app\templates\home.html:194
+#: .\app\templates\home.html:208 .\app\templates\home.html:235
+#: .\app\templates\home.html:250 .\app\templates\home.html:266
+#: .\app\templates\home.html:284 .\app\templates\home.html:297
+#: .\app\templates\home.html:310 .\app\templates\home.html:323
 msgid "Blog's estimated read time"
 msgstr "Blog's estimated read time"
 
-#: .\app\templates\home.html:89
+#: .\app\templates\home.html:72 .\app\templates\trending.html:24
+msgid "trong"
+msgstr "trong"
+
+#: .\app\templates\home.html:86
 msgid "Xem thêm"
 msgstr "Xem thêm"
 
-#: .\app\templates\home.html:125 .\app\templates\navbar.html:24
+#: .\app\templates\home.html:122 .\app\templates\navbar.html:24
 msgid "Category 1"
 msgstr "Category 1"
 
-#: .\app\templates\home.html:172 .\app\templates\navbar.html:27
+#: .\app\templates\home.html:169 .\app\templates\navbar.html:27
 msgid "Category 2"
 msgstr "Category 2"
 
-#: .\app\templates\home.html:227
+#: .\app\templates\home.html:224
 msgid "Recent News"
 msgstr "Recent News"
 
-#: .\app\templates\home.html:277 .\app\templates\navbar.html:21
+#: .\app\templates\home.html:274 .\app\templates\navbar.html:21
 msgid "Popular Posts"
 msgstr "Các bài viết nổi bật"
 
-#: .\app\templates\home.html:333
+#: .\app\templates\home.html:330
 msgid "See All Popular"
 msgstr "See All Popular"
 
@@ -305,10 +550,6 @@ msgstr "Xoá"
 msgid "Bookmarked"
 msgstr "Đã lưu"
 
-#: .\app\templates\post_detail.html:95 .\app\templates\search_post.html:37
-msgid "Lượt xem"
-msgstr "Lượt xem"
-
 #: .\app\templates\post_detail.html:97
 msgid "React Value"
 msgstr "Số điểm"
@@ -349,18 +590,6 @@ msgstr "Moderator"
 msgid "Not Activate"
 msgstr "Not Activate"
 
-#: .\app\templates\search_author.html:20
-msgid "Thành tích"
-msgstr "Thành tích"
-
-#: .\app\templates\search_author.html:24
-msgid "Người theo dõi"
-msgstr "Người theo dõi"
-
-#: .\app\templates\search_author.html:28
-msgid "Bài viết"
-msgstr "Bài viết"
-
 #: .\app\templates\search_author.html:34
 msgid "It's me"
 msgstr "Tôi"
@@ -389,10 +618,6 @@ msgstr "Bị xóa"
 msgid "Trả phí"
 msgstr "Trả phí"
 
-#: .\app\templates\search_post.html:32
-msgid "Hashtag"
-msgstr "Hashtag"
-
 #: .\app\templates\search_post.html:41
 msgid "Số lượng Bookmark"
 msgstr "Số lượng Bookmark"
@@ -405,66 +630,66 @@ msgstr "Số lượng bình luận"
 msgid "Tổng đánh giá"
 msgstr "Tổng đánh giá"
 
-#: .\app\views.py:40 .\app\views.py:359
+#: .\app\views.py:39
 msgid "Bài viết nổi bật trong tuần"
 msgstr "Bài viết nổi bật trong tuần"
 
-#: .\app\views.py:44 .\app\views.py:363
+#: .\app\views.py:43
 msgid "Bài viết nổi bật trong tháng"
 msgstr "Bài viết nổi bật trong tháng"
 
-#: .\app\views.py:48 .\app\views.py:367
+#: .\app\views.py:47
 msgid "Bài viết nổi bật trong năm"
 msgstr "Bài viết nổi bật trong năm"
 
-#: .\app\views.py:150
+#: .\app\views.py:156
 msgid "Post is not existed."
 msgstr "Bài viết không tồn tại."
 
-#: .\app\views.py:152
+#: .\app\views.py:158
 msgid "Post is deleted."
 msgstr "Bài viết đã bị xóa."
 
-#: .\app\views.py:154
+#: .\app\views.py:160
 msgid "Post is banned."
 msgstr "Bài viết đã bị cấm. Xin vui lòng liên hệ Admin để biết thêm chi tiết"
 
-#: .\app\views.py:156
+#: .\app\views.py:162
 msgid "Post is waiting for approval."
 msgstr "Bài viết đang chờ duyệt."
 
-#: .\app\views.py:158
+#: .\app\views.py:164
 msgid "Post is rejected."
 msgstr "Bài viết đã bị từ chối phê duyệt."
 
-#: .\app\views.py:168
+#: .\app\views.py:174
 msgid "Pending"
 msgstr "Đang chờ duyệt"
 
-#: .\app\views.py:178
+#: .\app\views.py:184
 msgid "Unranked"
 msgstr "Không có xếp hạng"
 
-#: .\app\views.py:178
+#: .\app\views.py:184
 msgid "Bronze"
 msgstr "Đồng"
 
-#: .\app\views.py:178
+#: .\app\views.py:184
 msgid "Silver"
 msgstr "Bạc"
 
-#: .\app\views.py:178
+#: .\app\views.py:184
 msgid "Gold"
 msgstr "Vàng"
 
-#: .\app\views.py:178
+#: .\app\views.py:184
 msgid "Platinum"
 msgstr "Bạch kim"
 
-#: .\app\views.py:178
+#: .\app\views.py:184
 msgid "Diamond"
 msgstr "Kim cương"
 
-#: .\app\views.py:279
+#: .\app\views.py:285
 msgid "Nội dung bình luận không được để trống!"
 msgstr "Nội dung bình luận không được để trống!"

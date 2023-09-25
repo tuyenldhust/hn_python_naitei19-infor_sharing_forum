@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-18 09:38+0700\n"
+"POT-Creation-Date: 2023-09-27 10:43+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,125 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\customadmin\templates\admin\actions.html:7
+#, python-format
+msgid "Add %(name)s"
+msgstr "Thêm %(name)s"
+
+#: .\customadmin\templates\admin\actions.html:12
+msgid "Xóa (Hard)"
+msgstr "Xóa (Hard)"
+
+#: .\customadmin\templates\admin\actions.html:17
+#: .\customadmin\templates\admin\submit_line.html:4
+msgid "Save"
+msgstr "Lưu"
+
+#: .\customadmin\templates\admin\actions.html:27
+msgid "Click here to select the objects across all pages"
+msgstr "Nhấn vào đây để chọn các đối tượng trên tất cả các trang"
+
+#: .\customadmin\templates\admin\actions.html:27
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr "Chọn tất cả %(total_count)s %(module_name)s"
+
+#: .\customadmin\templates\admin\actions.html:29
+msgid "Clear selection"
+msgstr "Bỏ chọn"
+
+#: .\customadmin\templates\admin\change_form.html:13
+msgid "History"
+msgstr "Lịch sử thay đổi"
+
+#: .\customadmin\templates\admin\change_form.html:29
+msgid "Vui lòng sửa các lỗi bên dưới."
+msgstr "Vui lòng sửa các lỗi bên dưới."
+
+#: .\customadmin\templates\admin\change_list_results.html:15
+msgid "Remove from sorting"
+msgstr "Xóa khỏi sắp xếp"
+
+#: .\customadmin\templates\admin\change_list_results.html:16
+#, python-format
+msgid "Sorting priority: %(priority_number)s"
+msgstr "Sắp xếp ưu tiên: %(priority_number)s"
+
+#: .\customadmin\templates\admin\change_list_results.html:17
+msgid "Toggle sorting"
+msgstr "Chuyển đổi sắp xếp"
+
+#: .\customadmin\templates\admin\delete_confirmation.html:12
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+"Xóa %(object_name)s '%(escaped_object)s' sẽ dẫn đến xóa các đối tượng liên "
+"quan, nhưng tài khoản của bạn không có quyền xóa các loại đối tượng sau:"
+
+#: .\customadmin\templates\admin\delete_confirmation.html:17
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+"Xóa %(object_name)s '%(escaped_object)s' sẽ yêu cầu xóa các đối tượng liên "
+"quan được bảo vệ sau:"
+
+#: .\customadmin\templates\admin\delete_confirmation.html:22
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+"Bạn có chắc chắn muốn xóa %(object_name)s \"%(escaped_object)s\"? Tất cả "
+"các mục liên quan sau sẽ bị xóa:"
+
+#: .\customadmin\templates\admin\delete_confirmation.html:24
+#: .\customadmin\templates\admin\delete_selected_confirmation.html:19
+msgid "Objects"
+msgstr "Các đối tượng"
+
+#: .\customadmin\templates\admin\delete_confirmation.html:31
+#: .\customadmin\templates\admin\delete_selected_confirmation.html:30
+msgid "Yes, I’m sure"
+msgstr "Có, tôi chắc chắn"
+
+#: .\customadmin\templates\admin\delete_confirmation.html:32
+#: .\customadmin\templates\admin\delete_selected_confirmation.html:31
+msgid "No, take me back"
+msgstr "Không, đưa tôi trở lại"
+
+#: .\customadmin\templates\admin\delete_selected_confirmation.html:11
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+"Xóa %(objects_name)s đã chọn sẽ dẫn đến xóa các đối tượng liên quan, nhưng "
+"tài khoản của bạn không có quyền xóa các loại đối tượng sau:"
+
+#: .\customadmin\templates\admin\delete_selected_confirmation.html:14
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+"Xóa %(objects_name)s đã chọn sẽ yêu cầu xóa các đối tượng liên quan được "
+"bảo vệ sau:"
+
+#: .\customadmin\templates\admin\delete_selected_confirmation.html:17
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+"Bạn có chắc chắn muốn xóa %(objects_name)s đã chọn? Tất cả các đối tượng "
+"sau và các mục liên quan của chúng sẽ bị xóa:"
 
 #: .\customadmin\templates\admin\leftsidebar.html:12
 msgid "Navigation"
@@ -29,26 +148,6 @@ msgstr "Bảng điều khiển"
 #: .\customadmin\templates\admin\leftsidebar.html:21
 msgid "Công cụ"
 msgstr "Công cụ"
-
-#: .\customadmin\templates\admin\leftsidebar.html:26
-msgid "Công cụ 1"
-msgstr "Công cụ 1"
-
-#: .\customadmin\templates\admin\leftsidebar.html:33
-msgid "Công cụ 2"
-msgstr "Công cụ 2"
-
-#: .\customadmin\templates\admin\leftsidebar.html:40
-msgid "Công cụ 3"
-msgstr "Công cụ 3"
-
-#: .\customadmin\templates\admin\leftsidebar.html:46
-msgid "Công cụ 3.1"
-msgstr "Công cụ 3.1"
-
-#: .\customadmin\templates\admin\leftsidebar.html:49
-msgid "Công cụ 3.2"
-msgstr "Công cụ 3.2"
 
 #: .\customadmin\templates\admin\login.html:4
 #: .\customadmin\templates\admin\login.html:12
@@ -75,6 +174,40 @@ msgstr "Mật khẩu"
 #: .\customadmin\templates\admin\notify_login.html:17
 msgid "Lỗi"
 msgstr "Lỗi"
+
+#: .\customadmin\templates\admin\object_history.html:8
+msgid "Lịch sử thay đổi"
+msgstr "Lịch sử thay đổi"
+
+#: .\customadmin\templates\admin\object_history.html:13
+msgid "Date/time"
+msgstr "Ngày/giờ"
+
+#: .\customadmin\templates\admin\object_history.html:14
+msgid "User"
+msgstr "Người dùng"
+
+#: .\customadmin\templates\admin\object_history.html:15
+msgid "Action"
+msgstr "Hành động"
+
+#: .\customadmin\templates\admin\object_history.html:31
+msgid "entry"
+msgid_plural "entries"
+msgstr[0] ""
+
+#: .\customadmin\templates\admin\object_history.html:52
+msgid ""
+"This object doesn’t have a change history. It probably wasn’t added via this "
+"admin site."
+msgstr ""
+"Đối tượng này không có lịch sử thay đổi. Nó có thể không được thêm qua trang "
+"quản trị này."
+
+#: .\customadmin\templates\admin\pagination.html:10
+#: .\customadmin\templates\admin\search_form.html:10
+msgid "Show all"
+msgstr "Hiển thị tất cả"
 
 #: .\customadmin\templates\admin\rightsidebar.html:11
 msgid "Tùy chỉnh phông nền"
@@ -161,6 +294,45 @@ msgstr "Topbar"
 msgid "Đặt lại về mặc định"
 msgstr "Đặt lại về mặc định"
 
+#: .\customadmin\templates\admin\search_form.html:7
+msgid "Search"
+msgstr ""
+
+#: .\customadmin\templates\admin\search_form.html:10
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+
+#: .\customadmin\templates\admin\search_form.html:10
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr "Tổng số %(full_result_count)s"
+
+#: .\customadmin\templates\admin\submit_line.html:5
+msgid "Save as new"
+msgstr "Lưu"
+
+#: .\customadmin\templates\admin\submit_line.html:6
+msgid "Save and add another"
+msgstr "Lưu và thêm mới"
+
+#: .\customadmin\templates\admin\submit_line.html:7
+msgid "Save and continue editing"
+msgstr "Lưu và tiếp tục chỉnh sửa"
+
+#: .\customadmin\templates\admin\submit_line.html:7
+msgid "Save and view"
+msgstr "Lưu và xem"
+
+#: .\customadmin\templates\admin\submit_line.html:10
+msgid "Close"
+msgstr "Đóng"
+
+#: .\customadmin\templates\admin\submit_line.html:14
+msgid "Xóa (Soft)"
+msgstr "Xóa (Soft)"
+
 #: .\customadmin\templates\admin\topbar.html:9
 msgid "Admin"
 msgstr "Admin"
@@ -170,12 +342,16 @@ msgid "Welcome !"
 msgstr "Welcome !"
 
 #: .\customadmin\templates\admin\topbar.html:20
+msgid "Trang chủ"
+msgstr "Trang chủ"
+
+#: .\customadmin\templates\admin\topbar.html:25
 #: .\customadmin\templates\registration\password_change_form.html:5
 #: .\customadmin\templates\registration\password_change_form.html:34
 msgid "Đổi mật khẩu"
 msgstr "Đổi mật khẩu"
 
-#: .\customadmin\templates\admin\topbar.html:28
+#: .\customadmin\templates\admin\topbar.html:33
 #: .\customadmin\templates\registration\logged_out.html:4
 #: .\customadmin\templates\registration\logged_out.html:12
 msgid "Đăng xuất"

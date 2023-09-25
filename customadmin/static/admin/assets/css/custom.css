@@ -1,0 +1,106 @@
+thead th {
+  padding: 5px 10px;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+thead th.sorted .text {
+  padding-right: 50px;
+}
+
+table thead th.sorted .sortoptions {
+  display: block;
+  padding: 0px 5px 0 5px;
+  float: right;
+  text-align: right;
+}
+
+.action-checkbox-column {
+  width: 30px;
+}
+
+table thead th.sorted .sortoptions a {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  background: url(../images/sorting-icons.svg) 0 0 no-repeat;
+  background-size: 14px auto;
+}
+
+thead th.sorted a.sortremove {
+  visibility: hidden;
+}
+  
+table thead th.sorted:hover a.sortremove {
+  top: 3px;
+  visibility: visible;
+}
+
+table thead th.sorted .sortoptions a.sortremove:after {
+  content: '\\';
+  position: absolute;
+  top: -6px;
+  left: 3px;
+  font-weight: 200;
+  font-size: 1.125rem;
+  color: #666;
+}
+
+table thead th.sorted .sortoptions a.sortremove:focus:after,
+table thead th.sorted .sortoptions a.sortremove:hover:after {
+    color: #417893;
+}
+
+table thead th.sorted .sortoptions a.sortremove:focus,
+table thead th.sorted .sortoptions a.sortremove:hover {
+    background-position: 0 -14px;
+}
+
+table thead th.sorted .sortoptions a.ascending {
+  background-position: 0 -28px;
+}
+
+table thead th.sorted .sortoptions a.ascending:focus,
+table thead th.sorted .sortoptions a.ascending:hover {
+  background-position: 0 -42px;
+}
+
+table thead th.sorted .sortoptions a.descending {
+  top: 1px;
+  background-position: 0 -56px;
+}
+
+table thead th.sorted .sortoptions a.descending:focus,
+table thead th.sorted .sortoptions a.descending:hover {
+  background-position: 0 -70px;
+}
+
+#dtHorizontal {
+  min-width: 100%;
+  display: block;
+  margin: 0 auto;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.actions span.all,
+.actions span.action-counter,
+.actions span.clear,
+.actions span.question {
+    font-size: 0.8125rem;
+    margin: 0 0.5em;
+}
+
+.small {
+    font-size: 0.8125rem;
+    margin-left: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.selected {
+  background-color: #ffc;
+}

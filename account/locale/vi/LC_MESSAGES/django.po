@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-19 11:39+0700\n"
+"POT-Creation-Date: 2023-09-27 10:43+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,25 +17,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-#: .\account\forms.py:24
+
+#: .\account\forms.py:18
+msgid "Email đã tồn tại!"
+msgstr "Email đã tồn tại!"
+
+#: .\account\forms.py:31
 msgid "Tài khoản không tồn tại hoặc sai tên đăng nhập hoặc sai mật khẩu!"
 msgstr "Tài khoản không tồn tại hoặc sai tên đăng nhập hoặc sai mật khẩu!"
 
-#: .\account\forms.py:27
+#: .\account\forms.py:34
 msgid "Tài khoản của bạn chưa được kích hoạt, vui lòng kiểm tra email!"
 msgstr "Tài khoản của bạn chưa được kích hoạt, vui lòng kiểm tra email!"
 
-#: .\account\forms.py:29
+#: .\account\forms.py:36
 msgid "Tài khoản của bạn đã bị cấm vĩnh viễn!"
 msgstr "Tài khoản của bạn đã bị cấm vĩnh viễn!"
 
-#: .\account\forms.py:31
+#: .\account\forms.py:38
 msgid "Tài khoản của bạn đã bị khóa trong 14 ngày!"
 msgstr "Tài khoản của bạn đã bị khóa trong 14 ngày!"
 
+#: .\account\forms.py:49
+msgid "Email không tồn tại!"
+msgstr "Email không tồn tại!"
+
+#: .\account\forms.py:75
+msgid "Mật khẩu mới không khớp!"
+msgstr "Mật khẩu mới không khớp!"
+
+#: .\account\templates\account\change_password.html:10
+#: .\account\templates\account\edit_profile.html:10
+msgid "You are not logged in"
+msgstr "Bạn chưa đăng nhập"
+
+#: .\account\templates\account\change_password.html:14
+#: .\account\templates\account\edit_profile.html:21
+msgid "Change password"
+msgstr "Đổi mật khẩu"
+
+#: .\account\templates\account\edit_profile.html:14
+
+msgid "Edit profile"
+msgstr "Chỉnh sửa thông tin"
+
 #: .\account\templates\account\password_reset.html:5
 msgid "Reset Password"
-msgstr "Reset Password"
+msgstr "Lấy lại mật khẩu"
 
 #: .\account\templates\account\password_reset.html:12
 msgid "Quên mật khẩu"
@@ -273,22 +301,38 @@ msgstr "Xác nhận lại mật khẩu"
 msgid "Đã có tài khoản?"
 msgstr "Đã có tài khoản?"
 
-#: .\account\views.py:65
+#: .\account\views.py:66
 msgid "Đăng ký thành công!"
 msgstr "Đăng ký thành công!"
 
-#: .\account\views.py:77
+#: .\account\views.py:78
 msgid "Bạn đã đăng nhập rồi!"
 msgstr "Bạn đã đăng nhập rồi!"
 
-#: .\account\views.py:86
+#: .\account\views.py:87
 msgid "Đăng nhập thành công!"
 msgstr "Đăng nhập thành công!"
 
-#: .\account\views.py:98
+#: .\account\views.py:99
 msgid "Đăng xuất thành công!"
 msgstr "Đăng xuất thành công!"
 
-#: .\account\views.py:100
+#: .\account\views.py:101
 msgid "Bạn chưa đăng nhập!"
 msgstr "Bạn chưa đăng nhập!"
+
+#: .\account\views.py:268 .\account\views.py:288
+msgid "Không tìm thấy tài khoản này!"
+msgstr "Không tìm thấy tài khoản này!"
+
+#: .\account\views.py:275
+msgid "Cập nhật thông tin thành công!"
+msgstr "Cập nhật thông tin thành công!"
+
+#: .\account\views.py:301
+msgid "Đổi mật khẩu thành công!"
+msgstr "Đổi mật khẩu thành công!"
+
+#: .\account\views.py:304
+msgid "Mật khẩu cũ không đúng!"
+msgstr "Mật khẩu cũ không đúng!"

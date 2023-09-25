@@ -55,29 +55,42 @@
                                         <div id="avatar-dropdown-profile-footer">{{ user.email }}</div>
                                     </div>
                                 </div>
+                                {% if user.is_superuser or user.is_staff %}
+                                    <li class="avatar-dropdown-user-menu__item">
+                                        <a class="avatar-dropdown-user-menu-link" href="{% url 'admin:index' %}">
+                                            <p class="mb-0">
+                                                <i class="fa-solid fa-screwdriver-wrench mr-1"></i>
+                                                {% trans "Admin Panel" %}
+                                            </p>
+                                        </a>
+                                    </li>
+                                {% endif %}
                                 <li class="avatar-dropdown-user-menu__item">
                                     <a class="avatar-dropdown-user-menu-link" href="{% url 'profile' user.username %}">
-                                        <span class="icon-user"> {% trans "Profile" %}</span>
+                                        <p class="mb-0"><i class="icon-user mr-1"></i> {% trans "Profile" %}</p>
                                     </a>
                                 </li>
                                 <li class="avatar-dropdown-user-menu__item">
                                     <a class="avatar-dropdown-user-menu-link" href="#">
-                                        <span class="icon-bookmark"> {% trans "Bookmark" %}</span>
+                                        <p class="mb-0"><i class="icon-bookmark mr-2"></i> {% trans "Bookmark" %}</p>
                                     </a>
                                 </li>
                                 <li class="avatar-dropdown-user-menu__item">
                                     <a class="avatar-dropdown-user-menu-link" href="#">
-                                        <span class="icon-users"> {% trans "Follow" %}</span>
+                                        <p class="mb-0"><i class="icon-users mr-1"></i> {% trans "Follow" %}</p>
                                     </a>
                                 </li>
                                 <li class="avatar-dropdown-user-menu__item">
                                     <a class="avatar-dropdown-user-menu-link" href="#">
-                                        <span class="icon-file-text-o"> {% trans "Draft" %}</span>
+                                        <p class="mb-0"><i class="icon-file-text-o mr-2"></i> {% trans "Draft" %}</p>
                                     </a>
                                 </li>
                                 <div class="avatar-dropdown-footer">
-                                    <li class="avatar-dropdown-user-menu__item"><a class="avatar-dropdown-user-menu-link"
-                                            href="{% url 'signout' %}" style="color: #F44336;"> {% trans "Logout" %}</a></li>
+                                    <li class="avatar-dropdown-user-menu__item">
+                                        <a class="avatar-dropdown-user-menu-link" href="{% url 'signout' %}" style="color: #F44336;"> 
+                                            <p class="mb-0"><i class="fa-solid fa-right-from-bracket mr-2"></i> {% trans "Logout" %}</p>
+                                        </a>
+                                    </li>
                                 </div>
                             </ul>
                         </div>

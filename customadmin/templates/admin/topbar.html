@@ -15,6 +15,11 @@
           <h6 class="text-overflow m-0">{% trans 'Welcome !' %}</h6>
         </div>
 
+        <a href="{% url 'home' %}" class="dropdown-item notify-item">
+          <i class="mdi mdi-home"></i>
+          <span>{% trans 'Trang chủ' %}</span>
+        </a>
+
         <a href="{% url 'admin:password_change' %}" class="dropdown-item notify-item">
           <i class="mdi mdi-lock"></i>
           <span>{% trans 'Đổi mật khẩu' %}</span>
