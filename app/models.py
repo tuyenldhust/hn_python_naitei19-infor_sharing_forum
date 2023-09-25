@@ -63,7 +63,11 @@ class Post(models.Model):
     hashtags = models.ManyToManyField('HashTag', blank=True, null=True)
     content = RichTextField()
     mode = models.IntegerField(default=0, choices=((0, _('Public')), (1, _('Private'))))
-    status = models.IntegerField(default=0, choices=((0, _('Draft')), (1, _('Normal')), (2, _('Deleted')), (3, _('Banned'))))
+    status = models.IntegerField(default=0, choices=(
+        (0, _('Draft')), (1, _('Normal')),
+        (2, _('Deleted')), (3, _('Banned')),
+        (4, _('Waiting for approval')), (5, _('Rejected'))
+    ))
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     view_count = models.IntegerField(default=0)

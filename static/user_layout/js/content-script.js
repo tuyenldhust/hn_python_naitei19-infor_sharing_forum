@@ -18,6 +18,5 @@ CKEDITOR.config.toolbar = [
 CKEDITOR.config.editorplaceholder = 'Nội dung bài viết (*)';
 // required
 editor.on('required', function (evt) {
-    editor.showNotification('Nội dung bài viết không được để trống', 'warning');
     evt.cancel();
 });

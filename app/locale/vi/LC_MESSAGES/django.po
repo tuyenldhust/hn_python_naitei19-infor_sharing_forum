@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-20 00:45+0700\n"
+"POT-Creation-Date: 2023-09-22 15:22+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: .\app\forms.py:30
+msgid "You have to complete all fields!"
+msgstr "Bạn phải điền đầy đủ thông tin!"
+
+#: .\app\forms.py:32
+msgid "Title must be string!"
+msgstr "Tiêu đề phải là chuỗi!"
+
+#: .\app\forms.py:34
+msgid "Content must be string!"
+msgstr "Nội dung phải là chuỗi!"
+
+#: .\app\forms.py:36
+msgid "Title must be at least 1 character!"
+msgstr "Tiêu đề phải có ít nhất 1 ký tự!"
+
+#: .\app\forms.py:38
+msgid "Content must be at least 1 character!"
+msgstr "Nội dung phải có ít nhất 1 ký tự!"
+
+#: .\app\forms.py:40
+msgid "You have to choose valid mode!"
+msgstr "Bạn phải chọn chế độ hợp lệ!"
+
+#: .\app\forms.py:42
+msgid "You have to choose valid status!"
+msgstr "Trạng thái không hợp lệ!"
+
+#: .\app\forms.py:46
+msgid "You have to choose valid categories!"
+msgstr "Bạn phải chọn chủ đề hợp lệ!"
+
 #: .\app\models.py:65
 msgid "Public"
 msgstr "Công khai"
@@ -25,27 +57,35 @@ msgstr "Công khai"
 msgid "Private"
 msgstr "Trả phí"
 
-#: .\app\models.py:66 .\app\templates\header.html:75
+#: .\app\models.py:67 .\app\templates\header.html:75 .\app\views.py:132
 msgid "Draft"
 msgstr "Nháp"
 
-#: .\app\models.py:66
+#: .\app\models.py:67
 msgid "Normal"
 msgstr "Bình thường"
 
-#: .\app\models.py:66
+#: .\app\models.py:68 .\app\views.py:134
 msgid "Deleted"
 msgstr "Đã xóa"
 
-#: .\app\models.py:66 .\app\templates\search_author.html:12
+#: .\app\models.py:68 .\app\templates\search_author.html:12 .\app\views.py:135
 msgid "Banned"
 msgstr "Đã cấm"
 
-#: .\app\models.py:143
+#: .\app\models.py:69
+msgid "Waiting for approval"
+msgstr "Chờ phê duyệt"
+
+#: .\app\models.py:69 .\app\views.py:137
+msgid "Rejected"
+msgstr "Bị từ chối"
+
+#: .\app\models.py:147
 msgid "Resolved"
 msgstr "Đã giải quyết"
 
-#: .\app\models.py:143
+#: .\app\models.py:147
 msgid "Not resolved"
 msgstr "Chưa giải quyết"
 
@@ -77,28 +117,28 @@ msgstr "Trả lời"
 msgid "Reply comment"
 msgstr "Trả lời bình luận"
 
-#: .\app\templates\create_post.html:12
+#: .\app\templates\create_post.html:13
 msgid "Create Post"
 msgstr "Tạo bài viết"
 
-#: .\app\templates\create_post.html:26 .\app\templates\edit_post.html:26
+#: .\app\templates\create_post.html:27 .\app\templates\edit_post.html:25
 msgid "Thêm hashtag"
 msgstr "Thêm hashtag"
 
-#: .\app\templates\create_post.html:28
+#: .\app\templates\create_post.html:29
 msgid "Create"
 msgstr "Tạo"
 
-#: .\app\templates\create_post.html:29 .\app\templates\edit_post.html:29
+#: .\app\templates\create_post.html:30 .\app\templates\edit_post.html:28
 #: .\app\templates\post_detail.html:54
 msgid "Cancel"
 msgstr "Hủy"
 
-#: .\app\templates\edit_post.html:12 .\app\templates\post_detail.html:35
+#: .\app\templates\edit_post.html:11 .\app\templates\post_detail.html:35
 msgid "Edit Post"
 msgstr "Chỉnh sửa bài viết"
 
-#: .\app\templates\edit_post.html:28
+#: .\app\templates\edit_post.html:27
 msgid "Save"
 msgstr "Lưu"
 
@@ -298,7 +338,7 @@ msgstr "Đã đăng vào"
 msgid "Chỉnh sửa lần cuối lúc"
 msgstr "Chỉnh sửa lần cuối lúc"
 
-#: .\app\templates\post_detail.html:105
+#: .\app\templates\post_detail.html:104
 msgid "Chủ đề"
 msgstr "Chủ đề"
 
@@ -382,42 +422,54 @@ msgstr "Số lượng bình luận"
 msgid "Tổng đánh giá"
 msgstr "Tổng đánh giá"
 
-#: .\app\views.py:115
-msgid "Post is deleted."
-msgstr "Bài viết đã bị xóa."
-
-#: .\app\views.py:117
+#: .\app\views.py:118
 msgid "Post is not existed."
 msgstr "Bài viết không tồn tại."
 
-#: .\app\views.py:119
+#: .\app\views.py:120
+msgid "Post is deleted."
+msgstr "Bài viết đã bị xóa."
+
+#: .\app\views.py:122
 msgid "Post is banned."
 msgstr "Bài viết đã bị cấm. Xin vui lòng liên hệ Admin để biết thêm chi tiết"
 
 #: .\app\views.py:124
+msgid "Post is waiting for approval."
+msgstr "Bài viết đang chờ duyệt."
+
+#: .\app\views.py:126
+msgid "Post is rejected."
+msgstr "Bài viết đã bị từ chối phê duyệt."
+
+#: .\app\views.py:136
+msgid "Pending"
+msgstr "Đang chờ duyệt"
+
+#: .\app\views.py:146
 msgid "Unranked"
 msgstr "Không có xếp hạng"
 
-#: .\app\views.py:124
+#: .\app\views.py:146
 msgid "Bronze"
 msgstr "Đồng"
 
-#: .\app\views.py:124
+#: .\app\views.py:146
 msgid "Silver"
 msgstr "Bạc"
 
-#: .\app\views.py:124
+#: .\app\views.py:146
 msgid "Gold"
 msgstr "Vàng"
 
-#: .\app\views.py:124
+#: .\app\views.py:146
 msgid "Platinum"
 msgstr "Bạch kim"
 
-#: .\app\views.py:124
+#: .\app\views.py:146
 msgid "Diamond"
 msgstr "Kim cương"
 
-#: .\app\views.py:220
+#: .\app\views.py:247
 msgid "Nội dung bình luận không được để trống!"
 msgstr "Nội dung bình luận không được để trống!"
