@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-22 15:22+0700\n"
+"POT-Creation-Date: 2023-09-26 02:28+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,7 +57,7 @@ msgstr "Công khai"
 msgid "Private"
 msgstr "Trả phí"
 
-#: .\app\models.py:67 .\app\templates\header.html:75 .\app\views.py:132
+#: .\app\models.py:67 .\app\templates\header.html:75 .\app\views.py:164
 msgid "Draft"
 msgstr "Nháp"
 
@@ -65,11 +65,11 @@ msgstr "Nháp"
 msgid "Normal"
 msgstr "Bình thường"
 
-#: .\app\models.py:68 .\app\views.py:134
+#: .\app\models.py:68 .\app\views.py:166
 msgid "Deleted"
 msgstr "Đã xóa"
 
-#: .\app\models.py:68 .\app\templates\search_author.html:12 .\app\views.py:135
+#: .\app\models.py:68 .\app\templates\search_author.html:12 .\app\views.py:167
 msgid "Banned"
 msgstr "Đã cấm"
 
@@ -77,7 +77,7 @@ msgstr "Đã cấm"
 msgid "Waiting for approval"
 msgstr "Chờ phê duyệt"
 
-#: .\app\models.py:69 .\app\views.py:137
+#: .\app\models.py:69 .\app\views.py:169
 msgid "Rejected"
 msgstr "Bị từ chối"
 
@@ -174,119 +174,102 @@ msgstr "Theo dõi"
 msgid "Logout"
 msgstr "Đăng xuất"
 
-#: .\app\templates\home.html:14 .\app\templates\home.html:32
-#: .\app\templates\home.html:57
+#: .\app\templates\home.html:15 .\app\templates\home.html:36
 msgid "Editor's Pick"
 msgstr "Editor's Pick"
 
-#: .\app\templates\home.html:15 .\app\templates\home.html:33
-#: .\app\templates\home.html:65 .\app\templates\home.html:77
-#: .\app\templates\home.html:88 .\app\templates\home.html:99
-#: .\app\templates\home.html:117 .\app\templates\home.html:128
-#: .\app\templates\home.html:139 .\app\templates\home.html:150
-#: .\app\templates\home.html:174 .\app\templates\home.html:197
-#: .\app\templates\home.html:208 .\app\templates\home.html:219
-#: .\app\templates\home.html:235 .\app\templates\home.html:246
-#: .\app\templates\home.html:257 .\app\templates\home.html:282
-#: .\app\templates\home.html:294 .\app\templates\home.html:307
-#: .\app\templates\home.html:324 .\app\templates\home.html:335
-#: .\app\templates\home.html:346 .\app\templates\home.html:357
+#: .\app\templates\home.html:16 .\app\templates\home.html:37
+#: .\app\templates\home.html:106 .\app\templates\home.html:131
+#: .\app\templates\home.html:145 .\app\templates\home.html:159
+#: .\app\templates\home.html:178 .\app\templates\home.html:192
+#: .\app\templates\home.html:206 .\app\templates\home.html:233
+#: .\app\templates\home.html:248 .\app\templates\home.html:264
+#: .\app\templates\home.html:283 .\app\templates\home.html:296
+#: .\app\templates\home.html:309 .\app\templates\home.html:322
 msgid "Blog's title"
 msgstr "Blog's title"
 
-#: .\app\templates\home.html:16 .\app\templates\home.html:34
-#: .\app\templates\home.html:66 .\app\templates\home.html:175
-#: .\app\templates\home.html:198 .\app\templates\home.html:209
-#: .\app\templates\home.html:220 .\app\templates\home.html:236
-#: .\app\templates\home.html:247 .\app\templates\home.html:258
-#: .\app\templates\home.html:283 .\app\templates\home.html:295
-#: .\app\templates\home.html:308
+#: .\app\templates\home.html:17 .\app\templates\home.html:38
+#: .\app\templates\home.html:107 .\app\templates\home.html:132
+#: .\app\templates\home.html:146 .\app\templates\home.html:160
+#: .\app\templates\home.html:179 .\app\templates\home.html:193
+#: .\app\templates\home.html:207 .\app\templates\home.html:234
+#: .\app\templates\home.html:249 .\app\templates\home.html:265
 msgid "Blog's introduciton"
 msgstr "Blog's introduciton"
 
-#: .\app\templates\home.html:19 .\app\templates\home.html:37
-#: .\app\templates\home.html:68 .\app\templates\home.html:79
-#: .\app\templates\home.html:90 .\app\templates\home.html:101
-#: .\app\templates\home.html:119 .\app\templates\home.html:130
-#: .\app\templates\home.html:141 .\app\templates\home.html:152
-#: .\app\templates\home.html:178 .\app\templates\home.html:200
-#: .\app\templates\home.html:211 .\app\templates\home.html:222
-#: .\app\templates\home.html:238 .\app\templates\home.html:249
-#: .\app\templates\home.html:260 .\app\templates\home.html:285
-#: .\app\templates\home.html:297 .\app\templates\home.html:310
-#: .\app\templates\home.html:326 .\app\templates\home.html:337
-#: .\app\templates\home.html:348 .\app\templates\home.html:359
+#: .\app\templates\home.html:20 .\app\templates\home.html:41
+#: .\app\templates\home.html:110 .\app\templates\home.html:134
+#: .\app\templates\home.html:148 .\app\templates\home.html:162
+#: .\app\templates\home.html:181 .\app\templates\home.html:195
+#: .\app\templates\home.html:209 .\app\templates\home.html:236
+#: .\app\templates\home.html:251 .\app\templates\home.html:267
+#: .\app\templates\home.html:285 .\app\templates\home.html:298
+#: .\app\templates\home.html:311 .\app\templates\home.html:324
 msgid "Blog's author"
 msgstr "Blog's author"
 
-#: .\app\templates\home.html:20 .\app\templates\home.html:38
+#: .\app\templates\home.html:20 .\app\templates\home.html:41
+#: .\app\templates\home.html:72 .\app\templates\trending.html:24
+msgid "thuộc"
+msgstr "thuộc"
+
+#: .\app\templates\home.html:22 .\app\templates\home.html:43
 msgid "Blog's date"
 msgstr "Blog's date"
 
-#: .\app\templates\home.html:20 .\app\templates\home.html:38
-#: .\app\templates\home.html:69 .\app\templates\home.html:80
-#: .\app\templates\home.html:91 .\app\templates\home.html:102
-#: .\app\templates\home.html:120 .\app\templates\home.html:131
-#: .\app\templates\home.html:142 .\app\templates\home.html:153
-#: .\app\templates\home.html:179 .\app\templates\home.html:201
-#: .\app\templates\home.html:212 .\app\templates\home.html:223
-#: .\app\templates\home.html:239 .\app\templates\home.html:250
-#: .\app\templates\home.html:261 .\app\templates\home.html:286
-#: .\app\templates\home.html:298 .\app\templates\home.html:311
-#: .\app\templates\home.html:327 .\app\templates\home.html:338
-#: .\app\templates\home.html:349 .\app\templates\home.html:360
+#: .\app\templates\home.html:22 .\app\templates\home.html:43
+#: .\app\templates\home.html:111 .\app\templates\home.html:136
+#: .\app\templates\home.html:150 .\app\templates\home.html:164
+#: .\app\templates\home.html:183 .\app\templates\home.html:197
+#: .\app\templates\home.html:211 .\app\templates\home.html:238
+#: .\app\templates\home.html:253 .\app\templates\home.html:269
+#: .\app\templates\home.html:287 .\app\templates\home.html:300
+#: .\app\templates\home.html:313 .\app\templates\home.html:326
 msgid "Blog's estimated read time"
 msgstr "Blog's estimated read time"
 
-#: .\app\templates\home.html:111
-msgid "Trending"
-msgstr "Trending"
+#: .\app\templates\home.html:89
+msgid "Xem thêm"
+msgstr "Xem thêm"
 
-#: .\app\templates\home.html:159
-msgid "See All Trends"
-msgstr "See All Trends"
-
-#: .\app\templates\home.html:192 .\app\templates\navbar.html:18
+#: .\app\templates\home.html:125 .\app\templates\navbar.html:24
 msgid "Category 1"
 msgstr "Category 1"
 
-#: .\app\templates\home.html:230 .\app\templates\navbar.html:21
+#: .\app\templates\home.html:172 .\app\templates\navbar.html:27
 msgid "Category 2"
 msgstr "Category 2"
 
-#: .\app\templates\home.html:277
+#: .\app\templates\home.html:227
 msgid "Recent News"
 msgstr "Recent News"
 
-#: .\app\templates\home.html:318
+#: .\app\templates\home.html:277 .\app\templates\navbar.html:21
 msgid "Popular Posts"
-msgstr "Popular Posts"
+msgstr "Các bài viết nổi bật"
 
-#: .\app\templates\home.html:366
+#: .\app\templates\home.html:333
 msgid "See All Popular"
 msgstr "See All Popular"
 
-#: .\app\templates\navbar.html:12
+#: .\app\templates\navbar.html:15
 msgid "Home"
 msgstr "Home"
 
-#: .\app\templates\navbar.html:15
-msgid "All categories"
-msgstr "All categories"
-
-#: .\app\templates\navbar.html:24
+#: .\app\templates\navbar.html:30
 msgid "Category 3"
 msgstr "Category 3"
 
-#: .\app\templates\navbar.html:26
+#: .\app\templates\navbar.html:32
 msgid "Category 4"
 msgstr "Category 4"
 
-#: .\app\templates\navbar.html:28
+#: .\app\templates\navbar.html:34
 msgid "Category 5"
 msgstr "Category 5"
 
-#: .\app\templates\navbar.html:30
+#: .\app\templates\navbar.html:36
 msgid "Contact"
 msgstr "Contact"
 
@@ -422,54 +405,66 @@ msgstr "Số lượng bình luận"
 msgid "Tổng đánh giá"
 msgstr "Tổng đánh giá"
 
-#: .\app\views.py:118
+#: .\app\views.py:40 .\app\views.py:359
+msgid "Bài viết nổi bật trong tuần"
+msgstr "Bài viết nổi bật trong tuần"
+
+#: .\app\views.py:44 .\app\views.py:363
+msgid "Bài viết nổi bật trong tháng"
+msgstr "Bài viết nổi bật trong tháng"
+
+#: .\app\views.py:48 .\app\views.py:367
+msgid "Bài viết nổi bật trong năm"
+msgstr "Bài viết nổi bật trong năm"
+
+#: .\app\views.py:150
 msgid "Post is not existed."
 msgstr "Bài viết không tồn tại."
 
-#: .\app\views.py:120
+#: .\app\views.py:152
 msgid "Post is deleted."
 msgstr "Bài viết đã bị xóa."
 
-#: .\app\views.py:122
+#: .\app\views.py:154
 msgid "Post is banned."
 msgstr "Bài viết đã bị cấm. Xin vui lòng liên hệ Admin để biết thêm chi tiết"
 
-#: .\app\views.py:124
+#: .\app\views.py:156
 msgid "Post is waiting for approval."
 msgstr "Bài viết đang chờ duyệt."
 
-#: .\app\views.py:126
+#: .\app\views.py:158
 msgid "Post is rejected."
 msgstr "Bài viết đã bị từ chối phê duyệt."
 
-#: .\app\views.py:136
+#: .\app\views.py:168
 msgid "Pending"
 msgstr "Đang chờ duyệt"
 
-#: .\app\views.py:146
+#: .\app\views.py:178
 msgid "Unranked"
 msgstr "Không có xếp hạng"
 
-#: .\app\views.py:146
+#: .\app\views.py:178
 msgid "Bronze"
 msgstr "Đồng"
 
-#: .\app\views.py:146
+#: .\app\views.py:178
 msgid "Silver"
 msgstr "Bạc"
 
-#: .\app\views.py:146
+#: .\app\views.py:178
 msgid "Gold"
 msgstr "Vàng"
 
-#: .\app\views.py:146
+#: .\app\views.py:178
 msgid "Platinum"
 msgstr "Bạch kim"
 
-#: .\app\views.py:146
+#: .\app\views.py:178
 msgid "Diamond"
 msgstr "Kim cương"
 
-#: .\app\views.py:247
+#: .\app\views.py:279
 msgid "Nội dung bình luận không được để trống!"
 msgstr "Nội dung bình luận không được để trống!"

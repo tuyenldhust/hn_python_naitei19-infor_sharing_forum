@@ -1,0 +1,46 @@
+{% extends "base_generic.html" %}
+{% load static i18n %}
+
+{% block content %}
+
+<!-- Trending Section-->
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            {% for top_posts in all_top_posts %}
+            <div class="col-lg-4">
+                <div class="section-title">
+                    <h2>{{top_posts.title}}</h2>
+                </div>
+                {% for post in top_posts.posts %}
+                <div class="trend-entry d-flex post_card">
+                    <div class="number align-self-start">{% if forloop.counter < 10 %}0{% endif %}{{forloop.counter}}</div>
+                    <div class="trend-contents">
+                        <h2 ><a href="{% url 'post_detail' post.id %}" class="text-primary">{{post.title}}</a></h2>
+                        <div class="post-meta">
+                            <span class="d-block text-truncate w-250px">
+                                <a class="text-primary" href="{% url 'profile' post.user.username %}">
+                                    {{post.user.first_name}} {{post.user.last_name}}
+                                </a> {% trans 'trong' %}
+                                {{post.list_categories}}
+                            </span>
+                            <span class="date-read">
+                                {{post.created_at|date:"h:m d/m/Y"}}
+                                <span class="mx-1">&bullet;</span>
+                                <span class="fa-regular fa-thumbs-up"></span>
+                                <span class="text-muted">{{post.r_count}}</span>
+                                <span class="fa-solid fa-eye"></span>
+                                <span class="text-muted">{{ post.view_count }}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- END Trending Section-->
+{% endblock %}
+
