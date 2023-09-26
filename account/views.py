@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .forms import SignUpForm, SignInForm, PasswordResetForm, SetPasswordForm
+from .forms import SignUpForm, SignInForm, PasswordResetForm, SetPasswordForm, UserEditForm, ChangePasswordForm
 from django.shortcuts import redirect
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.template.loader import render_to_string
@@ -12,6 +12,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import get_user_model
 from django.db.models.query_utils import Q
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
 import re
 from .tokens import account_activation_token
 
@@ -259,3 +260,51 @@ def _get_post(request, request_user, num_each_page=10):
             posts[index].reaction_point += reaction.feedback_value
 
     return posts
+
+@login_required
+def edit_profile(request, username):
+    request_user = get_user_model().objects.filter(username=username).first()
+    if request_user is None:
+        messages.error(request, _('Không tìm thấy tài khoản này!'))
+        return redirect('home')
+    else:
+        if request.method == 'POST':
+            form = UserEditForm(request.POST, instance=request_user)
+            if form.is_valid():
+                form.save()
+                messages.success(request, _('Cập nhật thông tin thành công!'))
+                return redirect('profile', username=request_user.username)
+            else:
+                for error in list(form.errors.values()):
+                    messages.error(request, clean_message(error))
+        else:
+            form = UserEditForm(instance=request_user)
+        return render(request, 'account/edit_profile.html', {'form': form})
+
+@login_required
+def change_password(request, username):
+    request_user = get_user_model().objects.filter(username=username).first()
+    if request_user is None:
+        messages.error(request, _('Không tìm thấy tài khoản này!'))
+        return redirect('home')
+    else:
+        if request.method == 'POST':
+            form = ChangePasswordForm(request.POST)
+            if form.is_valid():
+                if request.user.check_password(request.POST['old_password']):
+                    request.user.set_password(request.POST['new_password'])
+                    request.user.save()
+
+                    # Keep user login
+                    update_session_auth_hash(request, request.user)
+
+                    messages.success(request, _('Đổi mật khẩu thành công!'))
+                    return redirect('profile', username=request.user.username)
+                else:
+                    messages.error(request, _('Mật khẩu cũ không đúng!'))
+            else:
+                for error in list(form.errors.values()):
+                    messages.error(request, clean_message(error))
+        else:
+            form = ChangePasswordForm()
+        return render(request, 'account/change_password.html', {'form': form})
