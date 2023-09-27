@@ -45,7 +45,7 @@ class CustomUser(AbstractUser):
         """
         return self.username
 
-    def delete(self, using: Any = ..., keep_parents: bool = ...) -> tuple[int, dict[str, int]]:
+    def delete(self, using, keep_parents):
         """
         Override delete method
         """
@@ -190,7 +190,7 @@ class Category(models.Model):
         verbose_name = 'Chuyên mục'
         verbose_name_plural = 'Chuyên mục'
 
-    def delete(self, using: Any = ..., keep_parents: bool = ...) -> tuple[int, dict[str, int]]:
+    def delete(self, using, keep_parents):
         """
         Override delete method
         """

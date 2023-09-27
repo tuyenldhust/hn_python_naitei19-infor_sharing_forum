@@ -7,3 +7,4 @@ django-crispy-forms
 six
 django-ckeditor
 django-multiselectfield
+imgur-python

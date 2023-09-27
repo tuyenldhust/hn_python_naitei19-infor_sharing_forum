@@ -1,25 +1,99 @@
 {% extends 'base_generic.html' %}
 
-{% load i18n %}
+{% load i18n static %}
 
 {% block content %}
 
 <!-- Require login -->
-{% if not user.is_authenticated %}
+{% if user.is_authenticated %}
+  <script src="{% static 'user_layout/js/jquery.ui.widget.js' %}"></script>
+  <script src="{% static 'user_layout/js/jquery.fileupload.js' %}"></script>
 
-<h1>{% trans "You are not logged in" %}</h1>
+  <div class="container mc-1">
+    <div class="row">
+        <h1 class="display-5"> {% trans "Settings" %} </h1>
+    </div>
 
-{% else %}
+    <div class="row bg-light mt-1">
+      <div class="col-xl-3 mt-3 mb-3">
+        <div class="card card-fluid">
+          <h6 class="card-header bg-white"> <strong>{% trans "Your Details" %}</strong> </h6>
 
-<h1>{% trans "Edit profile" %}</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <p><input type="submit" value="Submit"></p>
-</form>
+          <nav class="nav nav-tabs flex-column">
+            <a href="{% url "edit_profile" user.username %}" class="nav-link active">{% trans "Profile Details" %}</a>
+            <a href="{% url 'change_password' user.username %}" class="nav-link">{% trans "Change Password" %}</a>
+          </nav>
+        </div>
+      </div>
 
-<p><a href="{% url 'change_password' user.username %}">{% trans "Change password" %}</a></p>
+      <div class="col-xl-9 mt-3 mb-3">
+        <div class="card card-fluid">
+          <h6 class="card-header bg-white"> <strong>{% trans "Profile Details" %}</strong> </h6>
+          <div class="card-body">
+            <form method="post">
+              {% csrf_token %}
 
+              <div class="media mb-2">
+                <div class="user-avatar user-avatar-xl fileinput-button">
+                  <div class="fileinput-button-label"> {% trans "Change photo" %} </div>
+                  <img src="{{ user.avatar_link }}" alt="User Avatar">
+                  <input id="fileupload-avatar" type="file" name="avatar">
+                  <input id="avatar_link" type="hidden" name="avatar_link" value="{{ user.avatar_link }}">
+                  <input id="username" type="hidden" name="username" value="{{ user.username }}">
+                </div>
+
+                <div class="media-body pl-3">
+                  <h3 class="card-title"> <b>{% trans "Public avatar" %}</b> </h3>
+                  <h6 class="card-subtitle text-muted"> {% trans "Click the current avatar to change your photo." %} </h6>
+                  <p class="card-text">
+                    <small>{% trans "JPG, GIF or PNG 400x400, &lt; 2 MB." %}</small>
+                  </p>
+                  <!-- The avatar upload progress bar -->
+                  <div id="progress-avatar" class="progress progress-xs fade">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                  <!-- /avatar upload progress bar -->
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="form-row">
+                <!-- form column -->
+                <div class="col-md-6 mb-3">
+                  <label for="id_first_name">{% trans "First Name" %}</label>
+                  <input type="text" name="first_name" class="form-control-bs4" id="id_first_name" value="{{ user.first_name }}" required="" placeholder="{% trans "First Name" %}"> </div>
+                <!-- /form column -->
+                <!-- form column -->
+                <div class="col-md-6 mb-3">
+                  <label for="id_last_name">{% trans "Last Name" %}</label>
+                  <input type="text" name="last_name" class="form-control-bs4" id="id_last_name" value="{{ user.last_name }}" required="" placeholder="{% trans "Last Name" %}"> </div>
+                <!-- /form column -->
+              </div>
+
+              <div class="form-group">
+                <label for="id_email">{% trans "Email" %}</label>
+                <input type="email" name="email" class="form-control-bs4" id="id_email" value="{{ user.email }}" required="">
+              </div>
+
+              <div class="form-group">
+                <label for="id_phone">{% trans "Phone" %}</label>
+                <input type="text" name="phone" id="id_phone" class="form-control-bs4" value="{{ user.phone }}"placeholder="">
+              </div>
+              
+              <hr>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary ml-auto float-right">{% trans "Update Profile" %}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'user_layout/js/user_settings.js' %}"></script>
 {% endif %}
 
 {% endblock %}

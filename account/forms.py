@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from datetime import datetime
 from django.utils.translation import gettext_lazy as _
-from django.forms import ModelForm
+import re
 
 from app.models import CustomUser
 
@@ -59,6 +59,14 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = CustomUser
         fields = ['first_name', 'last_name', 'email', 'avatar_link', 'phone']
+
+    def clean_phone(self):
+        # Check phone number with regex
+        phone = self.cleaned_data.get('phone')
+        if phone:
+            if not re.match(r'^(0[0-9]{9})$', phone):
+                raise forms.ValidationError(_("Số điện thoại không hợp lệ!"))
+        return phone
 
 class ChangePasswordForm(forms.Form):
     old_password = forms.CharField(max_length=30, widget=forms.PasswordInput)

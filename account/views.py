@@ -19,6 +19,12 @@ from .tokens import account_activation_token
 from app.models import Follow, Post, Bookmark, Comment, PostReaction, HashTag
 from app.views import get_paginated_object_list
 
+from imgur_python import Imgur
+from info_sharing_forum.settings import IMGUR_CLIENT_ID, IMGUR_CLIENT_SECRET
+import os
+
+os.environ['CURL_CA_BUNDLE'] = ''
+
 # clean all html tags in message
 def clean_message(text):
     return re.sub('<[^<]+?>', '', str(text))
@@ -261,8 +267,12 @@ def _get_post(request, request_user, num_each_page=10):
 
     return posts
 
-@login_required
+@login_required(login_url='/account/signin/')
 def edit_profile(request, username):
+    if request.user.username != username:
+        messages.error(request, _('Bạn không có quyền chỉnh sửa thông tin người dùng này!'))
+        return redirect('home')
+
     request_user = get_user_model().objects.filter(username=username).first()
     if request_user is None:
         messages.error(request, _('Không tìm thấy tài khoản này!'))
@@ -272,6 +282,22 @@ def edit_profile(request, username):
             form = UserEditForm(request.POST, instance=request_user)
             if form.is_valid():
                 form.save()
+
+                # Upload the temporary file to Imgur
+                imgur = Imgur({"client_id" : IMGUR_CLIENT_ID, "client_secret" : IMGUR_CLIENT_SECRET})
+                response = imgur.image_upload(request.POST['avatar_link'][1:], title="Uploaded with PyImgur", description="Uploaded with PyImgur")
+                
+                if response['status'] == 200:
+                    # Update avatar link in form
+                    request_user.avatar_link = response['response']['data']['link']
+                    request_user.save()
+
+                    # Delete the temporary file
+                    os.remove(request.POST['avatar_link'][1:])
+                else:
+                    messages.error(request, _('Đã có lỗi xảy ra trong quá trình tải ảnh lên! Vui lòng thử lại sau.'))
+                    return redirect('profile', username=request_user.username)
+                
                 messages.success(request, _('Cập nhật thông tin thành công!'))
                 return redirect('profile', username=request_user.username)
             else:
@@ -281,8 +307,12 @@ def edit_profile(request, username):
             form = UserEditForm(instance=request_user)
         return render(request, 'account/edit_profile.html', {'form': form})
 
-@login_required
+@login_required(login_url='/account/signin/')
 def change_password(request, username):
+    if request.user.username != username:
+        messages.error(request, _('Bạn không có quyền đổi mật khẩu người dùng này!'))
+        return redirect('home')
+
     request_user = get_user_model().objects.filter(username=username).first()
     if request_user is None:
         messages.error(request, _('Không tìm thấy tài khoản này!'))
