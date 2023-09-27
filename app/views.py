@@ -11,15 +11,51 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 
 from .forms import PostForm
-from .models import Post, HashTag, CustomUser, Follow, PostReaction, Bookmark, Comment
+from .models import Post, HashTag, CustomUser, Follow, PostReaction, Bookmark, Comment, Category
 
-from django.views import generic
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+def __get_trending_post_by_time(time, limit=5):
+    return Post.objects.raw(
+        "select p.*, count(distinct r.id) as r_count, "
+        "group_concat(distinct c.name separator ', ') as list_categories "
+        'from app_post p '
+        'join app_postreaction r on p.id = r.post_id '
+        'join app_post_categories pc on p.id = pc.post_id '
+        'join app_category c on c.id = pc.category_id '
+        'where r.feedback_value = 1 '
+        '  and p.status = 1'
+        '  and r.time > (now() - interval %s day) '
+        'group by p.id '
+        'order by r_count desc '
+        'limit %s', [time, limit])
+
+
+def __get_trending(limit=5):
+    return [
+        {
+            'title': _('Bài viết nổi bật trong tuần'),
+            'posts': __get_trending_post_by_time(7, limit)
+        },
+        {
+            'title': _('Bài viết nổi bật trong tháng'),
+            'posts': __get_trending_post_by_time(30, limit)
+        },
+        {
+            'title': _('Bài viết nổi bật trong năm'),
+            'posts': __get_trending_post_by_time(365, limit)
+        }
+
+    ]
+
+
 def home(request):
-    return render(request, 'home.html', {})
+    return render(request, 'home.html', {
+        'all_top_posts': __get_trending(),
+    })
+
 
 class PostCreate(CreateView):
     model = Post
@@ -54,6 +90,7 @@ class PostCreate(CreateView):
     def get_success_url(self):
         return reverse_lazy('post_detail', kwargs={'primary_key': self.object.pk})
 
+
 def get_paginated_object_list(paginator, page):
     try:
         object_list_paginated = paginator.page(page)
@@ -63,6 +100,7 @@ def get_paginated_object_list(paginator, page):
         object_list_paginated = paginator.page(paginator.num_pages)
 
     return object_list_paginated
+
 
 def homepageSearch(request):
     # object_list = Post.objects.all()
@@ -170,7 +208,6 @@ def post_detail_view(request, primary_key):
     for comment in comments_tree:
         comment.child = {child for child in comments if child.parent.pk == comment.pk}
 
-
     return render(request, 'post_detail.html', context={
         'post': post,
         'author': post.user,
@@ -237,6 +274,7 @@ def delete_post_view(request, primary_key):
     post.status = 2
     post.save()
     return redirect('home')
+
 
 def comment(request):
     if request.method == 'POST':
@@ -316,3 +354,9 @@ def bookmark_post_view(request, primary_key):
             json.dumps({
                 'message': 'Bad Request',
             }), content_type='application/json')
+
+
+def trending_posts_view(request):
+    return render(request, 'trending.html', {
+        'all_top_posts': __get_trending(20)
+    })

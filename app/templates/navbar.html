@@ -8,11 +8,17 @@
             <div class="mr-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                        <li class="active">
-                            <a href="{% url 'home' %}" class="nav-link text-left">{% trans "Home" %}</a>
-                        </li>
+                        {% url 'home' as home_url %}
                         <li>
-                            <a href="categories.html" class="nav-link text-left">{% trans "All categories" %}</a>
+                            <a href="{{ home_url }}"
+                               class="nav-link text-left {% if request.path == home_url %}font-weight-bold{% endif %}">
+                                {% trans "Home" %}</a>
+                        </li>
+                        {% url 'trending_posts' as trending_posts_url %}
+                        <li>
+                            <a href="{{ trending_posts_url }}"
+                               class="nav-link text-left {% if request.path == trending_posts_url %}font-weight-bold{% endif %}">
+                                {% trans "Popular Posts" %}</a>
                         </li>
                         <li>
                             <a href="categories.html" class="nav-link text-left">{% trans "Category 1" %}</a>

@@ -16,7 +16,7 @@
                     <span class="fix-font">{{achievement_rank}}</span></i>
             </div>
             <div class="row">
-                <a href="#" class="mr-1">{{author.last_name}} {{author.first_name}}</a>
+                <a href="{% url 'profile' post.user.username %}" class="mr-1">{{author.last_name}} {{author.first_name}}</a>
                 <span>@{{author.username}}</span>
             </div>
             <div class="row">
