@@ -1,0 +1,38 @@
+{% if messages %}
+<script>
+
+  function clean_message(text) {
+    // remove html tag 
+    text = text.replace(/<\/?[^>]+(>|$)/g, "");
+    // upper first character
+    text = text.charAt(0).toUpperCase() + text.slice(1);
+    return text;
+  }
+
+  $(document).ready(function() {
+      {% for message in messages %}
+        {% if message.tags == 'success' %}
+          successNotification({
+            title: 'Thành công',
+            message: clean_message('{{ message|safe|escape }}'),
+          });
+        {% elif message.tags == 'error' %}
+          errorNotification({
+            title: 'Lỗi',
+            message: clean_message('{{ message|safe|escape }}'),
+          });
+        {% elif message.tags == 'warning' %}
+          warningNotification({
+            title: 'Cảnh báo',
+            message: clean_message('{{ message|safe|escape }}'),
+          });
+        {% else %}
+          infoNotification({
+            title: 'Thông báo',
+            message: clean_message('{{ message|safe|escape }}'),
+          });
+        {% endif %}
+      {% endfor %}
+  });
+</script>
+{% endif %}

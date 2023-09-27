@@ -20,21 +20,33 @@
 
         <li class="menu-title mt-2">{% trans 'Công cụ' %}</li>
 
-        <li>
-          <a href="#">
-            <i class="mdi mdi-tools"></i>
-            <span> {% trans 'Công cụ 1' %} </span>
-          </a>
-        </li>
+        {% if app_list %}
+          {% for app in app_list %}
+            <li>
+              <a href="#{{app.app_label}}" data-bs-toggle="collapse">
+                <i class="mdi mdi-tools"></i>
+                <span> {{ app.name }} </span>
+                {% if app.models %}
+                  <span class="menu-arrow"></span>
+                {% endif %}
+              </a>
+            </li>
+            
+            {% if app.models %}
+              <div class="collapse" id="{{ app.app_label }}">
+                <ul class="nav-second-level" style="list-style-type: none;">
+                  {% for model in app.models %}
+                    <li>
+                      <a href="{{ model.admin_url }}">{{ model.name }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
 
-        <li>
-          <a href="#">
-            <i class="mdi mdi-tools"></i>
-            <span> {% trans 'Công cụ 2' %} </span>
-          </a>
-        </li>
-
-        <li>
+        {% comment %} <li>
           <a href="#tool3" data-bs-toggle="collapse">
             <i class="mdi mdi-tools"></i>
             <span> {% trans 'Công cụ 3' %} </span>
@@ -50,7 +62,7 @@
               </li>
             </ul>
           </div>
-        </li>
+        </li> {% endcomment %}
       </ul>
 
     </div>

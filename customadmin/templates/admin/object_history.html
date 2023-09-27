@@ -1,0 +1,58 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls %}
+{% block content %}
+
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h3>{% translate 'Lịch sử thay đổi' %}</h4>
+      {% if action_list %}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">{% translate 'Date/time' %}</th>
+            <th scope="col">{% translate 'User' %}</th>
+            <th scope="col">{% translate 'Action' %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for action in action_list %}
+          <tr>
+            <th scope="row">{{ action.action_time|date:"DATETIME_FORMAT" }}</th>
+            <td>{{ action.user.get_username }}{% if action.user.get_full_name %} ({{ action.user.get_full_name }}){% endif %}</td>
+            <td>{{ action.get_change_message }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="row mt-2">
+        <div class="col-6">
+          <b>{{ action_list.paginator.count }} {% blocktranslate count counter=action_list.paginator.count %}entry{% plural %}entries{% endblocktranslate %}</b>
+        </div>
+    
+        {% if pagination_required %}
+          <div class="col-6 d-flex justify-content-end">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination">
+                {% for i in page_range %}
+                  {% if i == action_list.paginator.ELLIPSIS %}
+                    <li class="page-item"><a class="page-link" href="#">{{ action_list.paginator.ELLIPSIS }}</a></li>
+                  {% elif i == action_list.number %}
+                    <li class="page-item active"><a class="page-link" href="#">{{ i }}</a></li>
+                  {% else %}
+                    <li class="page-item"><a class="page-link" href="?{{ page_var }}={{ i }}"{% if i == action_list.paginator.num_pages %} class="end" {% endif %}>{{ i }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </nav>
+          </div>
+        {% endif %}
+      {% else %}
+        <p>{% translate 'This object doesn’t have a change history. It probably wasn’t added via this admin site.' %}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

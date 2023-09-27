@@ -6,3 +6,4 @@ django-tinymce
 django-crispy-forms
 six
 django-ckeditor
+django-multiselectfield

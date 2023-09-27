@@ -1,0 +1,29 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_list static custom_tags %}
+{% block title %}{{ title }}{% endblock %}
+{% block page-title-main %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        {% block search %}{% search_form cl %}{% endblock %}
+        {% block date_hierarchy %}{% if cl.date_hierarchy %}{% date_hierarchy cl %}{% endif %}{% endblock %}
+
+        <form id="changelist-form" method="post"{% if cl.formset and cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} novalidate>{% csrf_token %}
+        {% if cl.formset %}
+          <div>{{ cl.formset.management_form }}</div>
+        {% endif %}
+
+        {% if action_form and actions_on_top and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+        {% table cl %}
+        {% if action_form and actions_on_bottom and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+
+        {% block pagination %}{% pagination cl %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'admin/assets/js/change_list.js' %}"></script>
+{% endblock %}
