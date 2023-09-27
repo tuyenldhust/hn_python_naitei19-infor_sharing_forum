@@ -17,6 +17,7 @@
     </div>
     <div class="border"> </div>
     {% if choices_single_default == "Post" %}
+      {% include "search_filter.html" %}
       {% for post in object_list %}
         {% include "search_post.html" %}
       {% endfor %}
