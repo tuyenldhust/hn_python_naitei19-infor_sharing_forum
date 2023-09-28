@@ -103,11 +103,11 @@ h5,
   padding: 2.5em 0;
 }
 
-@media (min-width: 768px) {
-  .site-section {
-    padding: 7em 0;
-  }
-}
+/*@media (min-width: 768px) {*/
+/*  .site-section {*/
+/*    padding: 7em 0;*/
+/*  }*/
+/*}*/
 
 .site-section.site-section-sm {
   padding: 4em 0;
@@ -1147,7 +1147,7 @@ h5,
 
 .section-title {
   color: #000;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .section-title h2 {
@@ -1626,7 +1626,7 @@ h5,
 }
 
 .trend-entry {
-  margin-bottom: 30px;
+  padding: 10px 0 20px 10px;
 }
 
 .trend-entry .number {
