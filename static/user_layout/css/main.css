@@ -106,3 +106,36 @@
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
 }
+
+.wh-35px {
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.translate-middle {
+  transform: translate(-60%, -60%) !important;
+}
+
+.top-100 {
+  top: 100% !important;
+}
+
+.start-100 {
+  left: 100% !important;
+}
+
+.fix-font-main {
+    /*margin-left: 5px;*/
+    font-family: 'Times New Roman', Times, serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.line-height-23px {
+  margin-left: 10px;
+  line-height: 23px;
+}

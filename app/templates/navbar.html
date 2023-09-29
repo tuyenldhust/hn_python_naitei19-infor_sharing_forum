@@ -20,14 +20,11 @@
                                class="nav-link text-left {% if request.path == trending_posts_url %}font-weight-bold{% endif %}">
                                 {% trans "Popular Posts" %}</a>
                         </li>
+                        {% url 'famous_authors' as famous_authors_url %}
                         <li>
-                            <a href="categories.html" class="nav-link text-left">{% trans "Category 1" %}</a>
-                        </li>
-                        <li>
-                            <a href="categories.html" class="nav-link text-left">{% trans "Category 2" %}</a>
-                        </li>
-                        <li>
-                            <a href="categories.html" class="nav-link text-left">{% trans "Category 3" %}</a>
+                            <a href="{{ famous_authors_url }}"
+                               class="nav-link text-left {% if request.path == famous_authors_url %}font-weight-bold{% endif %}">
+                                {% trans "Famous Authors" %}</a>
                         </li>
                         <li><a href="categories.html" class="nav-link text-left">{% trans "Category 4" %}</a></li>
                         <li>

@@ -13,4 +13,5 @@ urlpatterns = [
     path('search', views.homepageSearch, name="search"),
     path('post/<int:primary_key>/bookmark', views.bookmark_post_view, name="bookmark_post"),
     path('trending_posts', views.trending_posts_view, name="trending_posts"),
+    path('famous_authors', views.famous_authors_view, name="famous_authors"),
 ]

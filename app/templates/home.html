@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="site-section py-0">
+<div class="site-section py-0 mt-5">
     <div class="owl-carousel hero-slide owl-style">
 
         <div class="site-section">
@@ -62,7 +62,7 @@
                 </div>
                 {% for post in top_posts.posts %}
                 <div class="trend-entry d-flex post_card">
-                    <div class="number align-self-start">0{{forloop.counter}}</div>
+                    <div class="number text-center align-self-center">{% if forloop.counter < 10 %}0{% endif %}{{forloop.counter}}</div>
                     <div class="trend-contents">
                         <h2><a href="{% url 'post_detail' post.id %}" class="d-block text-truncate w-250px">{{post.title}}</a></h2>
                         <div class="post-meta">
@@ -93,6 +93,56 @@
     </div>
 </div>
 <!-- END Trending Section-->
+
+<!-- Famous Author Section-->
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            {% for top_authors in all_top_authors %}
+            <div class="col-lg-4">
+                <div class="section-title">
+                    <h2>{{top_authors.title}}</h2>
+                </div>
+                {% for author in top_authors.authors %}
+                <div class="trend-entry d-flex post_card">
+                    <div class="number align-self-start position-relative">
+                        <img src="{{author.avatar_link}}" class="rounded-circle object-fit-cover border" alt="avatar" width="50px" height="50px">
+                        <p class="position-absolute top-100 start-100 translate-middle badge badge-primary rounded-circle wh-35px text-center align-self-center">{% if forloop.counter < 10 %}0{% endif %}{{forloop.counter}}</p>
+                    </div>
+                    <div class="ml-4 trend-contents">
+                        <div class="d-flex flex-row w-250px">
+                            <h2><a href="{% url 'profile' author.username %}" class="d-block text-truncate">{{author.full_name}}</a></h2>
+                        {% if author.achievement != 0%}
+                            <i class="fa fa-trophy line-height-23px" aria-hidden="true" style="color: {{author.achievement_color}};">
+                                <span class="fix-font-main">{{author.achievement_rank}}</span>
+                            </i>
+                        {% endif %}
+                        </div>
+                        <div class="post-meta">
+                            <span class="d-block text-truncate w-250px">
+                                <a class="text-primary" href="{% url 'profile' author.username %}">
+                                    @{{author.username}}
+                                </a>
+                                <span class="mx-1">&bullet;</span>
+                                <span class="fa-regular fa-thumbs-up"></span>
+                                {{author.liked_people}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if forloop.last %}
+                <p class="text-center">
+                    <a href="{% url 'famous_authors' %}" class="more">{% trans "Xem thêm" %} <span
+                            class="icon-keyboard_arrow_right"></span></a>
+                </p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- END Famous Author Section-->
 
 <div class="py-0">
     <div class="container">

@@ -33,6 +33,27 @@ def __get_trending_post_by_time(time, limit=5):
         'limit %s', [time, limit])
 
 
+def __get_famous_author_by_time(time, limit=5):
+    list_author = CustomUser.objects.raw(
+        'select c.username, c.id, c.achievement, '
+        '       concat(c.last_name, \' \', c.first_name) as full_name, '
+        '       c.avatar_link, '
+        '       count(distinct r.user_id)              as liked_people '
+        'from app_post p '
+        '         join app_postreaction r on p.id = r.post_id '
+        '         join app_customuser c on c.id = p.user_id '
+        'where r.feedback_value = 1 '
+        '  and p.status = 1 '
+        '  and r.time > (now() - interval %s day) '
+        'group by c.username '
+        'order by liked_people desc '
+        'limit %s', [time, limit])
+
+    for author in list_author:
+        author.achievement_rank, author.achievement_color = __get_color_rank(author.achievement)
+    return list_author
+
+
 def __get_trending(limit=5):
     return [
         {
@@ -51,9 +72,28 @@ def __get_trending(limit=5):
     ]
 
 
+def __get_famous_author(limit=5):
+    return [
+        {
+            'title': _('Tác giả nổi bật trong tuần'),
+            'authors': __get_famous_author_by_time(7, limit)
+        },
+        {
+            'title': _('Tác giả nổi bật trong tháng'),
+            'authors': __get_famous_author_by_time(30, limit)
+        },
+        {
+            'title': _('Tác giả nổi bật trong năm'),
+            'authors': __get_famous_author_by_time(365, limit)
+        }
+
+    ]
+
+
 def home(request):
     return render(request, 'home.html', {
         'all_top_posts': __get_trending(),
+        'all_top_authors': __get_famous_author()
     })
 
 
@@ -164,6 +204,12 @@ def get_message_404(status):
         return _('Post is rejected.')
 
 
+def __get_color_rank(achievement):
+    achievement_rank = [_('Unranked'), _('Bronze'), _('Silver'), _('Gold'), _('Platinum'), _('Diamond')][achievement]
+    achievement_color = ['#242132', 'brown', 'grey', '#f6ca15', 'lightblue', '#e5b9f4'][achievement]
+    return achievement_rank, achievement_color
+
+
 def post_detail_view(request, primary_key):
     post = get_object_or_404(Post, pk=primary_key)
     notice_type = (
@@ -181,9 +227,7 @@ def post_detail_view(request, primary_key):
     if feedback_value is None:
         feedback_value = 0
 
-    achievement_rank = [_('Unranked'), _('Bronze'), _('Silver'), _('Gold'), _('Platinum'), _('Diamond')][
-        post.user.achievement]
-    achievement_color = ['#242132', 'brown', 'grey', '#f6ca15', 'lightblue', '#e5b9f4'][post.user.achievement]
+    achievement_rank, achievement_color = __get_color_rank(post.user.achievement)
 
     view_count = post.view_count
     post.view_count = view_count + 1
@@ -359,4 +403,10 @@ def bookmark_post_view(request, primary_key):
 def trending_posts_view(request):
     return render(request, 'trending.html', {
         'all_top_posts': __get_trending(20)
+    })
+
+
+def famous_authors_view(request):
+    return render(request, 'famous_author.html', {
+        'all_top_authors': __get_famous_author(20)
     })

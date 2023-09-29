@@ -4,7 +4,7 @@
 {% block content %}
 
 <!-- Trending Section-->
-<div class="site-section">
+<div class="site-section mt-5">
     <div class="container">
         <div class="row">
             {% for top_posts in all_top_posts %}
@@ -14,7 +14,7 @@
                 </div>
                 {% for post in top_posts.posts %}
                 <div class="trend-entry d-flex post_card">
-                    <div class="number align-self-start">{% if forloop.counter < 10 %}0{% endif %}{{forloop.counter}}</div>
+                    <div class="number text-center align-self-center">{% if forloop.counter < 10 %}0{% endif %}{{forloop.counter}}</div>
                     <div class="trend-contents">
                         <h2 ><a href="{% url 'post_detail' post.id %}" class="text-primary">{{post.title}}</a></h2>
                         <div class="post-meta">
