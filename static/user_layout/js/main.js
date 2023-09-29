@@ -354,8 +354,10 @@ jQuery(document).ready(function ($) {
     } else if ($.QueryString["page_followed"]) {
         // show followed tab
         $('.nav-tabs li:nth-child(3) a').trigger('click');
+    } else if ($.QueryString["page_bookmark"]) {
+        // show draft tab
+        $('.nav-tabs li:nth-child(4) a').trigger('click');
     }
-
 });
 
 $(document).ready(function () {

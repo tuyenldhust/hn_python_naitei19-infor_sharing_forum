@@ -50,7 +50,7 @@ def __get_famous_author_by_time(time, limit=5):
         'limit %s', [time, limit])
 
     for author in list_author:
-        author.achievement_rank, author.achievement_color = __get_color_rank(author.achievement)
+        author.achievement_rank, author.achievement_color = __get_color_rank(int(author.achievement))
     return list_author
 
 
@@ -227,11 +227,13 @@ def post_detail_view(request, primary_key):
     if feedback_value is None:
         feedback_value = 0
 
-    achievement_rank, achievement_color = __get_color_rank(post.user.achievement)
+    achievement_rank, achievement_color = __get_color_rank(int(post.user.achievement))
 
+    if request.session.get('viewed_post_' + str(post.pk)) is None:
+        request.session['viewed_post_' + str(post.pk)] = True
+        post.view_count = post.view_count + 1
+        post.save()
     view_count = post.view_count
-    post.view_count = view_count + 1
-    post.save()
 
     is_bookmarked = False
     is_following = False

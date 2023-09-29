@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-27 17:22+0700\n"
+"POT-Creation-Date: 2023-09-29 10:37+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -85,7 +85,7 @@ msgid "New password confirmation"
 msgstr "Xác nhận lại mật khẩu mới"
 
 #: .\account\templates\account\change_password.html:70
-#: .\account\templates\account\edit_profile.html:86
+#: .\account\templates\account\edit_profile.html:87
 msgid "Update Profile"
 msgstr "Cập nhật"
 
@@ -93,33 +93,33 @@ msgstr "Cập nhật"
 msgid "Change photo"
 msgstr "Đổi avatar"
 
-#: .\account\templates\account\edit_profile.html:45
+#: .\account\templates\account\edit_profile.html:46
 msgid "Public avatar"
 msgstr "Avatar"
 
-#: .\account\templates\account\edit_profile.html:46
+#: .\account\templates\account\edit_profile.html:47
 msgid "Click the current avatar to change your photo."
 msgstr "Nhấn vào avatar hiện tại để đổi ảnh đại diện."
 
-#: .\account\templates\account\edit_profile.html:48
+#: .\account\templates\account\edit_profile.html:49
 msgid "JPG, GIF or PNG 400x400, &lt; 2 MB."
 msgstr "JPG, GIF hoặc PNG 400x400, &lt; 2 MB."
 
-#: .\account\templates\account\edit_profile.html:63
 #: .\account\templates\account\edit_profile.html:64
+#: .\account\templates\account\edit_profile.html:65
 msgid "First Name"
 msgstr "Họ"
 
-#: .\account\templates\account\edit_profile.html:68
 #: .\account\templates\account\edit_profile.html:69
+#: .\account\templates\account\edit_profile.html:70
 msgid "Last Name"
 msgstr "Tên"
 
-#: .\account\templates\account\edit_profile.html:74
+#: .\account\templates\account\edit_profile.html:75
 msgid "Email"
 msgstr "Email"
 
-#: .\account\templates\account\edit_profile.html:79
+#: .\account\templates\account\edit_profile.html:80
 msgid "Phone"
 msgstr "Số điện thoại"
 
@@ -173,7 +173,7 @@ msgid "Bài đăng"
 msgstr "Bài đăng"
 
 #: .\account\templates\account\profile.html:21
-#: .\account\templates\account\profile_card.html:31
+#: .\account\templates\account\profile_card.html:45
 #: .\account\templates\account\profile_followed.html:40
 #: .\account\templates\account\profile_following.html:40
 msgid "Đang theo dõi"
@@ -185,12 +185,81 @@ msgstr "Đang theo dõi"
 msgid "Người theo dõi"
 msgstr "Người theo dõi"
 
+#: .\account\templates\account\profile.html:27
+msgid "Bài viết đã lưu"
+msgstr "Bài viết đã lưu"
+
+#: .\account\templates\account\profile_bookmark.html:5
+msgid "Chưa lưu bài viết nào"
+msgstr "Chưa lưu bài viết nào"
+
+#: .\account\templates\account\profile_bookmark.html:11
 #: .\account\templates\account\profile_card.html:4
 #: .\account\templates\account\profile_followed.html:11
 #: .\account\templates\account\profile_following.html:11
 #: .\account\templates\account\profile_post.html:11
 msgid "Avatar"
 msgstr "Avatar"
+
+#: .\account\templates\account\profile_bookmark.html:13
+msgid "Posted in"
+msgstr "Đăng vào lúc"
+
+#: .\account\templates\account\profile_bookmark.html:23
+#: .\account\templates\account\profile_post.html:27
+msgid "Bị xóa"
+msgstr "Bị xóa"
+
+#: .\account\templates\account\profile_bookmark.html:27
+#: .\account\templates\account\profile_post.html:31
+msgid "Trả phí"
+msgstr "Trả phí"
+
+#: .\account\templates\account\profile_bookmark.html:35
+#: .\account\templates\account\profile_post.html:39
+msgid "Hashtag"
+msgstr "Hashtag"
+
+#: .\account\templates\account\profile_bookmark.html:40
+#: .\account\templates\account\profile_post.html:44
+msgid "Lượt xem"
+msgstr "Lượt xem"
+
+#: .\account\templates\account\profile_bookmark.html:44
+#: .\account\templates\account\profile_post.html:48
+msgid "Số lượng Bookmark"
+msgstr "Số lượng Bookmark"
+
+#: .\account\templates\account\profile_bookmark.html:48
+#: .\account\templates\account\profile_post.html:52
+msgid "Số lượng bình luận"
+msgstr "Số lượng bình luận"
+
+#: .\account\templates\account\profile_bookmark.html:52
+#: .\account\templates\account\profile_post.html:56
+msgid "Tổng đánh giá"
+msgstr "Tổng đánh giá"
+
+#: .\account\templates\account\profile_bookmark.html:73
+#: .\account\templates\account\profile_followed.html:56
+#: .\account\templates\account\profile_following.html:56
+#: .\account\templates\account\profile_post.html:77
+msgid "Trang đầu"
+msgstr "Trang đầu"
+
+#: .\account\templates\account\profile_bookmark.html:75
+#: .\account\templates\account\profile_followed.html:59
+#: .\account\templates\account\profile_following.html:59
+#: .\account\templates\account\profile_post.html:79
+msgid "Previous"
+msgstr "Previous"
+
+#: .\account\templates\account\profile_bookmark.html:91
+#: .\account\templates\account\profile_followed.html:82
+#: .\account\templates\account\profile_following.html:82
+#: .\account\templates\account\profile_post.html:95
+msgid "Trang cuối"
+msgstr "Trang cuối"
 
 #: .\account\templates\account\profile_card.html:9
 #: .\account\templates\account\profile_followed.html:16
@@ -215,16 +284,38 @@ msgid "Not Activate"
 msgstr "Not Activate"
 
 #: .\account\templates\account\profile_card.html:19
-#: .\account\templates\account\profile_followed.html:24
-#: .\account\templates\account\profile_following.html:24
-msgid "Thành tích"
-msgstr "Thành tích"
+msgid "Rank"
+msgstr "Xếp hạng"
+
+#: .\account\templates\account\profile_card.html:21
+msgid "Chưa có xếp hạng"
+msgstr "Chưa có xếp hạng"
+
+#: .\account\templates\account\profile_card.html:23
+msgid "Đồng"
+msgstr "Đồng"
+
+#: .\account\templates\account\profile_card.html:25
+msgid "Bạc"
+msgstr "Bạc"
 
 #: .\account\templates\account\profile_card.html:27
+msgid "Vàng"
+msgstr "Vàng"
+
+#: .\account\templates\account\profile_card.html:29
+msgid "Bạch kim"
+msgstr "Bạch kim"
+
+#: .\account\templates\account\profile_card.html:31
+msgid "Kim cương"
+msgstr "Kim cương"
+
+#: .\account\templates\account\profile_card.html:41
 msgid "Edit Profile"
 msgstr "Edit Profile"
 
-#: .\account\templates\account\profile_card.html:35
+#: .\account\templates\account\profile_card.html:49
 #: .\account\templates\account\profile_followed.html:42
 #: .\account\templates\account\profile_following.html:42
 msgid "Theo dõi"
@@ -234,6 +325,11 @@ msgstr "Theo dõi"
 msgid "Chưa có ai theo dõi"
 msgstr "Chưa có ai theo dõi"
 
+#: .\account\templates\account\profile_followed.html:24
+#: .\account\templates\account\profile_following.html:24
+msgid "Thành tích"
+msgstr "Thành tích"
+
 #: .\account\templates\account\profile_followed.html:32
 msgid "Bài viết"
 msgstr "Bài viết"
@@ -241,25 +337,7 @@ msgstr "Bài viết"
 #: .\account\templates\account\profile_followed.html:38
 #: .\account\templates\account\profile_following.html:38
 msgid "It's me"
-msgstr "It's me"
-
-#: .\account\templates\account\profile_followed.html:56
-#: .\account\templates\account\profile_following.html:56
-#: .\account\templates\account\profile_post.html:77
-msgid "Trang đầu"
-msgstr "Trang đầu"
-
-#: .\account\templates\account\profile_followed.html:59
-#: .\account\templates\account\profile_following.html:59
-#: .\account\templates\account\profile_post.html:79
-msgid "Previous"
-msgstr "Previous"
-
-#: .\account\templates\account\profile_followed.html:82
-#: .\account\templates\account\profile_following.html:82
-#: .\account\templates\account\profile_post.html:95
-msgid "Trang cuối"
-msgstr "Trang cuối"
+msgstr "Tôi"
 
 #: .\account\templates\account\profile_following.html:6
 msgid "Chưa theo dõi ai"
@@ -276,34 +354,6 @@ msgstr "Chưa có bài viết nào"
 #: .\account\templates\account\profile_post.html:23
 msgid "Nháp"
 msgstr "Nháp"
-
-#: .\account\templates\account\profile_post.html:27
-msgid "Bị xóa"
-msgstr "Bị xóa"
-
-#: .\account\templates\account\profile_post.html:31
-msgid "Trả phí"
-msgstr "Trả phí"
-
-#: .\account\templates\account\profile_post.html:39
-msgid "Hashtag"
-msgstr "Hashtag"
-
-#: .\account\templates\account\profile_post.html:44
-msgid "Lượt xem"
-msgstr "Lượt xem"
-
-#: .\account\templates\account\profile_post.html:48
-msgid "Số lượng Bookmark"
-msgstr "Số lượng Bookmark"
-
-#: .\account\templates\account\profile_post.html:52
-msgid "Số lượng bình luận"
-msgstr "Số lượng bình luận"
-
-#: .\account\templates\account\profile_post.html:56
-msgid "Tổng đánh giá"
-msgstr "Tổng đánh giá"
 
 #: .\account\templates\account\signin.html:5
 msgid "Sign In"
@@ -361,47 +411,51 @@ msgstr "Xác nhận lại mật khẩu"
 msgid "Đã có tài khoản?"
 msgstr "Đã có tài khoản?"
 
-#: .\account\views.py:66
+#: .\account\views.py:72
 msgid "Đăng ký thành công!"
 msgstr "Đăng ký thành công!"
 
-#: .\account\views.py:78
+#: .\account\views.py:84
 msgid "Bạn đã đăng nhập rồi!"
 msgstr "Bạn đã đăng nhập rồi!"
 
-#: .\account\views.py:87
+#: .\account\views.py:93
 msgid "Đăng nhập thành công!"
 msgstr "Đăng nhập thành công!"
 
-#: .\account\views.py:99
+#: .\account\views.py:105
 msgid "Đăng xuất thành công!"
 msgstr "Đăng xuất thành công!"
 
-#: .\account\views.py:101
+#: .\account\views.py:107
 msgid "Bạn chưa đăng nhập!"
 msgstr "Bạn chưa đăng nhập!"
 
-#: .\account\views.py:267
+#: .\account\views.py:305
 msgid "Bạn không có quyền chỉnh sửa thông tin người dùng này!"
 msgstr "Bạn không có quyền chỉnh sửa thông tin người dùng này!"
 
-#: .\account\views.py:272 .\account\views.py:296
+#: .\account\views.py:310 .\account\views.py:350
 msgid "Không tìm thấy tài khoản này!"
 msgstr "Không tìm thấy tài khoản này!"
 
-#: .\account\views.py:279
+#: .\account\views.py:330
+msgid "Đã có lỗi xảy ra trong quá trình tải ảnh lên! Vui lòng thử lại sau."
+msgstr "Đã có lỗi xảy ra trong quá trình tải ảnh lên! Vui lòng thử lại sau."
+
+#: .\account\views.py:333
 msgid "Cập nhật thông tin thành công!"
 msgstr "Cập nhật thông tin thành công!"
 
-#: .\account\views.py:291
+#: .\account\views.py:345
 msgid "Bạn không có quyền đổi mật khẩu người dùng này!"
 msgstr "Bạn không có quyền đổi mật khẩu người dùng này!"
 
-#: .\account\views.py:309
+#: .\account\views.py:363
 msgid "Đổi mật khẩu thành công!"
 msgstr "Đổi mật khẩu thành công!"
 
-#: .\account\views.py:312
+#: .\account\views.py:366
 msgid "Mật khẩu cũ không đúng!"
 msgstr "Mật khẩu cũ không đúng!"
 
