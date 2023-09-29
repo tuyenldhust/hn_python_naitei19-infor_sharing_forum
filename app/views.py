@@ -10,11 +10,13 @@ from django.views.generic import CreateView
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 
-from .forms import PostForm
+from .forms import PostForm, FilterForm
 from .models import Post, HashTag, CustomUser, Follow, PostReaction, Bookmark, Comment, Category
 
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from datetime import datetime
 
 
 def __get_trending_post_by_time(time, limit=5):
@@ -144,18 +146,51 @@ def get_paginated_object_list(paginator, page):
 
 def homepageSearch(request):
     # object_list = Post.objects.all()
-    search_keyword = request.GET.get('search_keyword', False)
-    search_type = request.GET.get('choices_single_default', False)
+    params = request.GET
+    search_keyword = params.get('search_keyword', False)
+    search_type = params.get('choices_single_default', False)
+
+    # Get value from search filter (if exist)
+    search_category_list = params.getlist('list_category', False)
+    from_date = params.get('from_date', False)
+    to_date = params.get('to_date', False)
+    point = params.get('point', False)
+    
+    # Process "False" str from pagination link
+    if type(search_category_list) == list:
+        if "False" in search_category_list:
+            search_category_list = False
+    if from_date == "False":
+        from_date = False
+    if to_date == "False":
+        to_date = False
+    if point == "False":
+        point = False
 
     if not search_keyword or not search_type:
         return render(request, 'search.html', {})
 
     if search_type == "Post":
-        object_list = Post.objects.filter(
-            Q(title__icontains=search_keyword) |
-            Q(content__icontains=search_keyword),
-            status=1
-        )
+        query = Q(title__icontains=search_keyword) | Q(content__icontains=search_keyword)
+
+        # Filter by date
+        if from_date:
+            from_date_query = datetime.strptime(from_date, '%m/%d/%Y').strftime('%Y-%m-%d')
+            query &= Q(created_at__gte=from_date_query)
+        if to_date:
+            to_date_query = datetime.strptime(to_date, '%m/%d/%Y').strftime('%Y-%m-%d')
+            query &= Q(created_at__lte=to_date_query)
+
+        object_list = Post.objects.filter(query, status=1)
+
+        # Filter by category
+        if search_category_list:
+            # If search_category_list is from pagination link
+            # If [ character is in search_category_list[0], it means that search_category_list is from pagination link
+            if "[" in search_category_list[0]:
+                search_category_list = eval(search_category_list[0])
+            for category in search_category_list:
+                object_list = object_list.filter(categories__pk=category)
 
         for post in object_list:
             reactions = PostReaction.objects.filter(post=post)
@@ -165,6 +200,20 @@ def homepageSearch(request):
             # count comment
             post.comment_count = Comment.objects.filter(post=post).count()
 
+        # Filter by point (feedback_value)
+        if point:
+            if point == '----':
+                pass
+            elif point == '<100':
+                object_list = [post for post in object_list if post.feedback_value < 100]
+            elif point == '100-499':
+                object_list = [post for post in object_list if 100 <= post.feedback_value <= 499]
+            elif point == '500-999':
+                object_list = [post for post in object_list if 500 <= post.feedback_value <= 999]
+            elif point == '>1000':
+                object_list = [post for post in object_list if post.feedback_value > 1000]
+
+        # Short by feedback_value
         object_list = sorted(object_list, key=lambda x: x.feedback_value, reverse=True)
 
     elif search_type == "Author":
@@ -180,12 +229,28 @@ def homepageSearch(request):
     paginator = Paginator(object_list, 9)
     page = request.GET.get('page')
 
+    # Render filter form if exist
+    if search_category_list or from_date or to_date or point:
+        filter_form = FilterForm(initial={
+            'list_category': search_category_list,
+            'from_date': from_date,
+            'to_date': to_date,
+            'point': point,
+        })
+    else:
+        filter_form = FilterForm()
+
     object_list_paginated = get_paginated_object_list(paginator, page)
 
     context = {
         'object_list': object_list_paginated,
         'choices_single_default': search_type,
         'search_keyword': search_keyword,
+        'filter_form': filter_form,
+        'list_category': search_category_list,
+        'from_date': from_date,
+        'to_date': to_date,
+        'point': point,
     }
 
     return render(request, 'search.html', context)

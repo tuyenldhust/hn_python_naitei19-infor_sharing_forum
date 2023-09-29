@@ -7,10 +7,10 @@
         <ul class="pagination">
           {% if object_list.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="?page=1&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}">{% trans "Trang đầu" %}</a>
+              <a class="page-link" href="?page=1&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}&list_category={{list_category}}&to_date={{to_date}}&from_date={{from_date}}&point={{point}}">{% trans "Trang đầu" %}</a>
             </li>
             <li class="page-item">
-              <a class="page-link" href="?page={{object_list.previous_page_number}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}" aria-label="{% trans "Previous" %}">
+              <a class="page-link" href="?page={{object_list.previous_page_number}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}&list_category={{list_category}}&to_date={{to_date}}&from_date={{from_date}}&point={{point}}" aria-label="{% trans "Previous" %}">
                 <span aria-hidden="true">&laquo;</span>
               </a>
             </li>
@@ -22,18 +22,18 @@
               </li>
             {% elif num > object_list.number|add:'-3' and num < object_list.number|add:'3' %}
               <li class="page-item">
-                <a class="page-link" href="?page={{num}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}">{{ num }}</a>
+                <a class="page-link" href="?page={{num}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}&list_category={{list_category}}&to_date={{to_date}}&from_date={{from_date}}&point={{point}}">{{ num }}</a>
               </li>
             {% endif %}
           {% endfor %}
           {% if object_list.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?page={{object_list.next_page_number}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}">
+              <a class="page-link" href="?page={{object_list.next_page_number}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}&list_category={{list_category}}&to_date={{to_date}}&from_date={{from_date}}&point={{point}}">
                 <span aria-hidden="true">&raquo;</span>
               </a>
             </li>
             <li class="page-item">
-              <a class="page-link" href="?page={{object_list.paginator.num_pages}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}">{% trans "Trang cuối" %}</a>
+              <a class="page-link" href="?page={{object_list.paginator.num_pages}}&search_keyword={{search_keyword}}&choices_single_default={{choices_single_default}}&list_category={{list_category}}&to_date={{to_date}}&from_date={{from_date}}&point={{point}}">{% trans "Trang cuối" %}</a>
             </li>
           {% endif %}
         </ul>

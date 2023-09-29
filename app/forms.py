@@ -128,3 +128,22 @@ class CustomUserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+    
+class FilterForm(forms.Form):
+    list_category = forms.MultipleChoiceField(
+        choices=[(category.id, category.name) for category in Category.objects.all()],
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+    from_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False)
+    to_date = forms.DateField(widget=forms.DateInput(attrs={'class': 'datepicker'}), required=False)
+    point = forms.ChoiceField(
+        choices=[
+            ('----', '----'),
+            ('<100', '< 100'),
+            ('100-499', '100 ~ 499'),
+            ('500-999', '500 ~ 999'),
+            ('>1000', '> 1000')
+        ],
+        required=False,
+    )

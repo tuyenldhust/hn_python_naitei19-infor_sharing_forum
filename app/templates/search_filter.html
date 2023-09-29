@@ -1,0 +1,8 @@
+{% load static i18n %}
+
+<form method="get">
+    {{ filter_form.as_p }}
+    <input type="hidden" name="search_keyword" value="{{search_keyword}}">
+    <input type="hidden" name="choices_single_default" value="{{choices_single_default}}">
+    <button type="submit">{% trans "Lọc" %}</button>
+</form>
