@@ -14,4 +14,6 @@ urlpatterns = [
     path('post/<int:primary_key>/bookmark', views.bookmark_post_view, name="bookmark_post"),
     path('trending_posts', views.trending_posts_view, name="trending_posts"),
     path('famous_authors', views.famous_authors_view, name="famous_authors"),
+    path('post/<int:primary_key>/pay', views.pay_post_view, name="pay"),
+    path('follow/<int:primary_key>', views.follow_user_view, name="follow"),
 ]

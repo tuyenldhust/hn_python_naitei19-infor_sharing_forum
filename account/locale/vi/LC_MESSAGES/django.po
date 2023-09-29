@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-29 10:37+0700\n"
+"POT-Creation-Date: 2023-10-02 03:30+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -173,7 +173,6 @@ msgid "Bài đăng"
 msgstr "Bài đăng"
 
 #: .\account\templates\account\profile.html:21
-#: .\account\templates\account\profile_card.html:45
 #: .\account\templates\account\profile_followed.html:40
 #: .\account\templates\account\profile_following.html:40
 msgid "Đang theo dõi"
@@ -283,39 +282,45 @@ msgstr "Moderator"
 msgid "Not Activate"
 msgstr "Not Activate"
 
-#: .\account\templates\account\profile_card.html:19
+#: .\account\templates\account\profile_card.html:26
 msgid "Rank"
 msgstr "Xếp hạng"
 
-#: .\account\templates\account\profile_card.html:21
+#: .\account\templates\account\profile_card.html:28
 msgid "Chưa có xếp hạng"
 msgstr "Chưa có xếp hạng"
 
-#: .\account\templates\account\profile_card.html:23
+#: .\account\templates\account\profile_card.html:30
 msgid "Đồng"
 msgstr "Đồng"
 
-#: .\account\templates\account\profile_card.html:25
+#: .\account\templates\account\profile_card.html:32
 msgid "Bạc"
 msgstr "Bạc"
 
-#: .\account\templates\account\profile_card.html:27
+#: .\account\templates\account\profile_card.html:34
 msgid "Vàng"
 msgstr "Vàng"
 
-#: .\account\templates\account\profile_card.html:29
+#: .\account\templates\account\profile_card.html:36
 msgid "Bạch kim"
 msgstr "Bạch kim"
 
-#: .\account\templates\account\profile_card.html:31
+#: .\account\templates\account\profile_card.html:38
 msgid "Kim cương"
 msgstr "Kim cương"
 
-#: .\account\templates\account\profile_card.html:41
+#: .\account\templates\account\profile_card.html:48
 msgid "Edit Profile"
 msgstr "Edit Profile"
 
-#: .\account\templates\account\profile_card.html:49
+#: .\account\templates\account\profile_card.html:52
+#, fuzzy
+#| msgid "Người theo dõi"
+msgid "Bỏ theo dõi"
+msgstr "Người theo dõi"
+
+#: .\account\templates\account\profile_card.html:56
 #: .\account\templates\account\profile_followed.html:42
 #: .\account\templates\account\profile_following.html:42
 msgid "Theo dõi"

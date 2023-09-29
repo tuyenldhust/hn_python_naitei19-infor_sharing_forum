@@ -52,3 +52,27 @@ const bookmark = async (id) => {
         });
     }
 }
+
+const pay = async (id) => {
+    let res = await fetch(`/post/${id}/pay`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    let data = await res.json()
+    if (res.status === 200) {
+        successNotification({
+            title: 'Thành công',
+            message: 'Bạn đã thanh toán thành công',
+        });
+        setTimeout(() => {
+            window.location.reload()
+        }, 1500)
+    } else {
+        errorNotification({
+            title: 'Lỗi',
+            message: data.message,
+        });
+    }
+}

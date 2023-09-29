@@ -176,9 +176,6 @@ class Category(models.Model):
         verbose_name=_('Tên chuyên mục'),
         max_length=255
     )
-    is_deleted = models.BooleanField(
-        verbose_name=_('Trạng thái xóa'),
-        default=False)
 
     def __str__(self):
         """
@@ -189,14 +186,6 @@ class Category(models.Model):
     class Meta:
         verbose_name = 'Chuyên mục'
         verbose_name_plural = 'Chuyên mục'
-
-    def delete(self, using=None, keep_parents=False):
-        """
-        Override delete method
-        """
-        self.is_deleted = True
-        self.save()
-        return 1, {'is_deleted': 1}
 
 
 class HashTag(models.Model):
