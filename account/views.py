@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 import re
 from .tokens import account_activation_token
 
-from app.models import Follow, Post, Bookmark, Comment, PostReaction, HashTag
+from app.models import Follow, Post, Bookmark, Comment, PostReaction, Bookmark
 from app.views import get_paginated_object_list
 
 from imgur_python import Imgur
@@ -177,12 +177,12 @@ def show_profile(request, username):
     else:
         follow = _get_follower_followed(request, request_user)
         posts = _get_post(request, request_user)
-
-        # request_user.current_user_following = follow['current_user_following'] if request.user.is_authenticated else ''
+        bookmark_posts = _get_bookmark_posts(request, request_user)
 
         context = {
             'follow': follow,
             'posts': posts,
+            'bookmark_posts': bookmark_posts,
             'request_user': request_user
         }
 
@@ -266,6 +266,38 @@ def _get_post(request, request_user, num_each_page=10):
             posts[index].reaction_point += reaction.feedback_value
 
     return posts
+
+def _get_bookmark_posts(request, request_user, num_each_page=10):
+    # Get page number
+    page_number = request.GET.get('page_bookmark')
+
+    # Get bookmark posts of request user
+    bookmark_posts = Bookmark.objects.filter(user=request_user)
+
+    # Order by created_at in model Post
+    bookmark_posts = Post.objects.filter(id__in=bookmark_posts.values('post_id')).order_by('-created_at')
+
+    bookmark_posts = Paginator(bookmark_posts, num_each_page)
+
+    bookmark_posts = get_paginated_object_list(bookmark_posts, page_number)
+
+    for index, bookmark_post in enumerate(bookmark_posts):
+        # View count
+        bookmark_posts[index].view_count = int(bookmark_post.view_count)
+
+        # Bookmark count
+        bookmark_posts[index].bookmark_count = Bookmark.objects.filter(post=bookmark_post).count()
+
+        # Comment count
+        bookmark_posts[index].comment_count = Comment.objects.filter(post=bookmark_post).count()
+
+        # Calculate reaction point with feedback_value
+        bookmark_posts[index].reaction_point = 0
+        reactions = PostReaction.objects.filter(post=bookmark_post)
+        for reaction in reactions:
+            bookmark_posts[index].reaction_point += reaction.feedback_value
+
+    return bookmark_posts
 
 @login_required(login_url='/account/signin/')
 def edit_profile(request, username):

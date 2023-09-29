@@ -23,6 +23,9 @@
       <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#followed">{% trans "Người theo dõi" %}</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#bookmark">{% trans "Bài viết đã lưu" %}</a>
+      </li>
     </ul>
   </div>
 
@@ -32,6 +35,8 @@
     {% include "account/profile_following.html" %}
 
     {% include 'account/profile_followed.html' %}
+
+    {% include 'account/profile_bookmark.html' %}
   </div>
 </div>
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-28 15:34+0700\n"
+"POT-Creation-Date: 2023-09-29 10:37+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -706,5 +706,18 @@ msgstr "Đang chờ duyệt"
 msgid "Nội dung bình luận không được để trống!"
 msgstr "Nội dung bình luận không được để trống!"
 
-#~ msgid "Category 3"
-#~ msgstr "Category 3"
+#: .\app\views.py:284
+msgid "Nội dung bình luận không được để trống!"
+msgstr "Nội dung bình luận không được để trống!"
+
+#: .\app\views_api.py:15
+msgid "Cannot upload avatar for other users"
+msgstr "Không thể tải lên ảnh đại diện cho người dùng khác"
+
+#: .\app\views_api.py:22
+msgid "File type is not supported"
+msgstr "Loại tệp không được hỗ trợ"
+
+#: .\app\views_api.py:29
+msgid "File size is too large"
+msgstr "Kích thước tệp quá lớn"
