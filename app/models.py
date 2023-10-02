@@ -160,6 +160,9 @@ class Post(models.Model):
         default=False
     )
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         """
         String for representing the Model object.

@@ -1,0 +1,48 @@
+{% load i18n %}
+<div class="row mt-1 ml-2 mb-1">
+  <div class="media">
+    <img class="d-flex align-self-center mr-3 rounded-circle mb-3" src="{{ post.user.avatar_link }}" width="50" height="50" alt="Avatar">
+    <div class="media-body">
+      <p class="my-0"><a href="{% url 'profile' post.user.username %}">{{post.user.username}}</a> <small><i>{% trans "Posted in" %} {{ post.created_at }}</i></small></p>
+      <div class="d-flex">
+        <div class="d-inline">
+          <h5 class="text-wrap mb-0">
+            <div data-toggle="tooltip" data-placement="bottom" title="{{post.title}}">
+            <a href="{% url 'post_detail' post.id %}" class="d-block text-truncate w-250px">{{ post.title }}</a>
+            </div>
+          </h5>
+        </div>
+      </div>
+
+      <div class="d-flex mb-0 mt-1">
+        <div data-toggle="tooltip" data-placement="bottom" title="{% trans "Lượt xem" %}">
+          <i class="fa-solid fa-eye text-muted"></i>
+          <span class="text-muted">{{ post.view_count }}</span>
+        </div>
+        <div class="ml-2" data-toggle="tooltip" data-placement="bottom" title="{% trans "Số lượng Bookmark" %}">
+          <i class="fa-regular fa-bookmark"></i>
+          <span class="text-muted">{{ post.bookmark_count }}</span>
+        </div>
+        <div class="ml-2" data-toggle="tooltip" data-placement="bottom" title="{% trans "Số lượng bình luận" %}">
+          <i class="fa-regular fa-comment"></i>
+          <span class="text-muted">{{ post.comment_count }}</span>
+        </div>
+        <div class="points ml-2" data-toggle="tooltip" data-placement="bottom" title="{% trans "Tổng đánh giá" %}">
+          <div class="carets">
+            <i class="fa-solid fa-caret-up fa-sm mb-1"></i>
+            <i class="fa-solid fa-caret-down fa-sm"></i>
+          </div>
+          <span class="text-muted">{{ post.feedback_value }}</span>
+        </div>
+        <div class="d-inline">
+          {% if post.mode == 1 %}
+            <span class="badge badge-dark ml-2 bottom-2px">
+              {% trans "Trả phí" %}
+            </span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="border"> </div>

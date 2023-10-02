@@ -94,9 +94,11 @@ def __get_famous_author(limit=5):
 
 
 def home(request):
+    new_posts = Post.objects.filter(status=1).order_by('-created_at')[:10]
     return render(request, 'home.html', {
         'all_top_posts': __get_trending(),
-        'all_top_authors': __get_famous_author()
+        'all_top_authors': __get_famous_author(),
+        'new_posts': new_posts
     })
 
 
@@ -609,3 +611,10 @@ def read_all_notify_view(request):
             json.dumps({
                 'message': _('Có lỗi xảy ra')
             }), content_type='application/json')
+
+
+def all_posts_view(request):
+    all_posts = Post.objects.filter(status=1)
+    return render(request, 'all_post.html', {
+        'object_list': Paginator(all_posts, 10).get_page(request.GET.get('page')),
+    })

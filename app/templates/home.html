@@ -144,6 +144,33 @@
 </div>
 <!-- END Famous Author Section-->
 
+<!-- New Post Section-->
+<div class="site-section">
+    <div class="container">
+        <div class="section-title">
+                <h2>{% trans "Bài viết mới nhất" %}</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                {% for post in new_posts|slice:":5" %}
+                {% include "recent_post.html" %}
+                {% endfor %}
+            </div>
+            <div class="col-lg-5 ml-5">
+                {% for post in new_posts|slice:"5:" %}
+                {% include "recent_post.html" %}
+                {% endfor %}
+                <p class="text-center mt-3 float-right">
+                    <a href="{% url 'all_posts' %}" class="more">{% trans "Xem tất cả" %}
+                        <span class="icon-keyboard_arrow_right"></span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END New Post Section-->
+
 <div class="py-0">
     <div class="container">
         <div class="half-post-entry d-block d-lg-flex bg-light">
