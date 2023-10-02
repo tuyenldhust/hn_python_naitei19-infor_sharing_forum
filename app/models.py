@@ -45,7 +45,7 @@ class CustomUser(AbstractUser):
         """
         return self.username
 
-    def delete(self, using, keep_parents):
+    def delete(self, using=None, keep_parents=False):
         """
         Override delete method
         """
@@ -190,7 +190,7 @@ class Category(models.Model):
         verbose_name = 'Chuyên mục'
         verbose_name_plural = 'Chuyên mục'
 
-    def delete(self, using, keep_parents):
+    def delete(self, using=None, keep_parents=False):
         """
         Override delete method
         """
@@ -312,7 +312,8 @@ class Comment(models.Model):
         verbose_name=_('Bình luận cha'),
         to='self',
         on_delete=models.CASCADE,
-        default=None)
+        default=None,
+        null=True)
     content = models.CharField(
         verbose_name=_('Nội dung'),
         max_length=10000)
