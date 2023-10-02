@@ -12,8 +12,7 @@ from app.forms import CustomCategoryForm, CustomUserForm
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     form = CustomCategoryForm
-    list_display = ('id', 'name', 'is_deleted')
-    list_editable = ('name', 'is_deleted')
+    list_display = ('id', 'name')
     search_fields = ['name']
     list_per_page = 10
 

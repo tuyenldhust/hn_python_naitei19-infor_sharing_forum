@@ -12,18 +12,20 @@
         </div>
         <div class="col-3 align-self-center">
             <div class="row">
+                {% if author.achievement != 0 %}
                 <i class="fa fa-trophy ml-2 cls" aria-hidden="true" style="color: {{achievement_color}};">
                     <span class="fix-font">{{achievement_rank}}</span></i>
+                {% endif %}
             </div>
             <div class="row">
                 <a href="{% url 'profile' post.user.username %}" class="mr-1">{{author.last_name}} {{author.first_name}}</a>
                 <span>@{{author.username}}</span>
             </div>
             <div class="row">
-                <i class="fa fa-user-plus" aria-hidden="true"><span class="fix-font">{{followers_count}}</span></i>
+                <i class="fa fa-user-plus followers_count" aria-hidden="true"><span class="fix-font">{{followers_count}}</span></i>
                 {% if not is_owner %}
-                <button class="btn btn-primary btn-sm ml-2 follow-btn" type="button" id="follow-btn"
-                        data-user-id="{{author.id}}">{% if is_following %}{% trans "Unfollow" %}
+                <button class="btn btn-primary btn-sm ml-2 follow-btn" type="button" aria-hidden="true"
+                        onclick="follow({{author.id}})">{% if is_following %}{% trans "Unfollow" %}
                     {% else %}{% trans "Follow" %}{% endif %}
                 </button>
                 {% endif %}
@@ -91,7 +93,7 @@
         <div class="col-md-10">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h2 class="card-title">{{ post.title }}{% if notice%}<span class="badge text-white bg-primary text-small position-absolute top-30px">{{notice}}</span>{% endif %}</h2>
+                    <h2 class="card-title-detail">{{ post.title }}{% if notice%}<span class="badge text-white bg-primary text-small position-absolute top-30px">{{notice}}</span>{% endif %}</h2>
                     <i class="fa fa-eye" aria-hidden="true"><span class="fix-font"> {% trans 'Lượt xem' %}: {{view_count}}</span></i>
                     <br>
                     <i class="fa fa-chevron-down" aria-hidden="true"><span class="fix-font"> {% trans "React Value" %} <span
@@ -106,7 +108,54 @@
                     {% if not forloop.last %}, {% endif %}
                     {% endfor %}
                     <hr>
-                    <p class="card-text">{{ post.content|safe }}</p>
+                    <div class="position-relative">{{ post.content|safe }}</div>
+                    {% if post.mode == 1 and not is_owner and not request.user.is_staff and not is_paid %}
+                    <div class="expandLink">
+                        <a class="expand" type="button" data-bs-toggle="modal"
+                            data-bs-target="#expand-button">Xem tiếp...</a>
+                    </div>
+                    <div class="modal fade" id="expand-button" tabindex="-1" aria-labelledby="expand-button"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                {% if request.user.is_authenticated %}
+                                <div class="modal-header">
+                                    <h5 class="modal-title">{% trans "Payment" %}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {% trans "You have " %} {{request.user.point}}
+                                    {% trans "points. Please pay 10 points to view this post" %}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        {% trans "Cancel" %}
+                                    </button>
+                                    <button onclick="pay({{post.id}})" type="button" class="btn btn-primary">
+                                        {% trans "Pay" %}
+                                    </button>
+                                </div>
+                                {% else %}
+                                <div class="modal-header">
+                                    <h5 class="modal-title">{% trans "Login" %}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    {% trans "Please login to view this post" %}
+                                </div>
+                                <div class="modal-footer">
+                                    <a type="button" class="btn btn-primary" href="{% url 'signin' %}" >
+                                        {% trans "Login" %}
+                                    </a>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    </div>
                 </div>
                 <div class="card-footer text-muted text-small">
                     {% for tag in hashtags %}

@@ -15,19 +15,26 @@
           <span class="badge badge-secondary">{% trans "Not Activate" %}</span>
         {% endif %}
       </p>
-      <p class="h5"> @{{ request_user.username }} </p>
+      <p class="h5">
+        @{{ request_user.username }}
+        {% if request_user == user %}
+        <i class="fa-solid fa-coins profile-coin">
+            {{request_user.point}}
+        </i>
+        {% endif %}
+      </p>
       <i class="fa-regular fa-star"></i> <span class="text-muted" data-toggle="tooltip" data-placement="bottom" title="{% trans "Rank" %}">
-        {% if request_user.achievement == "0" %}
+        {% if request_user.achievement == 0 %}
           {% trans "Chưa có xếp hạng" %}
-        {% elif request_user.achievement == "1" %}
+        {% elif request_user.achievement == 1 %}
           {% trans "Đồng" %} 
-        {% elif request_user.achievement == "2" %}
+        {% elif request_user.achievement == 2 %}
           {% trans "Bạc" %}
-        {% elif request_user.achievement == "3" %}
+        {% elif request_user.achievement == 3 %}
           {% trans "Vàng" %}
-        {% elif request_user.achievement == "4" %}
+        {% elif request_user.achievement == 4 %}
           {% trans "Bạch kim" %}
-        {% elif request_user.achievement == "5" %}
+        {% elif request_user.achievement == 5 %}
           {% trans "Kim cương" %}
         {% endif %}
       </span>
@@ -42,11 +49,11 @@
     </div>
   {% elif request_user.current_user_following %}
     <div class="w50">
-      <a href="#" class="btn btn-primary btn-block">{% trans "Đang theo dõi" %}</a>
+      <button class="btn btn-primary btn-block follow-btn" onclick="follow({{request_user.id}})">{% trans "Bỏ theo dõi" %}</button>
     </div>
   {% else %}
     <div class="w50">
-      <a href="#" class="btn btn-primary btn-block">{% trans "Theo dõi" %}</a>
+      <button class="btn btn-primary btn-block follow-btn" onclick="follow({{request_user.id}})">{% trans "Theo dõi" %}</button>
     </div>
   {% endif %}
 </div>

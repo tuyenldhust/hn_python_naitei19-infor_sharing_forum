@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 
 from .forms import PostForm, FilterForm
-from .models import Post, HashTag, CustomUser, Follow, PostReaction, Bookmark, Comment, Category
+from .models import Post, HashTag, CustomUser, Follow, PostReaction, Bookmark, Comment, Category, PostPaid
 
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -155,7 +155,7 @@ def homepageSearch(request):
     from_date = params.get('from_date', False)
     to_date = params.get('to_date', False)
     point = params.get('point', False)
-    
+
     # Process "False" str from pagination link
     if type(search_category_list) == list:
         if "False" in search_category_list:
@@ -275,6 +275,15 @@ def __get_color_rank(achievement):
     return achievement_rank, achievement_color
 
 
+def __substring_content_safe(content):
+    temp = content[:min(1000, int(len(content) * 0.1))]
+    last_open_ab = temp.rfind('<')
+    last_close_ab = temp.rfind('>')
+    if last_open_ab > last_close_ab:
+        temp = content[:last_close_ab + 1 + content.find('>', last_open_ab)]
+    return temp + '...'
+
+
 def post_detail_view(request, primary_key):
     post = get_object_or_404(Post, pk=primary_key)
     notice_type = (
@@ -304,14 +313,19 @@ def post_detail_view(request, primary_key):
     is_following = False
     is_owner = False
     reacted_value = None
+    is_paid = False
     if request.user.is_authenticated:
         is_bookmarked = Bookmark.objects.filter(user=request.user, post=post).exists()
         is_following = Follow.objects.filter(follower=request.user, followed=post.user).exists()
         is_owner = request.user == post.user
         reacted = PostReaction.objects.filter(user=request.user, post=post).first()
+        is_paid = PostPaid.objects.filter(user=request.user, post=post).exists()
         if reacted is not None:
             reacted_value = reacted.feedback_value
 
+    # limit content length 10% of total characters(max 1000 characters)
+    if post.mode == 1 and not is_owner and not request.user.is_staff and not is_paid:
+        post.content = __substring_content_safe(post.content)
     # Load comments
     comments = Comment.objects.filter(post=post).order_by('-updated_at')
     comments_tree = {comment for comment in comments if comment.parent.pk == -1}
@@ -335,6 +349,7 @@ def post_detail_view(request, primary_key):
         'comments_tree': comments_tree,
         'reacted_value': reacted_value,
         'notice': notice_type[post.status][1],
+        'is_paid': is_paid,
     })
 
 
@@ -477,3 +492,62 @@ def famous_authors_view(request):
     return render(request, 'famous_author.html', {
         'all_top_authors': __get_famous_author(20)
     })
+
+
+@csrf_exempt
+def pay_post_view(request, primary_key):
+    try:
+        with transaction.atomic():
+            if request.method == 'POST' and request.user.is_authenticated:
+                post = get_object_or_404(Post, pk=primary_key)
+                if PostPaid.objects.filter(post=post, user=request.user).exists():
+                    return HttpResponseBadRequest(
+                        json.dumps({
+                            'message': 'Bài viết đã được thanh toán'
+                        }), content_type='application/json')
+                if request.user.point < 10:
+                    return HttpResponseBadRequest(
+                        json.dumps({
+                            'message': 'Không đủ điểm để thanh toán'
+                        }), content_type='application/json')
+                else:
+                    request.user.point -= 10
+                    request.user.save()
+                    post.user.point += 5
+                    post.user.save()
+                    postpaid = PostPaid.objects.create(post=post, user=request.user)
+                    postpaid.save()
+                    return HttpResponse(json.dumps({
+                        'message': 'Thanh toán thành công'
+                    }), content_type='application/json')
+    finally:
+        return HttpResponseBadRequest(
+            json.dumps({
+                'message': 'Có lỗi xảy ra'
+            }), content_type='application/json')
+
+
+@csrf_exempt
+def follow_user_view(request, primary_key):
+    if request.method == 'POST' and request.user.is_authenticated:
+        user = get_object_or_404(CustomUser, pk=primary_key)
+        follow = Follow.objects.filter(follower=request.user, followed=user)
+        if follow.exists():
+            follow.delete()
+            return HttpResponse(json.dumps({
+                'type': 'unfollowed',
+                'followers_count': Follow.objects.filter(followed=user).count(),
+                'message': 'Bỏ theo dõi thành công'
+            }), content_type='application/json')
+        else:
+            Follow.objects.create(follower=request.user, followed=user)
+            return HttpResponse(json.dumps({
+                'type': 'followed',
+                'followers_count': Follow.objects.filter(followed=user).count(),
+                'message': 'Theo dõi thành công'
+            }), content_type='application/json')
+    else:
+        return HttpResponseBadRequest(
+            json.dumps({
+                'message': 'Có lỗi xảy ra'
+            }), content_type='application/json')

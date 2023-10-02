@@ -388,3 +388,30 @@ $(document).ready(function () {
         includeSelectAllOption: true,
     });
 });
+
+const follow = async (id) => {
+    let res = await fetch(`/follow/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    let data = await res.json()
+    if (res.status === 200) {
+        let follow = $('.follow-btn')
+        let followerCount = $('.followers_count')
+        if (data.type === 'followed') {
+            follow.text('Bỏ theo dõi')
+            followerCount.children('span').text(data.followers_count)
+        } else if (data.type === 'unfollowed') {
+            follow.text('Theo dõi')
+            followerCount.children('span').text(data.followers_count)
+        }
+    } else {
+        errorNotification({
+            title: 'Lỗi',
+            message: data.message,
+        });
+    }
+}
+

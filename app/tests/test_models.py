@@ -193,51 +193,47 @@ class CategoryModelTest(TestCase):
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
         Category.objects.create(name='Test Category')
+        cls.category_id = Category.objects.get(name='Test Category').id
 
     def test_name_label(self):
-        category = Category.objects.get(id=1)
+        category = Category.objects.get(id=self.category_id)
         field_label = category._meta.get_field('name').verbose_name
         self.assertEquals(field_label, 'Tên chuyên mục')
 
     def test_name_max_length(self):
-        category = Category.objects.get(id=1)
+        category = Category.objects.get(id=self.category_id)
         max_length = category._meta.get_field('name').max_length
         self.assertEquals(max_length, 255)
 
     def test_object_name_is_name(self):
-        category = Category.objects.get(id=1)
+        category = Category.objects.get(id=self.category_id)
         expected_object_name = category.name
         self.assertEquals(expected_object_name, str(category))
 
-    def test_is_deleted_default_false(self):
-        category = Category.objects.get(id=1)
-        is_deleted = category.is_deleted
-        self.assertFalse(is_deleted)
-
     def test_delete_sets_is_deleted_true(self):
-        category = Category.objects.get(id=1)
+        category = Category.objects.get(id=self.category_id)
         category.delete()
-        is_deleted = category.is_deleted
-        self.assertTrue(is_deleted)
+        self.assertFalse(Category.objects.filter(id=self.category_id).exists())
 
 class HashTagModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
         HashTag.objects.create(name='Test Hashtag')
+        cls.hashtag_id = HashTag.objects.get(name='Test Hashtag').id
 
     def test_name_label(self):
-        hashtag = HashTag.objects.get(id=1)
+        hashtag = HashTag.objects.get(id=self.hashtag_id)
         field_label = hashtag._meta.get_field('name').verbose_name
         self.assertEquals(field_label, 'Tên hashtag')
 
     def test_name_max_length(self):
-        hashtag = HashTag.objects.get(id=1)
+        hashtag = HashTag.objects.get(id=self.hashtag_id)
         max_length = hashtag._meta.get_field('name').max_length
         self.assertEquals(max_length, 255)
 
     def test_object_name_is_name(self):
-        hashtag = HashTag.objects.get(id=1)
+        hashtag = HashTag.objects.get(id=self.hashtag_id)
         expected_object_name = hashtag.name
         self.assertEquals(expected_object_name, str(hashtag))
 
@@ -364,7 +360,7 @@ class ReportPostModelTest(TestCase):
 
     def test_is_resolved_choices(self):
         choices = self.report_post._meta.get_field('is_resolved').choices
-        self.assertEquals(choices, ((True, 'Resolved'), (False, 'Not resolved')))
+        self.assertEquals(choices, ((True, _('Resolved')), (False, _('Not resolved'))))
 
 class CommentModelTest(TestCase):
     @classmethod

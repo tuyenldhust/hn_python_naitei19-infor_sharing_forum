@@ -1,5 +1,6 @@
 body {
     font-size: 1.1rem;
+    padding-right: 0 !important;
 }
 
 .text-big {
@@ -143,4 +144,21 @@ body {
 .top-30px {
     margin-left: 5px;
     top: 30px;
+}
+
+.expandLink {
+     position: absolute;
+     text-align:center;
+     bottom: 26px;
+     left: 0;
+     right: 0;
+     height: 40px;
+     cursor: pointer;
+     z-index: 20;
+     background: transparent;
+     background: linear-gradient(to bottom,rgba(241,243,251,0) 0%,#f1f3fb 60%);
+}
+
+.card-title-detail {
+  font-size: 32px;
 }
