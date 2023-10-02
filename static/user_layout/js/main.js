@@ -387,6 +387,21 @@ $(document).ready(function () {
     $('#id_categories').multiselect({
         includeSelectAllOption: true,
     });
+
+    $("#read-all-notify").click(function () {
+            fetch('/read-all-notify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(
+                res => {
+                    if (res.status === 200) {
+                        $(".notification-list").removeClass('notification-list--unread');                        
+                    }
+                }
+            )
+    });
 });
 
 const follow = async (id) => {
@@ -414,4 +429,3 @@ const follow = async (id) => {
         });
     }
 }
-

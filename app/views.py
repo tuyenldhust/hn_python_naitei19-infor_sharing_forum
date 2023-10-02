@@ -11,12 +11,13 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 
 from .forms import PostForm, FilterForm
-from .models import Post, HashTag, CustomUser, Follow, PostReaction, Bookmark, Comment, Category, PostPaid
+from .models import Post, HashTag, CustomUser, Follow, PostReaction, Bookmark, Comment, Category, PostPaid, Notification
 
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 
 def __get_trending_post_by_time(time, limit=5):
@@ -419,6 +420,25 @@ def comment(request):
 
         comment = Comment.objects.create(user=request.user, post=post, parent=parent, content=content, is_edited=False)
 
+        if request.user.username != post.user.username:
+            if parent_id == '-1':
+                notification = Notification.objects.create(
+                    action_user=request.user,
+                    receive_user=post.user,
+                    type_notify=1,
+                    content=post.id
+                )
+            else:
+                # search user who comment parent comment
+                parent_comment = Comment.objects.get(pk=parent_id)
+                if parent_comment is not None and parent_comment.user != request.user:
+                    notification = Notification.objects.create(
+                        action_user=request.user,
+                        receive_user=parent_comment.user,
+                        type_notify=2,
+                        content=post.id
+                    )
+
     return redirect('post_detail', primary_key=post_id)
 
 
@@ -436,15 +456,32 @@ def react_post_view(request, primary_key, react_type):
             if reaction.first().feedback_value == feedback_value:
                 reaction.delete()
                 message = 'deleted'
+
+                # delete notification if user remove react type
+                _delete_notify(request.user, post.user, post.id)
             else:
                 reaction = reaction.first()
                 reaction.feedback_value = feedback_value
                 message = react_type
                 reaction.save()
+
+                # delete notification if user change react type to downvote
+                _delete_notify(request.user, post.user, post.id)
         else:
             reaction = PostReaction.objects.create(post=post, user=request.user, feedback_value=feedback_value)
             message = react_type
             reaction.save()
+
+            # create notification
+            if react_type == 'upvote':
+                if request.user != post.user:
+                    notification = Notification.objects.create(
+                        action_user=request.user,
+                        receive_user=post.user,
+                        type_notify=0,
+                        content=post.id
+                    )
+
         total_feedback_value = PostReaction.objects.filter(post=post).aggregate(Sum('feedback_value'))[
             'feedback_value__sum']
         if total_feedback_value is None:
@@ -459,6 +496,10 @@ def react_post_view(request, primary_key, react_type):
                 'message': 'Bad Request',
             }), content_type='application/json')
 
+def _delete_notify(action_user, receive_user, post_id, type_notify=0):
+    notifications = Notification.objects.filter(action_user=action_user, receive_user=receive_user, content=post_id, type_notify=type_notify)
+    if notifications.exists():
+        notifications.delete()
 
 @csrf_exempt
 def bookmark_post_view(request, primary_key):
@@ -550,4 +591,21 @@ def follow_user_view(request, primary_key):
         return HttpResponseBadRequest(
             json.dumps({
                 'message': 'Có lỗi xảy ra'
+            }), content_type='application/json')
+
+@login_required(login_url='/account/signin/')
+@csrf_exempt
+def read_all_notify_view(request):
+    if request.method == 'POST' and request.user.is_authenticated:
+        notifications = Notification.objects.filter(receive_user=request.user, is_read=False)
+        for notification in notifications:
+            notification.is_read = True
+            notification.save()
+        return HttpResponse(json.dumps({
+            'message': _('Đã đọc tất cả thông báo')
+        }), content_type='application/json')
+    else:
+        return HttpResponseBadRequest(
+            json.dumps({
+                'message': _('Có lỗi xảy ra')
             }), content_type='application/json')

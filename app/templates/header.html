@@ -38,14 +38,16 @@
 
                 {% if user.is_authenticated %}
                     <a href="{% url 'create_post' %}" class="px-3 ml-2"><span class="icon-pencil"></span></a>
-                    <a href="#" class="px-3"><span class="icon-bell"></span></a>
 
-                    <div class="avatar-dropdown-user-menu-wrap p-3">
+                    {% include "notification.html" %}
 
-                        <a class="avatar-dropdown-mini-photo-wrapper" href="#"><span class="icon-user-circle"
-                                style="font-size: 35px"></span></a>
+                    <div class="nav-item dropdown avatar-dropdown-ui">
 
-                        <div class="avatar-dropdown-menu-container">
+                        <a class="nav-link dropdown-toggle" href="#" id="avatarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="icon-user-circle" style="font-size: 35px"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="avatarDropdown">
                             <ul class="avatar-dropdown-user-menu">
                                 <div class="avatar-dropdown-profile-highlight">
                                     <img src="{{ user.avatar_link }}" alt="profile-img" width=36

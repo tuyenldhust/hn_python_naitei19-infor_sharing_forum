@@ -16,4 +16,5 @@ urlpatterns = [
     path('famous_authors', views.famous_authors_view, name="famous_authors"),
     path('post/<int:primary_key>/pay', views.pay_post_view, name="pay"),
     path('follow/<int:primary_key>', views.follow_user_view, name="follow"),
+    path('read-all-notify', views.read_all_notify_view, name="read_notify"),
 ]
