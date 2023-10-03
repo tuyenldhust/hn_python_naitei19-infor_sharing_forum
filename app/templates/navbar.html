@@ -30,6 +30,12 @@
                            class="nav-link text-left {% if request.path == all_posts_url %}font-weight-bold{% endif %}">
                             {% trans "All Posts" %}</a>
                     </li>
+                    {% url 'all_authors' as all_authors_url %}
+                    <li>
+                        <a href="{{ all_authors_url }}"
+                           class="nav-link text-left {% if request.path == all_authors_url %}font-weight-bold{% endif %}">
+                            {% trans "All Authors" %}</a>
+                    </li>
                 </ul>
             </nav>
         </div>

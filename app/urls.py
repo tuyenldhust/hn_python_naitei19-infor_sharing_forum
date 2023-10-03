@@ -18,4 +18,5 @@ urlpatterns = [
     path('follow/<int:primary_key>', views.follow_user_view, name="follow"),
     path('read-all-notify', views.read_all_notify_view, name="read_notify"),
     path('all_posts', views.all_posts_view, name="all_posts"),
+    path('all_authors', views.all_authors_view, name="all_authors"),
 ]

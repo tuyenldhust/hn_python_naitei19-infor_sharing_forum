@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-02 16:08+0700\n"
+"POT-Creation-Date: 2023-10-04 03:11+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,7 +137,7 @@ msgstr "Thời gian bị cấm"
 msgid "Trạng thái xóa"
 msgstr "Trạng thái xóa"
 
-#: .\app\models.py:62 .\app\models.py:261
+#: .\app\models.py:62 .\app\models.py:264
 msgid "Người báo cáo"
 msgstr "Người báo cáo"
 
@@ -145,15 +145,15 @@ msgstr "Người báo cáo"
 msgid "Người bị báo cáo"
 msgstr "Người bị báo cáo"
 
-#: .\app\models.py:72 .\app\models.py:271
+#: .\app\models.py:72 .\app\models.py:274
 msgid "Lý do"
 msgstr "Lý do"
 
-#: .\app\models.py:75 .\app\models.py:274
+#: .\app\models.py:75 .\app\models.py:277
 msgid "Thời gian báo cáo"
 msgstr "Thời gian báo cáo"
 
-#: .\app\models.py:78 .\app\models.py:277
+#: .\app\models.py:78 .\app\models.py:280
 msgid "Trạng thái giải quyết"
 msgstr "Trạng thái giải quyết"
 
@@ -185,7 +185,7 @@ msgstr "Chuyên mục"
 msgid "Hashtag"
 msgstr "Hashtag"
 
-#: .\app\models.py:134 .\app\models.py:307 .\app\models.py:355
+#: .\app\models.py:134 .\app\models.py:310 .\app\models.py:358
 msgid "Nội dung"
 msgstr "Nội dung"
 
@@ -246,84 +246,84 @@ msgstr "Lượt xem"
 msgid "Đã xóa"
 msgstr "Đã xóa"
 
-#: .\app\models.py:176
+#: .\app\models.py:179
 msgid "Tên chuyên mục"
 msgstr "Tên chuyên mục"
 
-#: .\app\models.py:196
+#: .\app\models.py:199
 msgid "Tên hashtag"
 msgstr "Tên hashtag"
 
-#: .\app\models.py:212
+#: .\app\models.py:215
 msgid "Người thanh toán"
 msgstr "Người thanh toán"
 
-#: .\app\models.py:216 .\app\models.py:239 .\app\models.py:297
-#: .\app\models.py:332 .\app\templates\search_author.html:28
+#: .\app\models.py:219 .\app\models.py:242 .\app\models.py:300
+#: .\app\models.py:335 .\app\templates\search_author.html:28
 msgid "Bài viết"
 msgstr "Bài viết"
 
-#: .\app\models.py:220
+#: .\app\models.py:223
 msgid "Thời gian thanh toán"
 msgstr "Thời gian thanh toán"
 
-#: .\app\models.py:235
+#: .\app\models.py:238
 msgid "Người Vote"
 msgstr "Người Vote"
 
-#: .\app\models.py:243
+#: .\app\models.py:246
 msgid "Vote"
 msgstr "Vote"
 
-#: .\app\models.py:246
+#: .\app\models.py:249
 msgid "Thời gian vote"
 msgstr "Thời gian vote"
 
-#: .\app\models.py:266
+#: .\app\models.py:269
 msgid "Bài viết bị báo cáo"
 msgstr "Bài viết bị báo cáo"
 
-#: .\app\models.py:279 .\app\tests\test_models.py:363
+#: .\app\models.py:282 .\app\tests\test_models.py:363
 msgid "Resolved"
 msgstr "Đã giải quyết"
 
-#: .\app\models.py:279 .\app\tests\test_models.py:363
+#: .\app\models.py:282 .\app\tests\test_models.py:363
 msgid "Not resolved"
 msgstr "Chưa giải quyết"
 
-#: .\app\models.py:293
+#: .\app\models.py:296
 msgid "Người bình luận"
 msgstr "Người bình luận"
 
-#: .\app\models.py:301
+#: .\app\models.py:304
 msgid "Bình luận cha"
 msgstr "Bình luận cha"
 
-#: .\app\models.py:310
+#: .\app\models.py:313
 msgid "Đã chỉnh sửa"
 msgstr "Đã chỉnh sửa"
 
-#: .\app\models.py:313
+#: .\app\models.py:316
 msgid "Ngày chỉnh sửa"
 msgstr "Ngày chỉnh sửa"
 
-#: .\app\models.py:328
+#: .\app\models.py:331
 msgid "Người bookmark"
 msgstr "Người bookmark"
 
-#: .\app\models.py:336
+#: .\app\models.py:339
 msgid "Thời gian bookmark"
 msgstr "Thời gian bookmark"
 
-#: .\app\models.py:351
+#: .\app\models.py:354
 msgid "Người nhận"
 msgstr "Người nhận"
 
-#: .\app\models.py:358
+#: .\app\models.py:361
 msgid "Đã đọc"
 msgstr "Đã đọc"
 
-#: .\app\models.py:361
+#: .\app\models.py:364
 msgid "Thời gian nhận"
 msgstr "Thời gian nhận"
 
@@ -331,9 +331,22 @@ msgstr "Thời gian nhận"
 msgid "Return To Homepage"
 msgstr "Trở về trang chủ"
 
-#: .\app\templates\all_post.html:11
+#: .\app\templates\all_author.html:9
+msgid "Tất cả tác giả"
+msgstr "Tất cả tác giả"
+
+#: .\app\templates\all_post.html:10
 msgid "Tất cả bài viết"
 msgstr "Tất cả bài viết"
+
+#: .\app\templates\author_card.html:30 .\app\templates\post_detail.html:28
+msgid "Unfollow"
+msgstr "Bỏ theo dõi"
+
+#: .\app\templates\author_card.html:31 .\app\templates\header.html:80
+#: .\app\templates\post_detail.html:29
+msgid "Follow"
+msgstr "Theo dõi"
 
 #: .\app\templates\base_generic.html:6
 msgid "Web title"
@@ -411,10 +424,6 @@ msgstr "Trang cá nhân"
 #: .\app\templates\header.html:75 .\app\templates\post_detail.html:75
 msgid "Bookmark"
 msgstr "Lưu"
-
-#: .\app\templates\header.html:80 .\app\templates\post_detail.html:29
-msgid "Follow"
-msgstr "Theo dõi"
 
 #: .\app\templates\header.html:91
 msgid "Logout"
@@ -522,6 +531,10 @@ msgstr "Các tác giả nổi bật"
 msgid "All Posts"
 msgstr "Tất cả bài viết"
 
+#: .\app\templates\navbar.html:37
+msgid "All Authors"
+msgstr "Tất cả tác giả"
+
 #: .\app\templates\pagination.html:10
 msgid "Trang đầu"
 msgstr "Trang đầu"
@@ -533,10 +546,6 @@ msgstr "Trước"
 #: .\app\templates\pagination.html:36
 msgid "Trang cuối"
 msgstr "Trang cuối"
-
-#: .\app\templates\post_detail.html:28
-msgid "Unfollow"
-msgstr "Bỏ theo dõi"
 
 #: .\app\templates\post_detail.html:40 .\app\templates\post_detail.html:47
 msgid "Delete Post"
