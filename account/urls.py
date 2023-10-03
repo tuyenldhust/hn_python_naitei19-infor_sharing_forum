@@ -13,4 +13,5 @@ urlpatterns = [
     path('<str:username>', views.show_profile, name='profile'),
     path('<str:username>/edit', views.edit_profile, name='edit_profile'),
     path('<str:username>/change_password', views.change_password, name='change_password'),
+    path('<str:username>/voted_up', views.voted_up, name='voted_up'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

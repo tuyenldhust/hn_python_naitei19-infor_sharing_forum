@@ -370,3 +370,35 @@ def change_password(request, username):
         else:
             form = ChangePasswordForm()
         return render(request, 'account/change_password.html', {'form': form})
+
+@login_required(login_url='/account/signin/')
+def voted_up(request, username):
+    if request.user.username != username:
+        messages.error(request, _('Bạn không có quyền xem danh sách bài viết đã vote up của người dùng này!'))
+        return redirect('home')
+
+    request_user = get_user_model().objects.filter(username=username).first()
+    if request_user is None:
+        messages.error(request, _('Không tìm thấy tài khoản này!'))
+        return redirect('home')
+    else:
+        upvoted_posts = PostReaction.objects.filter(user=request_user, feedback_value=1).order_by('-time')
+        upvoted_posts = [ upvoted_post.post for upvoted_post in upvoted_posts ]
+        for post in upvoted_posts:
+            reactions = PostReaction.objects.filter(post=post)
+            post.feedback_value = sum([reaction.feedback_value for reaction in reactions])
+            # count bookmark
+            post.bookmark_count = Bookmark.objects.filter(post=post).count()
+            # count comment
+            post.comment_count = Comment.objects.filter(post=post).count()
+
+    paginator = Paginator(upvoted_posts, 2)
+    page = request.GET.get('page')
+    upvoted_posts_paginated = get_paginated_object_list(paginator, page)
+
+    context = {
+        'upvoted_posts': upvoted_posts_paginated,
+    }
+
+    return render(request, 'account/upvoted_post.html', context)
+
