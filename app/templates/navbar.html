@@ -36,6 +36,12 @@
                            class="nav-link text-left {% if request.path == all_authors_url %}font-weight-bold{% endif %}">
                             {% trans "All Authors" %}</a>
                     </li>
+                    {% url 'trending_hashtags' as trending_hashtags_url %}
+                    <li>
+                        <a href="{{ trending_hashtags_url }}"
+                           class="nav-link text-left {% if request.path == trending_hashtags_url %}font-weight-bold{% endif %}">
+                            {% trans "Trending Hashtags" %}</a>
+                    </li>
                 </ul>
             </nav>
         </div>

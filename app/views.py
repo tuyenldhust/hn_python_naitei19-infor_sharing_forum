@@ -98,6 +98,7 @@ def home(request):
     return render(request, 'home.html', {
         'all_top_posts': __get_trending(),
         'all_top_authors': __get_famous_author(),
+        'all_top_hashtags': __get_trending_hash_tag(),
         'new_posts': new_posts
     })
 
@@ -152,6 +153,7 @@ def homepageSearch(request):
     params = request.GET
     search_keyword = params.get('search_keyword', False)
     search_type = params.get('choices_single_default', False)
+    only_by = params.getlist('only_by[]', False)
 
     # Get value from search filter (if exist)
     search_category_list = params.getlist('list_category', False)
@@ -174,8 +176,17 @@ def homepageSearch(request):
         return render(request, 'search.html', {})
 
     if search_type == "Post":
-        query = Q(title__icontains=search_keyword) | Q(content__icontains=search_keyword)
-
+        l_query = {
+            'title': Q(title__icontains=search_keyword),
+            'content': Q(content__icontains=search_keyword),
+            'hashtag': Q(hashtags__name=search_keyword),
+        }
+        query = Q()
+        if only_by:
+            for field in only_by:
+                query |= l_query[field]
+        else:
+            query = l_query['title'] | l_query['content'] | l_query['hashtag']
         # Filter by date
         if from_date:
             from_date_query = datetime.strptime(from_date, '%m/%d/%Y').strftime('%Y-%m-%d')
@@ -184,7 +195,7 @@ def homepageSearch(request):
             to_date_query = datetime.strptime(to_date, '%m/%d/%Y').strftime('%Y-%m-%d')
             query &= Q(created_at__lte=to_date_query)
 
-        object_list = Post.objects.filter(query, status=1)
+        object_list = Post.objects.filter(query, status=1).distinct()
 
         # Filter by category
         if search_category_list:
@@ -639,4 +650,41 @@ def all_authors_view(request):
         author.achievement_rank, author.achievement_color = __get_color_rank(author.achievement)
     return render(request, 'all_author.html', {
         'object_list': Paginator(all_authors, 9).get_page(request.GET.get('page')),
+    })
+
+
+def __get_trending_hash_tag_by_time(time, limit=10):
+    return HashTag.objects.raw(
+        'select ht.*, '
+        '       count(distinct p.id) as posts, '
+        '       max(p.created_at) as last_post '
+        'from app_hashtag ht '
+        '       join app_post_hashtags ph on ht.id = ph.hashtag_id '
+        '       join app_post p on ph.post_id = p.id '
+        'where p.status = 1 '
+        '  and p.created_at > (now() - interval %s day) '
+        'group by ht.id '
+        'order by posts desc, unix_timestamp(last_post) desc, ht.name '
+        'limit %s ',
+        [time, limit]
+    )
+
+def __get_trending_hash_tag(limit=10):
+    return [
+            {
+                'title': _('Hashtag nổi bật trong tuần'),
+                'hashtags': __get_trending_hash_tag_by_time(7, limit)
+            },
+            {
+                'title': _('Hashtag nổi bật trong tháng'),
+                'hashtags': __get_trending_hash_tag_by_time(30, limit)
+            },
+            {
+                'title': _('Hashtag nổi bật trong năm'),
+                'hashtags': __get_trending_hash_tag_by_time(365, limit)
+            }
+        ]
+def trending_hashtags_view(request):
+    return render(request, 'trending_hashtag.html', {
+        'all_top_hashtags': __get_trending_hash_tag(100)
     })
