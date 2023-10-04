@@ -3,7 +3,6 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
-from multiselectfield import MultiSelectField
 
 class CustomUser(AbstractUser):
     """
@@ -347,13 +346,26 @@ class Notification(models.Model):
     """
     Model representing a notification
     """
-    user = models.ForeignKey(
+    receive_user = models.ForeignKey(
         verbose_name=_('Người nhận'),
         to=CustomUser,
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE,
+        related_name='receive_user')
+    action_user = models.ForeignKey(
+        verbose_name=_('Người thực hiện'),
+        to=CustomUser,
+        on_delete=models.CASCADE,
+        related_name='action_user')
     content = models.CharField(
         verbose_name=_('Nội dung'),
-        max_length=1000)
+        max_length=1000,
+        help_text=_('Nội dung thông báo chứa id post hoặc id comment hoặc id reply comment'))
+    type_notify = models.IntegerField(
+        verbose_name=_('Loại thông báo'),
+        choices=(
+            (0, _('Like_post')),
+            (1, _('Comment')),  
+            (2, _('Reply_comment'))))
     is_read = models.BooleanField(
         verbose_name=_('Đã đọc'),
         default=False)
