@@ -3,39 +3,35 @@
 <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
 
     <div class="container">
-        <div class="d-flex align-items-center">
-
-            <div class="mr-auto">
-                <nav class="site-navigation position-relative text-right" role="navigation">
-                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
-                        {% url 'home' as home_url %}
-                        <li>
-                            <a href="{{ home_url }}"
-                               class="nav-link text-left {% if request.path == home_url %}font-weight-bold{% endif %}">
-                                {% trans "Home" %}</a>
-                        </li>
-                        {% url 'trending_posts' as trending_posts_url %}
-                        <li>
-                            <a href="{{ trending_posts_url }}"
-                               class="nav-link text-left {% if request.path == trending_posts_url %}font-weight-bold{% endif %}">
-                                {% trans "Popular Posts" %}</a>
-                        </li>
-                        {% url 'famous_authors' as famous_authors_url %}
-                        <li>
-                            <a href="{{ famous_authors_url }}"
-                               class="nav-link text-left {% if request.path == famous_authors_url %}font-weight-bold{% endif %}">
-                                {% trans "Famous Authors" %}</a>
-                        </li>
-                        <li><a href="categories.html" class="nav-link text-left">{% trans "Category 4" %}</a></li>
-                        <li>
-                            <a href="categories.html" class="nav-link text-left">{% trans "Category 5" %}</a>
-                        </li>
-                        <li><a href="contact.html" class="nav-link text-left">{% trans "Contact" %}</a></li>
-                    </ul>
-                </nav>
-
-            </div>
-
+        <div class="d-flex align-items-center justify-content-center">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+                <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
+                    {% url 'home' as home_url %}
+                    <li>
+                        <a href="{{ home_url }}"
+                           class="nav-link text-left {% if request.path == home_url %}font-weight-bold{% endif %}">
+                            {% trans "Home" %}</a>
+                    </li>
+                    {% url 'trending_posts' as trending_posts_url %}
+                    <li>
+                        <a href="{{ trending_posts_url }}"
+                           class="nav-link text-left {% if request.path == trending_posts_url %}font-weight-bold{% endif %}">
+                            {% trans "Popular Posts" %}</a>
+                    </li>
+                    {% url 'famous_authors' as famous_authors_url %}
+                    <li>
+                        <a href="{{ famous_authors_url }}"
+                           class="nav-link text-left {% if request.path == famous_authors_url %}font-weight-bold{% endif %}">
+                            {% trans "Famous Authors" %}</a>
+                    </li>
+                    {% url 'all_posts' as all_posts_url %}
+                    <li>
+                        <a href="{{ all_posts_url }}"
+                           class="nav-link text-left {% if request.path == all_posts_url %}font-weight-bold{% endif %}">
+                            {% trans "All Posts" %}</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 

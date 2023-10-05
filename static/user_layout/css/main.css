@@ -243,3 +243,8 @@
   border-radius: 5px;
   margin-left: 20px;
 }
+
+.bottom-2px {
+  position: relative;
+  bottom: 2px;
+}
