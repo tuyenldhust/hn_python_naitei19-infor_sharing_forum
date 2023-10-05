@@ -551,3 +551,14 @@
 .w-250px {
   width: 250px;
 }
+
+.min-w-30px {
+  min-width: 30px;
+}
+
+.follow-btn {
+    font-size: 1em;
+    padding: 0 2px !important;
+    min-width: 80px;
+    top: -2px;
+}

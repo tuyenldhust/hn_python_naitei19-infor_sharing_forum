@@ -617,3 +617,26 @@ def all_posts_view(request):
     return render(request, 'all_post.html', {
         'object_list': Paginator(all_posts, 10).get_page(request.GET.get('page')),
     })
+
+
+def all_authors_view(request):
+    all_authors = CustomUser.objects.raw(
+        'select u.*, '
+        '       count(distinct f.follower_id)                                               as followers, '
+        '       count(distinct p.id)                                                        as posts, '
+        '       if(count(if(f.follower_id = %s, 1, null)) > 0, true, false)                 as is_following, '
+        '       row_number() over (order by u.achievement desc, count(distinct p.id) desc ) as r_id '
+        'from app_customuser u '
+        '       left join app_follow f on u.id = f.followed_id '
+        '       join app_post p on u.id = p.user_id '
+        'where u.is_active = true '
+        '  and p.status = 1 '
+        'group by u.id '
+        'order by r_id ',
+        [request.user.id]
+    )
+    for author in all_authors:
+        author.achievement_rank, author.achievement_color = __get_color_rank(author.achievement)
+    return render(request, 'all_author.html', {
+        'object_list': Paginator(all_authors, 9).get_page(request.GET.get('page')),
+    })

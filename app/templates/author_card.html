@@ -1,0 +1,36 @@
+{% load i18n %}
+<div class="trend-entry d-flex post_card">
+    <div class="number align-self-start position-relative">
+        <img src="{{author.avatar_link}}" class="rounded-circle object-fit-cover border" alt="avatar" width="50px"
+             height="50px">
+        <p class="position-absolute top-100 start-100 translate-middle badge badge-primary rounded-circle wh-35px text-center align-self-center">
+            {% if author.r_id < 10 %}0{% endif %}{{author.r_id}}</p>
+    </div>
+    <div class="ml-4 trend-contents">
+        <div class="d-flex flex-row w-250px">
+            <h2><a href="{% url 'profile' author.username %}" class="d-block text-truncate">{{author.first_name}}
+                {{author.last_name}}</a>
+            </h2>
+            {% if author.achievement != 0%}
+            <i class="fa fa-trophy line-height-23px" aria-hidden="true" style="color: {{author.achievement_color}};">
+                <span class="fix-font-main">{{author.achievement_rank}}</span>
+            </i>
+            {% endif %}
+        </div>
+        <div class="post-meta">
+            <span class="d-block text-truncate w-250px">
+                <a class="text-primary" href="{% url 'profile' author.username %}">
+                    @{{author.username}}
+                </a>
+            </span>
+            <i class="fa-solid fa-user-plus text-muted mr-2 min-w-30px f-author-{{author.id}}"> {{author.followers}}</i>
+            <i class="fa-solid fa-pencil text-muted min-w-30px"> {{author.posts}}</i>
+            {% if author.id != request.user.id %}
+                <button class="btn btn-primary btn-sm ml-2 follow-btn position-relative author-{{author.id}}" type="button" aria-hidden="true"
+                        onclick="follow_in_author_page({{author.id}})">{% if author.is_following %}{% trans "Unfollow" %}
+                    {% else %}{% trans "Follow" %}{% endif %}
+                </button>
+                {% endif %}
+        </div>
+    </div>
+</div>

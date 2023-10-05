@@ -397,35 +397,48 @@ $(document).ready(function () {
             }).then(
                 res => {
                     if (res.status === 200) {
-                        $(".notification-list").removeClass('notification-list--unread');                        
+                        $(".notification-list").removeClass('notification-list--unread');
                     }
                 }
             )
     });
 });
-
-const follow = async (id) => {
+const follow_request = async (id) => {
     let res = await fetch(`/follow/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         }
     })
-    let data = await res.json()
-    if (res.status === 200) {
+    return [res.status, await res.json()]
+}
+const follow = async (id) => {
+    let [status, data] = await follow_request(id)
+    if (status === 200) {
         let follow = $('.follow-btn')
         let followerCount = $('.followers_count')
-        if (data.type === 'followed') {
-            follow.text('Bỏ theo dõi')
-            followerCount.children('span').text(data.followers_count)
-        } else if (data.type === 'unfollowed') {
-            follow.text('Theo dõi')
-            followerCount.children('span').text(data.followers_count)
-        }
+        data.type === 'followed' ? follow.text('Bỏ theo dõi') : follow.text('Theo dõi')
+        followerCount.children('span').text(data.followers_count)
     } else {
         errorNotification({
             title: 'Lỗi',
-            message: data.message,
+            message: 'Bạn cần đăng nhập',
+        });
+    }
+}
+
+const follow_in_author_page = async (id) => {
+    let [status, data] = await follow_request(id)
+    if (status === 200) {
+        let follow = $(`.author-${id}`)
+        let followerCount = $(`.f-author-${id}`)
+        console.log(follow)
+        data.type === 'followed' ? follow.text('Bỏ theo dõi') : follow.text('Theo dõi')
+        followerCount.text(` ${data.followers_count}`)
+    } else {
+        errorNotification({
+            title: 'Lỗi',
+            message: 'Bạn cần đăng nhập',
         });
     }
 }
