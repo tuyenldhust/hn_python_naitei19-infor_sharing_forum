@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-02 03:30+0700\n"
+"POT-Creation-Date: 2023-10-04 15:23+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: .\account\forms.py:18
@@ -243,6 +243,7 @@ msgstr "Tổng đánh giá"
 #: .\account\templates\account\profile_followed.html:56
 #: .\account\templates\account\profile_following.html:56
 #: .\account\templates\account\profile_post.html:77
+#: .\account\templates\account\upvoted_post.html:32
 msgid "Trang đầu"
 msgstr "Trang đầu"
 
@@ -250,6 +251,7 @@ msgstr "Trang đầu"
 #: .\account\templates\account\profile_followed.html:59
 #: .\account\templates\account\profile_following.html:59
 #: .\account\templates\account\profile_post.html:79
+#: .\account\templates\account\upvoted_post.html:35
 msgid "Previous"
 msgstr "Previous"
 
@@ -257,6 +259,7 @@ msgstr "Previous"
 #: .\account\templates\account\profile_followed.html:82
 #: .\account\templates\account\profile_following.html:82
 #: .\account\templates\account\profile_post.html:95
+#: .\account\templates\account\upvoted_post.html:58
 msgid "Trang cuối"
 msgstr "Trang cuối"
 
@@ -416,6 +419,18 @@ msgstr "Xác nhận lại mật khẩu"
 msgid "Đã có tài khoản?"
 msgstr "Đã có tài khoản?"
 
+#: .\account\templates\account\upvoted_post.html:9
+#, fuzzy
+#| msgid "Chưa lưu bài viết nào"
+msgid "Bạn chưa upvote bài viết nào"
+msgstr "Bạn chưa upvote bài viết nào"
+
+#: .\account\templates\account\upvoted_post.html:15
+#, fuzzy
+#| msgid "Bài viết đã lưu"
+msgid "Danh sách bài viết đã upvote:"
+msgstr "Danh sách bài viết đã upvote:"
+
 #: .\account\views.py:72
 msgid "Đăng ký thành công!"
 msgstr "Đăng ký thành công!"
@@ -440,7 +455,7 @@ msgstr "Bạn chưa đăng nhập!"
 msgid "Bạn không có quyền chỉnh sửa thông tin người dùng này!"
 msgstr "Bạn không có quyền chỉnh sửa thông tin người dùng này!"
 
-#: .\account\views.py:310 .\account\views.py:350
+#: .\account\views.py:310 .\account\views.py:350 .\account\views.py:382
 msgid "Không tìm thấy tài khoản này!"
 msgstr "Không tìm thấy tài khoản này!"
 
@@ -463,6 +478,13 @@ msgstr "Đổi mật khẩu thành công!"
 #: .\account\views.py:366
 msgid "Mật khẩu cũ không đúng!"
 msgstr "Mật khẩu cũ không đúng!"
+
+#: .\account\views.py:377
+#, fuzzy
+#| msgid "Bạn không có quyền chỉnh sửa thông tin người dùng này!"
+msgid ""
+"Bạn không có quyền xem danh sách bài viết đã vote up của người dùng này!"
+msgstr "Bạn không có quyền xem danh sách bài viết đã vote up của người dùng này!"
 
 #~ msgid "You are not logged in"
 #~ msgstr "Bạn chưa đăng nhập"

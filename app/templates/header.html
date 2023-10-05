@@ -83,6 +83,11 @@
                                     </a>
                                 </li>
                                 <li class="avatar-dropdown-user-menu__item">
+                                    <a class="avatar-dropdown-user-menu-link" href="{% url 'voted_up' user.username %}">
+                                        <p class="mb-0"><i class="icon-arrow-up mr-1"></i> {% trans "Voted up" %}</p>
+                                    </a>
+                                </li>
+                                <li class="avatar-dropdown-user-menu__item">
                                     <a class="avatar-dropdown-user-menu-link" href="#">
                                         <p class="mb-0"><i class="icon-file-text-o mr-2"></i> {% trans "Draft" %}</p>
                                     </a>

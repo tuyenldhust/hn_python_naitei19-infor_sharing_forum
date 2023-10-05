@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-27 10:43+0700\n"
+"POT-Creation-Date: 2023-10-04 15:23+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: .\customadmin\templates\admin\actions.html:7
@@ -91,8 +91,8 @@ msgid ""
 "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
 "All of the following related items will be deleted:"
 msgstr ""
-"Bạn có chắc chắn muốn xóa %(object_name)s \"%(escaped_object)s\"? Tất cả "
-"các mục liên quan sau sẽ bị xóa:"
+"Bạn có chắc chắn muốn xóa %(object_name)s \"%(escaped_object)s\"? Tất cả các "
+"mục liên quan sau sẽ bị xóa:"
 
 #: .\customadmin\templates\admin\delete_confirmation.html:24
 #: .\customadmin\templates\admin\delete_selected_confirmation.html:19
@@ -125,8 +125,8 @@ msgid ""
 "Deleting the selected %(objects_name)s would require deleting the following "
 "protected related objects:"
 msgstr ""
-"Xóa %(objects_name)s đã chọn sẽ yêu cầu xóa các đối tượng liên quan được "
-"bảo vệ sau:"
+"Xóa %(objects_name)s đã chọn sẽ yêu cầu xóa các đối tượng liên quan được bảo "
+"vệ sau:"
 
 #: .\customadmin\templates\admin\delete_selected_confirmation.html:17
 #, python-format
@@ -134,8 +134,8 @@ msgid ""
 "Are you sure you want to delete the selected %(objects_name)s? All of the "
 "following objects and their related items will be deleted:"
 msgstr ""
-"Bạn có chắc chắn muốn xóa %(objects_name)s đã chọn? Tất cả các đối tượng "
-"sau và các mục liên quan của chúng sẽ bị xóa:"
+"Bạn có chắc chắn muốn xóa %(objects_name)s đã chọn? Tất cả các đối tượng sau "
+"và các mục liên quan của chúng sẽ bị xóa:"
 
 #: .\customadmin\templates\admin\leftsidebar.html:12
 msgid "Navigation"
