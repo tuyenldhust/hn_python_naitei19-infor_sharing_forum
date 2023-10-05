@@ -455,30 +455,92 @@ class NotificationModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        cls.user = CustomUser.objects.create_user(
+        cls.user1 = CustomUser.objects.create_user(
             username='testuser',
             password='testpass'
         )
-        cls.notification = Notification.objects.create(
-            user=cls.user,
-            content='Test notification',
-            is_read=False,
+        cls.user2 = CustomUser.objects.create_user(
+            username='testuser2',
+            password='testpass2'
+        )
+        cls.post = Post.objects.create(
+            user=cls.user1,
+            title='Test post',
+            content='Test content',
+            mode=0,
+            status=1,
+            created_at=timezone.now(),
+            updated_at=timezone.now(),
+            view_count=0,
+            is_deteted=False
+        )
+
+        cls.like = PostReaction.objects.create(
+            user=cls.user2,
+            post=cls.post,
+            feedback_value=1,
             time=timezone.now()
         )
 
-    def test_string_representation(self):
-        expected_string = f'{self.user.username} got notification {self.notification.content}'
-        self.assertEqual(str(self.notification), expected_string)
+        cls.comment = Comment.objects.create(
+            user=cls.user2,
+            post=cls.post,
+            parent=None,
+            content=cls.post.id,
+            is_edited=False,
+            updated_at=timezone.now()
+        )
+
+
+        cls.reply_comment = Comment.objects.create(
+            user=cls.user1,
+            post=cls.post,
+            parent=cls.comment,
+            content=cls.post.id,
+            is_edited=False,
+            updated_at=timezone.now()
+        )
+
+        cls.notify_like = Notification.objects.create(
+            action_user=cls.user2,
+            receive_user=cls.user1,
+            content=cls.post.id,
+            is_read=False,
+            time=timezone.now(),
+            type_notify=0
+        )
+        cls.notify_comment = Notification.objects.create(
+            action_user=cls.user2,
+            receive_user=cls.user1,
+            content=cls.post.id,
+            is_read=False,
+            time=timezone.now(),
+            type_notify=1
+        )
+
+        cls.notify_reply_comment = Notification.objects.create(
+            action_user=cls.user2,
+            receive_user=cls.user1,
+            content=cls.post.id,
+            is_read=False,
+            time=timezone.now(),
+            type_notify=2
+        )
 
     def test_user_foreign_key(self):
-        self.assertEqual(self.notification.user, self.user)
-
-    def test_content_max_length(self):
-        max_length = self.notification._meta.get_field('content').max_length
-        self.assertEquals(max_length, 1000)
+        self.assertEqual(self.notify_like.action_user, self.user2)
+        self.assertEqual(self.notify_like.receive_user, self.user1)
+        self.assertEqual(self.notify_comment.action_user, self.user2)
+        self.assertEqual(self.notify_comment.receive_user, self.user1)
+        self.assertEqual(self.notify_reply_comment.action_user, self.user2)
+        self.assertEqual(self.notify_reply_comment.receive_user, self.user1)
 
     def test_is_read_default_false(self):
-        self.assertFalse(self.notification.is_read)
+        self.assertFalse(self.notify_like.is_read)
+        self.assertFalse(self.notify_comment.is_read)
+        self.assertFalse(self.notify_reply_comment.is_read)
 
     def test_time_auto_now_add(self):
-        self.assertIsNotNone(self.notification.time)
+        self.assertIsNotNone(self.notify_like.time)
+        self.assertIsNotNone(self.notify_comment.time)
+        self.assertIsNotNone(self.notify_reply_comment.time)

@@ -483,7 +483,6 @@ def react_post_view(request, primary_key, react_type):
                         type_notify=0,
                         content=post.id
                     )
-
         total_feedback_value = PostReaction.objects.filter(post=post).aggregate(Sum('feedback_value'))[
             'feedback_value__sum']
         if total_feedback_value is None:
