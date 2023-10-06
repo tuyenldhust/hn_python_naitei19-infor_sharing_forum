@@ -51,7 +51,7 @@
 
     </div>
 </div>
-<!-- Trending Section-->
+<!-- Trending Post Section-->
 <div class="site-section">
     <div class="container">
         <div class="row">
@@ -92,7 +92,7 @@
         </div>
     </div>
 </div>
-<!-- END Trending Section-->
+<!-- END Trending Post Section-->
 
 <!-- Famous Author Section-->
 <div class="site-section">
@@ -143,6 +143,43 @@
     </div>
 </div>
 <!-- END Famous Author Section-->
+
+<!-- Treding Hashtag Section-->
+<div class="site-section mt-5">
+    <div class="container">
+        <div class="row">
+            {% for top_hashtags in all_top_hashtags %}
+            <div class="col-lg-4">
+                <div class="section-title">
+                    <h2>{{top_hashtags.title}}</h2>
+                </div>
+                {% for hashtag in top_hashtags.hashtags %}
+                <div class="trend-entry d-flex post_card">
+                    <div class="number text-center align-self-center">
+                        {% if forloop.counter < 10 %}0{% endif %}{{forloop.counter}}
+                    </div>
+                    <div class="trend-contents">
+                        <h2 ><a href="{% url 'search' %}?search_keyword={{hashtag.name}}&choices_single_default=Post&only_by[]=hashtag"
+                                class="text-primary">#{{hashtag.name}}</a></h2>
+                        <div class="row ml-0 f-size-12px">
+                        <i class="fa-solid fa-pencil text-muted"> {{hashtag.posts}}</i>
+                        <i class="fa-solid fa-eye text-muted ml-2"> {{hashtag.last_post|date:"h:m d/m/Y"}}</i>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if forloop.last %}
+                <p class="text-center">
+                    <a href="{% url 'trending_hashtags' %}" class="more">{% trans "Xem thêm" %} <span
+                            class="icon-keyboard_arrow_right"></span></a>
+                </p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!--END Treding Hashtag Section -->
 
 <!-- New Post Section-->
 <div class="site-section">
